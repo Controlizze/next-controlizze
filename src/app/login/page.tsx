@@ -1,6 +1,8 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
+import Button from 'components/Buttons/Button'
+
 export default function LoginPage() {
   return (
     <div
@@ -41,9 +43,13 @@ export default function LoginPage() {
               />
             </div>
           </form>
-          <button className="w-full h-12 bg-[#36CF3C] hover:bg-[#6AE264] rounded-md shadow-md transition font-bold text-zinc-50">
-            ENTRAR
-          </button>
+          <Button
+            width="full"
+            height={12}
+            fontWeight="bold"
+            upper="uppercase"
+            textButton="Entrar"
+          />
         </div>
         <div className="w-full h-20 px-14 py-2 flex items-center gap-2 bg-zinc-800 rounded-b-3xl rounded-bl-3xl">
           <span className="text-zinc-50">Ainda não tem uma conta?</span>
