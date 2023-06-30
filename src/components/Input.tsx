@@ -1,35 +1,44 @@
-import { InputHTMLAttributes, ReactElement, ReactNode } from 'react'
+import {
+  InputHTMLAttributes,
+  ReactElement,
+  ReactNode,
+  cloneElement
+} from 'react'
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   children: ReactNode
   icon?: ReactElement
-  variant?: 'default' | 'error'
+  sizeX: string
+  type: string
+  disabled?: boolean
   msg?: string
 }
 
-export const Input = (props: InputProps) => {
-  const { variant } = props
-
-  switch (variant) {
-    case 'error':
-      return <h1>Error</h1>
-    case 'default':
-      return <h1>Default</h1>
-  }
-}
-
-export const DefaultInput = (props: InputProps) => {
-  const { children, icon, msg } = props
-
+export default function Input({
+  children,
+  icon,
+  sizeX,
+  type,
+  disabled,
+  msg
+}: InputProps) {
   return (
-    <div className="w-full flex flex-col">
-      <label className="text-xs font-normal text-zinc-50" htmlFor="">
+    <label className={`w-${sizeX}`}>
+      <span className="block text-xs font-medium text-zinc-300">
         {children}
-      </label>
-      <input className="w-full h-8 px-2 rounded-md outline-none" type="text">
-        {icon}
-      </input>
-      <span>{msg}</span>
-    </div>
+      </span>
+      <input
+        type={`${type}`}
+        disabled={disabled}
+        className="w-full mt-1 px-3 py-2 block bg-white border-2 border-slate-300 rounded-md text-xs shadow-sm placeholder-slate-400
+        focus:outline-none focus:border-primary-500 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
+      invalid:border-red-500
+      focus:invalid:border-red-500"
+      ></input>
+      {icon &&
+        cloneElement(icon, { className: 'focus disabled invalid w-6 h-6' })}
+      {msg &&
+        cloneElement(<span>{msg}</span>, { className: 'text-xs text-red-500' })}
+    </label>
   )
 }

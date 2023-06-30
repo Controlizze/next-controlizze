@@ -8,8 +8,8 @@ import {
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode
   icon?: ReactElement
-  sizeX?: 'full' | ''
-  sizeY?: string
+  sizeX: string
+  sizeY: string
   variant?:
     | 'default'
     | 'outline'
@@ -25,7 +25,7 @@ export const Button = (props: ButtonProps) => {
   const { variant } = props
 
   const style =
-    'px-4 py-2 flex justify-center items-center rounded-md shadow-md transition-all font-bold'
+    'block flex justify-center items-center rounded-md shadow-md transition-all font-bold'
 
   switch (variant) {
     case 'outline':
@@ -52,7 +52,7 @@ export const DefaultButton = (props: ButtonProps) => {
       className={`w-${sizeX} h-${sizeY} ${defaultStyle} bg-primary-500 hover:bg-primary-300 text-white ${upperText}`}
     >
       <span>{children}</span>
-      {icon && cloneElement(icon, { className: 'fill-white w-7 h-7' })}
+      {icon && cloneElement(icon, { className: 'fill-white w-6 h-6' })}
     </button>
   )
 }
@@ -66,7 +66,7 @@ export const OutlineButton = (props: ButtonProps) => {
       className={`w-${sizeX} h-${sizeY} ${defaultStyle} border-2 border-primary-500 hover:border-primary-300 text-primary-500 hover:text-primary-300 ${upperText}`}
     >
       <span>{children}</span>
-      {icon && cloneElement(icon, { className: 'fill-white w-7 h-7' })}
+      {icon && cloneElement(icon, { className: 'fill-white w-6 h-6' })}
     </button>
   )
 }
@@ -80,7 +80,7 @@ export const TransparentButton = (props: ButtonProps) => {
       className={`w-${sizeX} h-${sizeY} ${defaultStyle} text-primary-500 hover:text-primary-300 ${upperText}`}
     >
       <span>{children}</span>
-      {icon && cloneElement(icon, { className: 'fill-white w-7 h-7' })}
+      {icon && cloneElement(icon, { className: 'fill-white w-6 h-6' })}
     </button>
   )
 }
@@ -94,7 +94,7 @@ export const WarnButton = (props: ButtonProps) => {
       className={`w-${sizeX} h-${sizeY} ${defaultStyle} bg-yellow-500 hover:bg-yellow-300 text-white ${upperText}`}
     >
       <span>{children}</span>
-      {icon && cloneElement(icon, { className: 'fill-white w-7 h-7' })}
+      {icon && cloneElement(icon, { className: 'fill-white w-6 h-6' })}
     </button>
   )
 }
@@ -108,7 +108,7 @@ export const CancelButton = (props: ButtonProps) => {
       className={`w-${sizeX} h-${sizeY} ${defaultStyle} bg-red-500 hover:bg-red-300 text-white ${upperText}`}
     >
       <span>{children}</span>
-      {icon && cloneElement(icon, { className: 'fill-white w-7 h-7' })}
+      {icon && cloneElement(icon, { className: 'fill-white w-6 h-6' })}
     </button>
   )
 }
@@ -123,7 +123,7 @@ export const DisableButton = (props: ButtonProps) => {
       className={`w-${sizeX} h-${sizeY} ${defaultStyle} bg-zinc-400 text-white ${upperText}`}
     >
       <span>{children}</span>
-      {icon && cloneElement(icon, { className: 'fill-white w-7 h-7' })}
+      {icon && cloneElement(icon, { className: 'fill-white w-6 h-6' })}
     </button>
   )
 }
