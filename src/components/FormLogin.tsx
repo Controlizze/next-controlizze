@@ -1,3 +1,6 @@
+import Link from 'next/link'
+import { FaArrowRight } from 'react-icons/fa6'
+
 import { Button } from './Button'
 import Input from './Input'
 
@@ -17,9 +20,28 @@ export default function FormLogin() {
           </Input>
         </form>
       </div>
-      <Button sizeX="full" sizeY="12" variant="default" upperText="uppercase">
-        Entrar
-      </Button>
+      <div className="w-full h-auto flex flex-col gap-6">
+        <div className="flex flex-col gap-2">
+          <Button.Root className="w-full h-12">
+            <Button.Content text="Entrar" upper="uppercase" />
+          </Button.Root>
+
+          <Link
+            className="w-full h-12 flex justify-center items-center gap-3 border-2 border-primary-500 hover:border-primary-300 bg-transparent hover:bg-transparent text-primary-500 hover:text-primary-300 fill-primary-500 hover:fill-primary-300 transition-all"
+            href="/cadastro"
+          >
+            <span className="font-bold uppercase ">Cadastrar</span>
+            <FaArrowRight className="w-6 h-6 " />
+          </Link>
+        </div>
+
+        <Link
+          href="/forget-password"
+          className="text-center text-sm text-orange-500 hover:text-orange-300 font-semibold"
+        >
+          Esqueci minha senha!
+        </Link>
+      </div>
     </>
   )
 }

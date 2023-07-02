@@ -21,7 +21,7 @@ export default function FormRegister() {
           <Input sizeX="full" type="password">
             Senha
           </Input>
-          <div className="flex gap-4">
+          <div className="w-full flex justify-between gap-2">
             <Input sizeX="full" type="text">
               Cidade
             </Input>
@@ -31,9 +31,9 @@ export default function FormRegister() {
           </div>
         </form>
       </div>
-      <Button sizeX="full" sizeY="12" variant="default" upperText="uppercase">
-        Cadastrar
-      </Button>
+      <Button.Root className="w-full h-12">
+        <Button.Content text="Cadastrar" upper="uppercase" />
+      </Button.Root>
     </>
   )
 }
