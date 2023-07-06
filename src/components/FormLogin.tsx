@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { FaArrowRight } from 'react-icons/fa6'
 
 import { Button } from './Button'
-import Input from './Input'
+import { Input } from './Input'
 
 export default function FormLogin() {
   return (
@@ -12,12 +12,15 @@ export default function FormLogin() {
           <span className="text-xl font-semibold text-zinc-50">
             Fazer Login
           </span>
-          <Input sizeX="full" type="email">
-            Email
-          </Input>
-          <Input sizeX="full" type="password">
-            Senha
-          </Input>
+          <Input.Root sizeX="full">
+            <Input.Label label="Email" />
+            <Input.Content type="email" />
+          </Input.Root>
+
+          <Input.Root sizeX="full">
+            <Input.Label label="Senha" />
+            <Input.Content type="password" />
+          </Input.Root>
         </form>
       </div>
       <div className="w-full h-auto flex flex-col gap-6">
@@ -27,7 +30,7 @@ export default function FormLogin() {
           </Button.Root>
 
           <Link
-            className="w-full h-12 flex justify-center items-center gap-3 border-2 border-primary-500 hover:border-primary-300 bg-transparent hover:bg-transparent text-primary-500 hover:text-primary-300 fill-primary-500 hover:fill-primary-300 transition-all"
+            className="w-full h-12 flex justify-center items-center gap-3 rounded-md border-2 border-primary-500 hover:border-primary-300 bg-transparent hover:bg-transparent text-primary-500 hover:text-primary-300 fill-primary-500 hover:fill-primary-300 transition-all"
             href="/cadastro"
           >
             <span className="font-bold uppercase ">Cadastrar</span>
