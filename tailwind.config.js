@@ -8,8 +8,21 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        'primary-100': '#94F085',
         'primary-300': '#6AE264',
-        'primary-500': '#36CF3C'
+        'primary-500': '#36CF3C',
+        'primary-700': '#27B239',
+        'primary-900': '#1B9535',
+        'secundary-100': '#FFB26B',
+        'secundary-300': '#FF9346',
+        'secundary-500': '#FF6109',
+        'secundary-700': '#DB4506',
+        'secundary-900': '#B72E04',
+        'black-100': '#BEBEBE',
+        'black-300': '#7D7D7D',
+        'black-500': '#111111',
+        'black-700': '#0A0A0A',
+        'black-900': '#080808'
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

@@ -8,13 +8,14 @@ interface InputLabelProps extends InputHTMLAttributes<HTMLInputElement> {
 
 export function InputLabel({ label, ...rest }: InputLabelProps) {
   return (
-    <span
+    <label
+      htmlFor=""
       className={twMerge(
         'block text-xs font-medium text-zinc-300',
         rest.className
       )}
     >
       {label}
-    </span>
+    </label>
   )
 }

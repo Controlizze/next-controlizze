@@ -1,18 +1,15 @@
-import Image from 'next/image'
-import { FormHTMLAttributes, ReactElement } from 'react'
+import { BaseHTMLAttributes, ReactNode } from 'react'
 
-interface FormProps extends FormHTMLAttributes<HTMLFormElement> {
-  form: ReactElement
+import { twMerge } from 'tailwind-merge'
+
+interface ContainerProps extends BaseHTMLAttributes<HTMLBaseElement> {
+  children: ReactNode
 }
 
-export default function Container({ form }: FormProps) {
+export default function Container({ children, ...rest }: ContainerProps) {
   return (
-    <div className="w-full h-screen">
-      <div className="w-full h-full px-8 py-8 flex flex-col justify-between items-center bg-zinc-900">
-        <Image src="/logo.png" width={260} height={260} alt="Logo" />
-        {form}
-      </div>
-      <div className="hidden"></div>
+    <div className={twMerge('w-full h-screen bg-black-900', rest.className)}>
+      {children}
     </div>
   )
 }

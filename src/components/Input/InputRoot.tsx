@@ -6,5 +6,5 @@ interface InputRootProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 export function InputRoot({ sizeX, children }: InputRootProps) {
-  return <label className={`w-${sizeX}`}>{children}</label>
+  return <div className={`w-${sizeX}`}>{children}</div>
 }
