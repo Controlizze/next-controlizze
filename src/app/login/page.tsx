@@ -16,7 +16,7 @@ export default function LoginPage() {
 
   return (
     <Container className="flex">
-      <div className="w-1/3 h-full px-12 py-[72px] flex flex-col gap-14 bg-black-700">
+      <div className="w-1/3 h-full px-12 py-[72px] flex flex-col gap-14 bg-black-900">
         <a href="/" className="max-w-max">
           <BsChevronLeft className="w-7 h-7 fill-white" />
         </a>
@@ -57,12 +57,7 @@ export default function LoginPage() {
           </div>
           <div className="w-full flex justify-between items-center">
             <div className="flex items-center gap-2">
-              <input
-                type="checkbox"
-                name="checked"
-                id="checked"
-                className="w-4 h-4 rounded"
-              />
+              <input type="checkbox" className="w-4 h-4  rounded" />
               <span className="text-xs text-black-100">
                 Lembrar minha senha
               </span>
@@ -75,16 +70,18 @@ export default function LoginPage() {
             </a>
           </div>
         </form>
+
         <div className="w-full flex justify-between gap-4">
           <a
             href="/cadastro"
-            className="w-full px-4 py-4 flex justify-center items-center border border-primary-500 hover:border-primary-300 rounded-xl transition-all text-xl font-semibold text-primary-500 hover:text-primary-300"
+            className="w-full px-4 py-4 flex justify-center items-center border border-primary-500 hover:border-primary-300 rounded-xl shadow-lg transition-all text-xl font-semibold text-primary-500 hover:text-primary-300"
           >
             Cadastrar
           </a>
+
           <button
             onClick={handleSubmit}
-            className="w-full px-4 py-4 bg-primary-500 hover:bg-primary-300 rounded-xl transition-all text-xl font-semibold text-white"
+            className="w-full px-4 py-4 bg-primary-500 hover:bg-primary-300 rounded-xl shadow-lg transition-all text-xl font-semibold text-white"
           >
             Acessar
           </button>
