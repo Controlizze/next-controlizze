@@ -16,7 +16,7 @@ export default function LoginPage() {
 
   return (
     <Container className="flex">
-      <div className="w-1/3 h-full px-12 py-[72px] flex flex-col gap-14 bg-black-900">
+      <div className="w-1/3 h-full px-12 py-[72px] flex flex-col gap-14 bg-background-900">
         <a href="/" className="max-w-max">
           <BsChevronLeft className="w-7 h-7 fill-white" />
         </a>
@@ -28,10 +28,10 @@ export default function LoginPage() {
           <div className="w-full flex flex-col gap-4">
             {/* Input */}
             <div className="w-full flex flex-col gap-1">
-              <label htmlFor="email" className=" text-xs text-black-100">
+              <label htmlFor="email" className=" text-xs text-zinc-400">
                 Digite seu e-mail
               </label>
-              <div className="px-6 py-4 flex justify-between items-center gap-3 border-2 bg-white rounded-lg border-black-100 text-base">
+              <div className="px-6 py-4 flex justify-between items-center gap-3 border-2 bg-white rounded-lg border-zinc-400 text-base">
                 <input
                   type="email"
                   placeholder="E-mail"
@@ -42,29 +42,29 @@ export default function LoginPage() {
 
             {/* Input */}
             <div className="w-full flex flex-col gap-1">
-              <label htmlFor="password" className=" text-xs text-black-100">
+              <label htmlFor="password" className=" text-xs text-zinc-400">
                 Digite sua senha
               </label>
-              <div className="px-6 py-4 flex justify-between items-center gap-3 border-2 bg-white rounded-lg border-black-100 text-base">
+              <div className="px-6 py-4 flex justify-between items-center gap-3 border-2 bg-white rounded-lg border-zinc-400 text-base">
                 <input
+                  id="password"
                   type="password"
                   placeholder="Senha"
                   className="w-full outline-none"
                 />
-                <BsEyeFill className="w-6 h-6 fill-black-100" />
+                <BsEyeFill className="w-6 h-6 fill-zinc-400" />
               </div>
             </div>
           </div>
           <div className="w-full flex justify-between items-center">
             <div className="flex items-center gap-2">
               <input type="checkbox" className="w-4 h-4  rounded" />
-              <span className="text-xs text-black-100">
-                Lembrar minha senha
-              </span>
+              <span className="text-xs text-zinc-400">Lembrar minha senha</span>
             </div>
+
             <a
               href="/forget-password"
-              className="text-xs text-orange-500 hover:text-orange-300 transition-all"
+              className="text-xs text-zinc-400 hover:text-zinc-500 transition-all"
             >
               Esqueci minha senha
             </a>
@@ -74,37 +74,43 @@ export default function LoginPage() {
         <div className="w-full flex justify-between gap-4">
           <a
             href="/cadastro"
-            className="w-full px-4 py-4 flex justify-center items-center border border-primary-500 hover:border-primary-300 rounded-xl shadow-lg transition-all text-xl font-semibold text-primary-500 hover:text-primary-300"
+            className="w-full px-4 py-4 flex justify-center items-center gap-3 border border-primary-500 rounded hover:opacity-75 transition-all"
           >
-            Cadastrar
+            <span className="text-base font-bold text-primary-500 uppercase">
+              Cadastrar
+            </span>
           </a>
 
           <button
             onClick={handleSubmit}
-            className="w-full px-4 py-4 bg-primary-500 hover:bg-primary-300 rounded-xl shadow-lg transition-all text-xl font-semibold text-white"
+            className="w-full px-4 py-4 flex justify-center items-center gap-3 bg-primary-500 rounded hover:opacity-75 transition-all"
           >
-            Acessar
+            <span className="text-base font-bold text-black-500 uppercase">
+              Acessar
+            </span>
           </button>
         </div>
       </div>
       <div
         className="relative w-full h-full p-14 flex flex-col justify-center items-center gap-6"
         style={{
-          backgroundImage: `url('/background.jpg')`,
+          backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.80) 0%, rgba(0, 0, 0, 0.80) 100%), url('/background_office.png')`,
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover'
         }}
       >
         <Image
-          src="/logo_nova.png"
+          src="/new_logo.png"
           width={180}
           height={180}
           alt="logo"
           className="absolute top-14 left-14"
         />
+
         <span className="text-6xl font-bold text-center text-primary-500">
           Bem-vindo de volta!
         </span>
+
         <span className="max-w-[900px] text-3xl font-light text-center text-primary-500">
           Como é bom vê-lo novamente, acesse sua conta agora mesmo para voltar a
           ter nosso serviço

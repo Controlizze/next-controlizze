@@ -8,7 +8,9 @@ interface ContainerProps extends BaseHTMLAttributes<HTMLBaseElement> {
 
 export default function Container({ children, ...rest }: ContainerProps) {
   return (
-    <div className={twMerge('w-full h-screen bg-black-900', rest.className)}>
+    <div
+      className={twMerge('w-full h-screen bg-background-900', rest.className)}
+    >
       {children}
     </div>
   )

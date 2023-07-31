@@ -1,20 +1,14 @@
-import { Montserrat } from 'next/font/google'
-import './globals.css'
-
-const montserrat = Montserrat({ subsets: ['latin'] })
+import './globals.scss'
+import { ReactNode } from 'react'
 
 export const metadata = {
   title: 'Home - Controlizze'
 }
 
-export default function RootLayout({
-  children
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <body className={montserrat.className}>{children}</body>
+      <body>{children}</body>
     </html>
   )
 }

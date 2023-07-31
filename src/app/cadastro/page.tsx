@@ -28,10 +28,10 @@ export default function Cadastro() {
           <div className="w-full flex flex-col gap-4">
             {/* Input */}
             <div className="w-full flex flex-col gap-1">
-              <label htmlFor="name" className=" text-xs text-black-100">
+              <label htmlFor="name" className=" text-xs text-zinc-400">
                 Digite seu nome
               </label>
-              <div className="px-6 py-4 flex justify-between items-center gap-3 border-2 bg-white rounded-lg border-black-100 text-base">
+              <div className="px-6 py-4 flex justify-between items-center gap-3 border-2 bg-white rounded-lg border-zinc-400 text-base">
                 <input
                   type="text"
                   placeholder="Nome"
@@ -42,25 +42,25 @@ export default function Cadastro() {
 
             {/* Input */}
             <div className="w-full flex flex-col gap-1">
-              <label htmlFor="date" className=" text-xs text-black-100">
+              <label htmlFor="date" className=" text-xs text-zinc-400">
                 Digite sua data de nascimento
               </label>
-              <div className="px-6 py-4 flex justify-between items-center gap-3 border-2 bg-white rounded-lg border-black-100 text-base">
+              <div className="px-6 py-4 flex justify-between items-center gap-3 border-2 bg-white rounded-lg border-zinc-400 text-base">
                 <input
                   type="date"
                   placeholder="Data de nascimento"
                   className="w-full outline-none"
                 />
-                {/* <BsFillCalendarFill className="w-6 h-6 fill-black-100" /> */}
+                {/* <BsFillCalendarFill className="w-6 h-6 fill-zinc-400" /> */}
               </div>
             </div>
 
             {/* Input */}
             <div className="w-full flex flex-col gap-1">
-              <label htmlFor="email" className=" text-xs text-black-100">
+              <label htmlFor="email" className=" text-xs text-zinc-400">
                 Digite seu e-mail
               </label>
-              <div className="px-6 py-4 flex justify-between items-center gap-3 border-2 bg-white rounded-lg border-black-100 text-base">
+              <div className="px-6 py-4 flex justify-between items-center gap-3 border-2 bg-white rounded-lg border-zinc-400 text-base">
                 <input
                   type="email"
                   placeholder="E-mail"
@@ -71,26 +71,26 @@ export default function Cadastro() {
 
             {/* Input */}
             <div className="w-full flex flex-col gap-1">
-              <label htmlFor="password" className=" text-xs text-black-100">
+              <label htmlFor="password" className=" text-xs text-zinc-400">
                 Digite sua senha
               </label>
-              <div className="px-6 py-4 flex justify-between items-center gap-3 border-2 bg-white rounded-lg border-black-100 text-base">
+              <div className="px-6 py-4 flex justify-between items-center gap-3 border-2 bg-white rounded-lg border-zinc-400 text-base">
                 <input
                   type="password"
                   placeholder="Data de nascimento"
                   className="w-full outline-none"
                 />
-                <BsEyeFill className="w-6 h-6 fill-black-100" />
+                <BsEyeFill className="w-6 h-6 fill-zinc-400" />
               </div>
             </div>
 
             <div className="flex gap-4">
               {/* Input */}
               <div className="w-full flex flex-col gap-1">
-                <label htmlFor="city" className=" text-xs text-black-100">
+                <label htmlFor="city" className=" text-xs text-zinc-400">
                   Digite sua cidade
                 </label>
-                <div className="px-6 py-4 flex justify-between items-center gap-3 border-2 bg-white rounded-lg border-black-100 text-base">
+                <div className="px-6 py-4 flex justify-between items-center gap-3 border-2 bg-white rounded-lg border-zinc-400 text-base">
                   <input
                     type="text"
                     placeholder="Cidade"
@@ -101,10 +101,10 @@ export default function Cadastro() {
 
               {/* Input */}
               <div className="w-40 flex flex-col gap-1">
-                <label htmlFor="state" className=" text-xs text-black-100">
+                <label htmlFor="state" className=" text-xs text-zinc-400">
                   Digite seu estado
                 </label>
-                <div className="px-6 py-4 flex justify-between items-center gap-3 border-2 bg-white rounded-lg border-black-100 text-base">
+                <div className="px-6 py-4 flex justify-between items-center gap-3 border-2 bg-white rounded-lg border-zinc-400 text-base">
                   <input
                     type="text"
                     placeholder="Estado"
@@ -115,23 +115,26 @@ export default function Cadastro() {
             </div>
           </div>
         </form>
+
         <button
           onClick={handleSubmit}
-          className="w-full px-4 py-4 bg-primary-500 hover:bg-primary-300 rounded-xl transition-all text-xl font-semibold text-white"
+          className="w-full px-4 py-4 flex justify-center items-center gap-3 bg-primary-500 rounded hover:opacity-75 transition-all"
         >
-          Cadastrar
+          <span className="text-base font-bold text-black-500 uppercase">
+            Cadastrar
+          </span>
         </button>
       </div>
       <div
         className="relative w-full h-full p-14 flex flex-col justify-center items-center gap-6"
         style={{
-          backgroundImage: `url('/background.jpg')`,
+          backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.80) 0%, rgba(0, 0, 0, 0.80) 100%), url('/background_office.png')`,
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover'
         }}
       >
         <Image
-          src="/logo_nova.png"
+          src="/new_logo.png"
           width={180}
           height={180}
           alt="logo"
