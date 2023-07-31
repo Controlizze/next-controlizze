@@ -1,5 +1,8 @@
-import './globals.scss'
 import { ReactNode } from 'react'
+
+import { Sidebar } from 'components/Sibebar'
+
+import './globals.scss'
 
 export const metadata = {
   title: 'Home - Controlizze'
@@ -8,7 +11,10 @@ export const metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className="flex">
+        <Sidebar />
+        {children}
+      </body>
     </html>
   )
 }

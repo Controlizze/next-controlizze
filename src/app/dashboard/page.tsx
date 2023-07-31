@@ -23,7 +23,7 @@ export default function Dashboard() {
         <div className="w-full h-full flex flex-col gap-6">
           <div className="w-full flex justify-between gap-10">
             {/* Card */}
-            <div className="w-full h-40 px-8 py-6 flex flex-col justify-between bg-black-700 rounded-2xl shadow-xl">
+            <div className="w-full h-40 px-8 py-6 flex flex-col justify-between bg-background-700 rounded-2xl shadow-xl">
               <div className="w-full flex justify-between items-center">
                 <span className="text-4xl font-medium text-white">
                   Despesas
@@ -36,12 +36,12 @@ export default function Dashboard() {
             </div>
 
             {/* Card */}
-            <div className="w-full h-40 px-8 py-6 flex flex-col justify-between bg-black-700 rounded-2xl shadow-xl">
+            <div className="w-full h-40 px-8 py-6 flex flex-col justify-between bg-background-700 rounded-2xl shadow-xl">
               <div className="w-full flex justify-between items-center">
                 <span className="text-4xl font-medium text-white">
                   Receitas
                 </span>
-                <BsArrowUpCircleFill className="w-11 h-11 fill-primary-700" />
+                <BsArrowUpCircleFill className="w-11 h-11 fill-green-700" />
               </div>
               <div className="w-full flex justify-center items-center">
                 <span className="text-5xl font-bold text-white">R$0.00</span>
@@ -49,7 +49,7 @@ export default function Dashboard() {
             </div>
 
             {/* Card */}
-            <div className="w-full h-40 px-8 py-6 flex flex-col justify-between bg-black-700 rounded-2xl shadow-xl">
+            <div className="w-full h-40 px-8 py-6 flex flex-col justify-between bg-background-700 rounded-2xl shadow-xl">
               <div className="w-full flex justify-between items-center">
                 <span className="text-4xl font-medium text-white">Total</span>
                 <BsWalletFill className="w-11 h-11 fill-orange-700" />
@@ -60,68 +60,65 @@ export default function Dashboard() {
             </div>
           </div>
 
-          <div className="w-full px-8 py-5 flex justify-between items-center gap-4 bg-black-700 rounded-2xl shadow-xl">
+          <div className="w-full px-8 py-5 flex justify-between items-center gap-4 bg-background-700 rounded-2xl shadow-xl">
             <div className="flex items-center gap-4">
               {/* Input */}
               <div className="w-48 flex flex-col gap-1">
-                <label htmlFor="date" className=" text-xs text-black-100">
+                <label htmlFor="date" className=" text-xs text-zinc-400">
                   Informe a data
                 </label>
-                <div className="px-4 py-2 flex justify-between items-center gap-3 border-2 bg-white rounded-lg border-black-100 text-base">
+                <div className="px-4 py-2 flex justify-between items-center gap-3 border-2 bg-white rounded-lg border-zinc-400 text-base">
                   <input
                     type="date"
                     placeholder="Data de nascimento"
                     className="w-full outline-none"
                   />
-                  {/* <BsFillCalendarFill className="w-5 h-5 fill-black-100" /> */}
+                  {/* <BsFillCalendarFill className="w-5 h-5 fill-zinc-400" /> */}
                 </div>
               </div>
 
               {/* Input */}
               <div className="w-96 flex flex-col gap-1">
-                <label
-                  htmlFor="description"
-                  className=" text-xs text-black-100"
-                >
+                <label htmlFor="description" className=" text-xs text-zinc-400">
                   Informe a descrição
                 </label>
-                <div className="px-4 py-2 flex justify-between items-center gap-3 border-2 bg-white rounded-lg border-black-100 text-base">
+                <div className="px-4 py-2 flex justify-between items-center gap-3 border-2 bg-white rounded-lg border-zinc-400 text-base">
                   <input
                     type="text"
                     placeholder="Descrição"
                     className="w-full outline-none"
                   />
-                  {/* <BsFillCalendarFill className="w-5 h-5 fill-black-100" /> */}
+                  {/* <BsFillCalendarFill className="w-5 h-5 fill-zinc-400" /> */}
                 </div>
               </div>
 
               {/* Input */}
               <div className="w-48 flex flex-col gap-1">
-                <label htmlFor="category" className=" text-xs text-black-100">
+                <label htmlFor="category" className=" text-xs text-zinc-400">
                   Informe a categoria
                 </label>
-                <div className="px-4 py-2 flex justify-between items-center gap-3 border-2 bg-white rounded-lg border-black-100 text-base">
+                <div className="px-4 py-2 flex justify-between items-center gap-3 border-2 bg-white rounded-lg border-zinc-400 text-base">
                   <input
                     type="text"
                     placeholder="Categoria"
                     className="w-full outline-none"
                   />
-                  {/* <BsFillCalendarFill className="w-5 h-5 fill-black-100" /> */}
+                  {/* <BsFillCalendarFill className="w-5 h-5 fill-zinc-400" /> */}
                 </div>
               </div>
 
               {/* Input */}
               <div className="w-48 flex flex-col gap-1">
-                <label htmlFor="value" className=" text-xs text-black-100">
+                <label htmlFor="value" className=" text-xs text-zinc-400">
                   Informe o valor
                 </label>
-                <div className="px-4 py-2 flex justify-between items-center gap-3 border-2 bg-white rounded-lg border-black-100 text-base">
+                <div className="px-4 py-2 flex justify-between items-center gap-3 border-2 bg-white rounded-lg border-zinc-400 text-base">
                   <input
                     type="text"
                     placeholder="Valor"
                     className="w-full outline-none"
                   />
-                  {/* <BsFillCalendarFill className="w-5 h-5 fill-black-100" /> */}
+                  {/* <BsFillCalendarFill className="w-5 h-5 fill-zinc-400" /> */}
                 </div>
               </div>
             </div>
@@ -130,10 +127,7 @@ export default function Dashboard() {
               {/* Input Radio */}
               <div className="flex items-center gap-2">
                 <input type="radio" className="w-5 h-5" />
-                <label
-                  htmlFor=""
-                  className="text-xs font-normal text-black-100"
-                >
+                <label htmlFor="" className="text-xs font-normal text-zinc-400">
                   Despesa
                 </label>
               </div>
@@ -141,10 +135,7 @@ export default function Dashboard() {
               {/* Input Radio */}
               <div className="flex items-center gap-2">
                 <input type="radio" className="w-5 h-5" />
-                <label
-                  htmlFor=""
-                  className="text-xs font-normal text-black-100"
-                >
+                <label htmlFor="" className="text-xs font-normal text-zinc-400">
                   Receita
                 </label>
               </div>
@@ -155,7 +146,7 @@ export default function Dashboard() {
             </button>
           </div>
 
-          <div className="w-full h-full px-8 py-6 flex flex-col justify-between gap-5 bg-black-700 rounded-2xl shadow-xl">
+          <div className="w-full h-full px-8 py-6 flex flex-col justify-between gap-5 bg-background-700 rounded-2xl shadow-xl">
             <div className="w-full flex items-center">
               <span className="text-2xl font-semibold text-white">
                 Registros
@@ -166,14 +157,14 @@ export default function Dashboard() {
               {/* Tabela */}
               <div className="w-full h-full bg-primary-500"></div>
 
-              <div className="w-full h-full bg-black-500"></div>
-              <div className="w-full h-full bg-black-500"></div>
-              <div className="w-full h-full bg-black-500"></div>
-              <div className="w-full h-full bg-black-500"></div>
-              <div className="w-full h-full bg-black-500"></div>
+              <div className="w-full h-full bg-background-500"></div>
+              <div className="w-full h-full bg-background-500"></div>
+              <div className="w-full h-full bg-background-500"></div>
+              <div className="w-full h-full bg-background-500"></div>
+              <div className="w-full h-full bg-background-500"></div>
             </div>
 
-            <div className="w-full h-10 bg-black-500"></div>
+            <div className="w-full h-10 bg-background-500"></div>
           </div>
         </div>
       </div>
