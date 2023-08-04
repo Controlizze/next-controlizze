@@ -77,7 +77,7 @@ export default function Cadastro() {
               <div className="px-6 py-4 flex justify-between items-center gap-3 border-2 bg-white rounded-lg border-zinc-400 text-base">
                 <input
                   type="password"
-                  placeholder="Data de nascimento"
+                  placeholder="Senha"
                   className="w-full outline-none"
                 />
                 <BsEyeFill className="w-6 h-6 fill-zinc-400" />

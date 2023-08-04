@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import { BsChevronLeft, BsEyeFill } from 'react-icons/bs'
 
 import Container from 'components/Container'
@@ -72,14 +73,14 @@ export default function LoginPage() {
         </form>
 
         <div className="w-full flex justify-between gap-4">
-          <a
+          <Link
             href="/cadastro"
             className="w-full px-4 py-4 flex justify-center items-center gap-3 border border-primary-500 rounded hover:opacity-75 transition-all"
           >
             <span className="text-base font-bold text-primary-500 uppercase">
               Cadastrar
             </span>
-          </a>
+          </Link>
 
           <button
             onClick={handleSubmit}

@@ -1,8 +1,8 @@
 'use client'
 
 import Image from 'next/image'
-import { BsArrowRight } from 'react-icons/bs'
 
+import { Button } from 'components/Button'
 import Container from 'components/Container'
 
 export default function Home() {
@@ -57,13 +57,9 @@ export default function Home() {
             finanças e conquistar seus sonhos!
           </p>
 
-          <button className="w-fit h-12 px-8 flex justify-center items-center gap-3 bg-primary-500 rounded hover:opacity-75 transition-all">
-            <span className="text-base font-bold text-black-500 uppercase">
-              Teste Gratuitamente
-            </span>
-
-            <BsArrowRight className="w-6 h-6 fill-black-500" />
-          </button>
+          <Button.root>
+            <Button.text>Teste Gratuitamente</Button.text>
+          </Button.root>
         </div>
 
         <Image src="/graphic1.png" width={650} height={650} alt="graphic" />

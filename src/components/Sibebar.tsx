@@ -6,6 +6,9 @@ import { usePathname } from 'next/navigation'
 import { BiLogOut } from 'react-icons/bi'
 import { BsClipboardData, BsCashStack } from 'react-icons/bs'
 
+const linkClass =
+  'w-full px-7 py-4 flex justify-start items-center gap-4 bg-background-500 rounded-xl border-l-4 border-background-500 shadow-lg hover:opacity-75 transition-all text-lg font-semibold text-zinc-400 fill-zinc-400 data-[selected=true]:border-primary-500 data-[selected=true]:text-white data-[selected=true]:fill-white'
+
 export function Sidebar() {
   const pathname = usePathname()
 
@@ -26,7 +29,8 @@ export function Sidebar() {
           <nav className="w-full flex flex-col gap-6">
             <Link
               href="/dashboard"
-              className="w-full px-7 py-4 flex justify-start items-center gap-4 bg-background-500 rounded-xl border-l-4 border-background-500 shadow-lg hover:opacity-75 transition-all text-lg font-semibold text-white fill-white"
+              data-selected={pathname.includes('dashboard')}
+              className={linkClass}
             >
               <BsClipboardData className="w-8 h-8" />
               Dashboard
@@ -34,7 +38,8 @@ export function Sidebar() {
 
             <Link
               href="/rendimento"
-              className="w-full px-7 py-4 flex justify-start items-center gap-4 bg-background-500 rounded-xl border-l-4 border-background-500 shadow-lg hover:opacity-75 transition-all text-lg font-semibold text-white fill-white"
+              data-selected={pathname.includes('rendimento')}
+              className={linkClass}
             >
               <BsCashStack className="w-8 h-8" />
               Rendimento
