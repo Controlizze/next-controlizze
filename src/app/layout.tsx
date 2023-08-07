@@ -1,8 +1,7 @@
 import { ReactNode } from 'react'
 
-import { Sidebar } from 'components/Sibebar'
-
 import './globals.scss'
+import { Sidebar } from 'components/Sidebar'
 
 export const metadata = {
   title: 'Home - Controlizze'

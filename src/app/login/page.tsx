@@ -4,17 +4,15 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { BsChevronLeft, BsEyeFill } from 'react-icons/bs'
 
+import { Button } from 'components/Button'
 import Container from 'components/Container'
+import { Form } from 'components/Form'
 
 export const metadata = {
   title: 'Login - Controlizze'
 }
 
 export default function LoginPage() {
-  const handleSubmit = () => {
-    window.location.href = '/dashboard'
-  }
-
   return (
     <Container className="flex">
       <div className="w-1/3 h-full px-12 py-[72px] flex flex-col gap-14 bg-background-900">
@@ -25,7 +23,7 @@ export default function LoginPage() {
           <span className="text-3xl font-bold text-white">Acesse</span>
           <span className="text-xl text-white">Com e-mail e senha</span>
         </div>
-        <form action="" className="w-full flex flex-col gap-6">
+        <Form login>
           <div className="w-full flex flex-col gap-4">
             {/* Input */}
             <div className="w-full flex flex-col gap-1">
@@ -57,39 +55,18 @@ export default function LoginPage() {
               </div>
             </div>
           </div>
-          <div className="w-full flex justify-between items-center">
-            <div className="flex items-center gap-2">
-              <input type="checkbox" className="w-4 h-4  rounded" />
-              <span className="text-xs text-zinc-400">Lembrar minha senha</span>
-            </div>
+        </Form>
 
-            <a
-              href="/forget-password"
-              className="text-xs text-zinc-400 hover:text-zinc-500 transition-all"
-            >
-              Esqueci minha senha
-            </a>
-          </div>
-        </form>
-
-        <div className="w-full flex justify-between gap-4">
-          <Link
-            href="/cadastro"
-            className="w-full px-4 py-4 flex justify-center items-center gap-3 border border-primary-500 rounded hover:opacity-75 transition-all"
-          >
-            <span className="text-base font-bold text-primary-500 uppercase">
-              Cadastrar
-            </span>
+        <div className="w-full flex gap-4">
+          <Link href="/cadastro">
+            <Button.root fill="outline" size="xl">
+              <Button.text color="primary">Cadastrar</Button.text>
+            </Button.root>
           </Link>
 
-          <button
-            onClick={handleSubmit}
-            className="w-full px-4 py-4 flex justify-center items-center gap-3 bg-primary-500 rounded hover:opacity-75 transition-all"
-          >
-            <span className="text-base font-bold text-black-500 uppercase">
-              Acessar
-            </span>
-          </button>
+          <Button.root size="xl">
+            <Button.text>Acessar</Button.text>
+          </Button.root>
         </div>
       </div>
       <div
