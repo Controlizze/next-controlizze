@@ -1,40 +1,32 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
+import { BsArrowRight } from 'react-icons/bs'
 
 import { Button } from 'components/Button'
 import Container from 'components/Container'
 
 export default function Home() {
-  const handleClickLogin = () => {
-    window.location.href = '/login'
-  }
-
-  const handleClickLRegister = () => {
-    window.location.href = '/cadastro'
-  }
-
   return (
     <Container className="flex flex-col justify-between">
       <header className="w-full h-32 px-24 flex justify-between items-center">
         <Image src="/new_logo.png" width={215} height={215} alt="logo" />
 
         <div className="flex gap-4">
-          <button
-            className="h-12 px-8 flex justify-center items-center gap-3 rounded hover:opacity-75 transition-all"
-            onClick={handleClickLogin}
-          >
-            <span className="text-base font-bold text-white">Login</span>
-          </button>
+          <Link href="/login">
+            <Button.root fill="empty">
+              <Button.text color="white" transform="lower">
+                Login
+              </Button.text>
+            </Button.root>
+          </Link>
 
-          <button
-            className="h-12 px-8 flex justify-center items-center gap-3 border border-primary-500 rounded hover:opacity-75 transition-all"
-            onClick={handleClickLRegister}
-          >
-            <span className="text-base font-bold text-primary-500 uppercase">
-              Cadastre-se
-            </span>
-          </button>
+          <Link href="/cadastro">
+            <Button.root>
+              <Button.text>Cadastrar-se</Button.text>
+            </Button.root>
+          </Link>
         </div>
       </header>
 
@@ -57,12 +49,21 @@ export default function Home() {
             finanças e conquistar seus sonhos!
           </p>
 
-          <Button.root>
-            <Button.text>Teste Gratuitamente</Button.text>
-          </Button.root>
+          <Link href="/login">
+            <Button.root>
+              <Button.text>Teste Gratuitamente</Button.text>
+              <BsArrowRight className="w-6 h-6 text-black-500" />
+            </Button.root>
+          </Link>
         </div>
 
-        <Image src="/graphic1.png" width={650} height={650} alt="graphic" />
+        <Image
+          src="/graphic1.png"
+          width={650}
+          height={650}
+          alt="graphic"
+          className="hidden xl:block"
+        />
       </main>
 
       <footer className="w-full h-28 px-24 flex flex-col justify-center items-center gap-1 bg-background-700">
