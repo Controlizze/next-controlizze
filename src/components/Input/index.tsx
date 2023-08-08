@@ -5,5 +5,5 @@ import { InputRoot } from './InputRoot'
 export const Input = {
   root: InputRoot,
   label: InputLabel,
-  input: InputArea
+  area: InputArea
 }

@@ -7,6 +7,7 @@ import { BsChevronLeft, BsEyeFill } from 'react-icons/bs'
 import { Button } from 'components/Button'
 import Container from 'components/Container'
 import { Form } from 'components/Form'
+import { Input } from 'components/Input'
 
 export const metadata = {
   title: 'Login - Controlizze'
@@ -54,6 +55,13 @@ export default function LoginPage() {
                 <BsEyeFill className="w-6 h-6 fill-zinc-400" />
               </div>
             </div>
+
+            <Input.root>
+              <Input.label>Digite sua senha</Input.label>
+              <Input.area type="password" placeholder="Senha">
+                <BsEyeFill className="w-6 h-6 fill-zinc-400" />
+              </Input.area>
+            </Input.root>
           </div>
         </Form>
 
