@@ -6,7 +6,7 @@ export type InputLabelProps = ComponentProps<'label'> & {
 
 export function InputLabel({ htmlFor, ...props }: InputLabelProps) {
   return (
-    <label htmlFor={htmlFor} className=" text-xs text-zinc-400" {...props}>
+    <label htmlFor={htmlFor} className="text-xs text-zinc-400" {...props}>
       {props.children}
     </label>
   )
