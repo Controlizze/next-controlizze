@@ -3,7 +3,7 @@ import { ComponentProps } from 'react'
 import { BsEyeFill } from 'react-icons/bs'
 
 import { Button } from 'components/Button'
-import { Input } from 'components/Input'
+import { InputForm } from 'components/Input'
 
 export type FormLoginProps = ComponentProps<'form'>
 
@@ -12,22 +12,22 @@ export function FormLogin({ ...props }: FormLoginProps) {
     <form action="" className="w-full flex flex-col gap-14" {...props}>
       <div className="w-full flex flex-col gap-6">
         <div className="w-full flex flex-col gap-4">
-          <Input.root>
-            <Input.label>Digite seu e-mail</Input.label>
-            <Input.area type="text" placeholder="E-mail" scale="xl" />
-          </Input.root>
+          <InputForm.root>
+            <InputForm.label htmlFor='email'>Digite seu e-mail</InputForm.label>
+            <InputForm.form type="text" placeholder="E-mail"/>
+          </InputForm.root>
 
-          <Input.root>
-            <Input.label>Digite sua senha</Input.label>
-            <Input.area type="password" placeholder="Senha" scale="xl">
+          <InputForm.root>
+            <InputForm.label htmlFor='password'>Digite sua senha</InputForm.label>
+            <InputForm.form type="password" placeholder="Senha">
               <BsEyeFill className="w-6 h-6 fill-zinc-400" />
-            </Input.area>
-          </Input.root>
+            </InputForm.form>
+          </InputForm.root>
         </div>
 
         <div className="w-full flex justify-between items-center">
           <div className="flex items-center gap-2">
-            <input type="checkbox" className="w-4 h-4 rounded" />
+            {/* <InputForm.form type="checkbox" className="w-4 h-4 rounded" /> */}
             <span className="text-xs text-zinc-400">Lembrar minha senha</span>
           </div>
 

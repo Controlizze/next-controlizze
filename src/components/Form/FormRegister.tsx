@@ -1,6 +1,6 @@
 'use client'
 
-import { useForm } from 'react-hook-form'
+import { FormProvider, useForm } from 'react-hook-form'
 
 import { Button } from 'components/Button'
 import { InputForm } from 'components/Input'
@@ -28,14 +28,10 @@ const createUserFormSchema = z.object({
     .toLowerCase()
 })
 
-type CreateUserFormData = z.infer<typeof createUserFormSchema>
+type CreateUserData = z.infer<typeof createUserFormSchema>
 
 export function FormRegister() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors }
-  } = useForm<CreateUserFormData>({
+  const createUserForm = useForm<CreateUserData>({
     resolver: zodResolver(createUserFormSchema)
   })
 
@@ -43,37 +39,34 @@ export function FormRegister() {
     console.log({ ...data })
   }
 
-  return (
-    <form
-      onSubmit={handleSubmit(createUser)}
-      className="w-full flex flex-col gap-14"
-    >
-      <div className="w-full flex flex-col gap-4">
-        <InputForm.root>
-          <InputForm.label htmlFor="name">Digite seu nome</InputForm.label>
-          <InputForm.form
-            type="text"
-            placeholder="Nome"
-            {...register('name')}
-          />
-          {errors.name && (
-            <InputForm.error>{errors.name.message}</InputForm.error>
-          )}
-        </InputForm.root>
+  const { 
+    handleSubmit
+  } = createUserForm;
 
-        <InputForm.root>
-          <InputForm.label htmlFor="email">Digite seu e-mail</InputForm.label>
-          <InputForm.form
-            type="email"
-            placeholder="E-mail"
-            {...register('email')}
-          />
-          {errors.email && (
-            <InputForm.error>{errors.email.message}</InputForm.error>
-          )}
-        </InputForm.root>
-      </div>
-      {/* <Input.root>
+  return (
+    <FormProvider {...createUserForm}>
+      <form
+        onSubmit={handleSubmit(createUser)}
+        className="w-full flex flex-col gap-14"
+      >
+        <div className="w-full flex flex-col gap-4">
+          <InputForm.root>
+            <InputForm.label htmlFor="name">Digite seu nome</InputForm.label>
+            <InputForm.form type="text" name="name" placeholder="Nome" />
+            {errors.name && (
+              <InputForm.error>{errors.name.message}</InputForm.error>
+            )}
+          </InputForm.root>
+
+          <InputForm.root>
+            <InputForm.label htmlFor="email">Digite seu e-mail</InputForm.label>
+            <InputForm.form type="email" name="email" placeholder="E-mail" />
+            {errors.email && (
+              <InputForm.error>{errors.email.message}</InputForm.error>
+            )}
+          </InputForm.root>
+        </div>
+        {/* <Input.root>
           <Input.label>Digite seu e-mail</Input.label>
           <Input.area type="text" placeholder="E-mail" scale="xl" />
         </Input.root>
@@ -98,9 +91,10 @@ export function FormRegister() {
         </div>
       </div> */}
 
-      <Button.root type="submit" size="xl">
-        <Button.text>Acessar</Button.text>
-      </Button.root>
-    </form>
+        <Button.root type="submit" size="xl">
+          <Button.text>Acessar</Button.text>
+        </Button.root>
+      </form>
+    </FormProvider>
   )
 }

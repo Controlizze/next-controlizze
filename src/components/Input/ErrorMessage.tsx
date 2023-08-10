@@ -1,7 +1,30 @@
 import { ComponentProps } from 'react'
+import { useFormContext } from 'react-hook-form'
 
-export type ErrorMessageProps = ComponentProps<'span'>
+function get(obj: Record<any, any>, path: string) {
+  const travel = (regexp: RegExp) =>
+    String.prototype.split
+      .call(path, regexp)
+      .filter(Boolean)
+      .reduce((res, key) => (res !== null && res !== undefined ? res[key] : res), obj);
 
-export function ErrorMessage({ ...props }: ErrorMessageProps) {
-  return <span className="text-xs text-red-500">{props.children}</span>
+  const result = travel(/[,[\]]+?/) || travel(/[,[\].]+?/);
+  
+  return result
+};
+
+export type ErrorMessageProps = ComponentProps<'span'> & {
+  field: string
+}
+
+export function ErrorMessage({ field }: ErrorMessageProps) {
+  const { formState: { errors } } = useFormContext()
+
+  const fieldError = get(errors, field)
+    
+  if (!fieldError) {
+    return null
+  }
+
+  return <span className="text-xs text-red-500">{fieldError.message?.toString()}</span>
 }

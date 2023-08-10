@@ -1,10 +1,10 @@
 import { ComponentProps } from 'react'
 
-export type InputLabelProps = ComponentProps<'label'> & {
+export type LabelProps = ComponentProps<'label'> & {
   htmlFor: string
 }
 
-export function InputLabel({ htmlFor, ...props }: InputLabelProps) {
+export function Label({ htmlFor, ...props }: LabelProps) {
   return (
     <label htmlFor={htmlFor} className="text-xs text-zinc-400" {...props}>
       {props.children}

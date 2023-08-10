@@ -1,13 +1,13 @@
 import { ErrorMessage } from './ErrorMessage'
 import { Field } from './Field'
 import { Input } from './Input'
-import { InputIcon } from './InputIcon'
-import { InputLabel } from './InputLabel'
+import { Icon } from './Icon'
+import { Label } from './Label'
 
 export const InputForm = {
   root: Field,
-  label: InputLabel,
+  label: Label,
   form: Input,
-  icon: InputIcon,
+  icon: Icon,
   error: ErrorMessage
 }
