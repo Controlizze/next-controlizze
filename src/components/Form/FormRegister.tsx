@@ -3,12 +3,44 @@
 import { useForm } from 'react-hook-form'
 
 import { Button } from 'components/Button'
+import { InputForm } from 'components/Input'
+
+import { zodResolver } from '@hookform/resolvers/zod'
+import { z } from 'zod'
+
+const createUserFormSchema = z.object({
+  name: z
+    .string()
+    .nonempty('Nome obrigatório')
+    .transform((name) => {
+      return name
+        .trim()
+        .split(' ')
+        .map((word) => {
+          return word[0].toLocaleUpperCase().concat(word.substring(1))
+        })
+        .join(' ')
+    }),
+  email: z
+    .string()
+    .nonempty('E-mail obrigatório')
+    .email('Formato de e-mail inválido')
+    .toLowerCase()
+})
+
+type CreateUserFormData = z.infer<typeof createUserFormSchema>
 
 export function FormRegister() {
-  const { register, handleSubmit } = useForm()
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<CreateUserFormData>({
+    resolver: zodResolver(createUserFormSchema)
+  })
 
   function createUser(data: any) {
-    console.log(data)
+    console.log({ ...data })
   }
 
   return (
@@ -17,33 +49,29 @@ export function FormRegister() {
       className="w-full flex flex-col gap-14"
     >
       <div className="w-full flex flex-col gap-4">
-        <div className="flex flex-col gap-1">
-          <label htmlFor="name" className="text-xs text-zinc-400">
-            Digite seu nome
-          </label>
-          <div className="flex justify-between items-center">
-            <input
-              type="text"
-              placeholder="Nome"
-              className="w-full px-4 py-3 flex justify-between items-center gap-3 border-2 bg-white rounded border-zinc-400 text-base outline-none"
-              {...register('name')}
-            />
-          </div>
-        </div>
+        <InputForm.root>
+          <InputForm.label htmlFor="name">Digite seu nome</InputForm.label>
+          <InputForm.form
+            type="text"
+            placeholder="Nome"
+            {...register('name')}
+          />
+          {errors.name && (
+            <InputForm.error>{errors.name.message}</InputForm.error>
+          )}
+        </InputForm.root>
 
-        <div className="flex flex-col gap-1">
-          <label htmlFor="email" className="text-xs text-zinc-400">
-            Digite seu e-mail
-          </label>
-          <div className="flex justify-between items-center">
-            <input
-              type="email"
-              placeholder="E-mail"
-              className="w-full px-4 py-3 flex justify-between items-center gap-3 border-2 bg-white rounded border-zinc-400 text-base outline-none"
-              {...register('email')}
-            />
-          </div>
-        </div>
+        <InputForm.root>
+          <InputForm.label htmlFor="email">Digite seu e-mail</InputForm.label>
+          <InputForm.form
+            type="email"
+            placeholder="E-mail"
+            {...register('email')}
+          />
+          {errors.email && (
+            <InputForm.error>{errors.email.message}</InputForm.error>
+          )}
+        </InputForm.root>
       </div>
       {/* <Input.root>
           <Input.label>Digite seu e-mail</Input.label>

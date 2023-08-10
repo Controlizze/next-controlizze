@@ -1,7 +1,7 @@
 import { ComponentProps } from 'react'
 
-export type InputRootProps = ComponentProps<'input'>
+export type FieldProps = ComponentProps<'div'>
 
-export function InputRoot({ ...props }: InputRootProps) {
+export function Field({ ...props }: FieldProps) {
   return <div className="w-full flex flex-col gap-1">{props.children}</div>
 }

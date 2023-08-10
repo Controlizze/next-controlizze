@@ -1,7 +1,7 @@
 import { ComponentProps } from 'react'
 
 export type InputLabelProps = ComponentProps<'label'> & {
-  htmlFor?: string
+  htmlFor: string
 }
 
 export function InputLabel({ htmlFor, ...props }: InputLabelProps) {

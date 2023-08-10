@@ -1,9 +1,13 @@
-import { InputArea } from './InputArea'
+import { ErrorMessage } from './ErrorMessage'
+import { Field } from './Field'
+import { Input } from './Input'
+import { InputIcon } from './InputIcon'
 import { InputLabel } from './InputLabel'
-import { InputRoot } from './InputRoot'
 
-export const Input = {
-  root: InputRoot,
+export const InputForm = {
+  root: Field,
   label: InputLabel,
-  area: InputArea
+  form: Input,
+  icon: InputIcon,
+  error: ErrorMessage
 }
