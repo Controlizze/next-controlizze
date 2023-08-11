@@ -1,58 +1,84 @@
+'use client'
+
 import Link from 'next/link'
-import { ComponentProps } from 'react'
-import { BsEyeFill } from 'react-icons/bs'
+import { FormProvider, useForm } from 'react-hook-form'
 
 import { Button } from 'components/Button'
 import { InputForm } from 'components/Input'
 
-export type FormLoginProps = ComponentProps<'form'>
+import { zodResolver } from '@hookform/resolvers/zod'
+import { z } from 'zod'
 
-export function FormLogin({ ...props }: FormLoginProps) {
+const createUserSchema = z.object({
+  email: z
+    .string()
+    .nonempty('E-mail obrigatório')
+    .email('Formato de e-mail inválido')
+    .toLowerCase(),
+
+  password: z
+    .string()
+    .nonempty({
+      message: 'Senha é obrigatória'
+    })
+    .min(6, {
+      message: 'A senha precisa ter no mínimo 6 caracteres'
+    })
+})
+
+type CreateUserData = z.infer<typeof createUserSchema>
+
+export function FormLogin() {
+  const createUserForm = useForm<CreateUserData>({
+    resolver: zodResolver(createUserSchema)
+  })
+
+  function createUser(data: any) {
+    console.log({ ...data })
+  }
+
+  const { handleSubmit } = createUserForm
+
   return (
-    <form action="" className="w-full flex flex-col gap-14" {...props}>
-      <div className="w-full flex flex-col gap-6">
+    <FormProvider {...createUserForm}>
+      <form
+        onSubmit={handleSubmit(createUser)}
+        className="w-full flex flex-col gap-14"
+      >
         <div className="w-full flex flex-col gap-4">
-          <InputForm.root>
-            <InputForm.label htmlFor='email'>Digite seu e-mail</InputForm.label>
-            <InputForm.form type="text" placeholder="E-mail"/>
-          </InputForm.root>
+          <InputForm.Field>
+            <InputForm.Label htmlFor="email">Digite seu e-mail</InputForm.Label>
+            <InputForm.Input type="email" name="email" placeholder="E-mail" />
+            <InputForm.ErrorMessage field="email" />
+          </InputForm.Field>
 
-          <InputForm.root>
-            <InputForm.label htmlFor='password'>Digite sua senha</InputForm.label>
-            <InputForm.form type="password" placeholder="Senha">
-              <BsEyeFill className="w-6 h-6 fill-zinc-400" />
-            </InputForm.form>
-          </InputForm.root>
+          <InputForm.Field>
+            <InputForm.Label htmlFor="password">
+              Digite sua senha
+            </InputForm.Label>
+            <InputForm.Input
+              type="password"
+              name="password"
+              placeholder="Senha"
+            />
+            <InputForm.ErrorMessage field="password" />
+          </InputForm.Field>
         </div>
 
-        <div className="w-full flex justify-between items-center">
-          <div className="flex items-center gap-2">
-            {/* <InputForm.form type="checkbox" className="w-4 h-4 rounded" /> */}
-            <span className="text-xs text-zinc-400">Lembrar minha senha</span>
-          </div>
+        <Button.root type="submit" size="xl">
+          <Button.text>Acessar</Button.text>
+        </Button.root>
 
+        <div className="w-full flex justify-center items-center gap-2">
+          <span className="text-sm text-zinc-400">Não tem uma conta?</span>
           <Link
-            href="/forget-password"
-            className="text-xs text-zinc-400 hover:text-zinc-500 transition-all"
+            href="/cadastro"
+            className="text-sm text-primary-500 hover:opacity-75 transition-all"
           >
-            Esqueci minha senha!
+            Cadastre-se!
           </Link>
         </div>
-      </div>
-
-      <Button.root size="xl">
-        <Button.text>Acessar</Button.text>
-      </Button.root>
-
-      <div className="w-full flex justify-center items-center gap-2">
-        <span className="text-sm text-zinc-400">Não tem uma conta?</span>
-        <Link
-          href="/cadastro"
-          className="text-sm text-primary-500 hover:opacity-75 transition-all"
-        >
-          Cadastre-se!
-        </Link>
-      </div>
-    </form>
+      </form>
+    </FormProvider>
   )
 }
