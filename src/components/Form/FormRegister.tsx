@@ -22,7 +22,7 @@ const createUserSchema = z.object({
         .join(' ')
     }),
 
-  date: z.date({
+  date: z.coerce.date({
     required_error: 'Data de nascimento obrigatória',
     invalid_type_error: 'Data inválida'
   }),
@@ -134,7 +134,7 @@ export function FormRegister() {
               <InputForm.ErrorMessage field="city" />
             </InputForm.Field>
 
-            <InputForm.Field className="w-28">
+            <InputForm.Field className="w-52">
               <InputForm.Label htmlFor="state">Digite o estado</InputForm.Label>
               <InputForm.Input type="text" name="state" placeholder="Estado" />
               <InputForm.ErrorMessage field="state" />

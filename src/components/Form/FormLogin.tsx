@@ -1,7 +1,9 @@
 'use client'
 
 import Link from 'next/link'
+import { useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
+import { BsEyeFill, BsEyeSlashFill } from 'react-icons/bs'
 
 import { Button } from 'components/Button'
 import { InputForm } from 'components/Input'
@@ -33,11 +35,21 @@ export function FormLogin() {
     resolver: zodResolver(createUserSchema)
   })
 
+  const [ocultPassord, setOcultPassword] = useState(false)
+
   function createUser(data: any) {
     console.log({ ...data })
   }
 
   const { handleSubmit } = createUserForm
+
+  function isSubmit() {
+    window.location.href = '/dashboard'
+  }
+
+  function handlePassword() {
+    setOcultPassword(!ocultPassord)
+  }
 
   return (
     <FormProvider {...createUserForm}>
@@ -56,16 +68,29 @@ export function FormLogin() {
             <InputForm.Label htmlFor="password">
               Digite sua senha
             </InputForm.Label>
-            <InputForm.Input
-              type="password"
-              name="password"
-              placeholder="Senha"
-            />
+            <div className="flex">
+              <InputForm.Input
+                type={ocultPassord ? 'text' : 'password'}
+                name="password"
+                placeholder="Senha"
+                rounded="start"
+              />
+              <button
+                onClick={handlePassword}
+                className="w-14 h-12 bg-primary-500 rounded-e flex justify-center items-center"
+              >
+                {!ocultPassord ? (
+                  <BsEyeFill className="w-6 h-6 fill-black-500" />
+                ) : (
+                  <BsEyeSlashFill className="w-6 h-6 fill-black-500" />
+                )}
+              </button>
+            </div>
             <InputForm.ErrorMessage field="password" />
           </InputForm.Field>
         </div>
 
-        <Button.root type="submit" size="xl">
+        <Button.root type="submit" onClick={isSubmit} size="xl">
           <Button.text>Acessar</Button.text>
         </Button.root>
 
