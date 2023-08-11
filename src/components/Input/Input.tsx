@@ -7,7 +7,8 @@ const input = tv({
   base: 'flex justify-between items-center gap-3 border-2 bg-white rounded border-zinc-400 text-base',
   variants: {
     scale: {
-      default: 'px-4 h-12'
+      default: 'px-4 h-12',
+      sm: 'px-3 h-10'
     }
   },
   defaultVariants: {
@@ -17,18 +18,16 @@ const input = tv({
 
 export type InputProps = ComponentProps<'input'> &
   VariantProps<typeof input> & {
-    type: string
     name: string
     placeholder?: string
   }
 
-export function Input({ type, name, placeholder, scale, ...props }: InputProps) {
-  const { register } = useFormContext()  
-  
+export function Input({ name, placeholder, scale, ...props }: InputProps) {
+  const { register } = useFormContext()
+
   return (
     <input
       id={name}
-      type={type}
       placeholder={placeholder}
       className={input({ scale })}
       {...register(name)}
