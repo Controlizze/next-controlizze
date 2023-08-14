@@ -3,7 +3,7 @@ import { ComponentProps } from 'react'
 import { VariantProps, tv } from 'tailwind-variants'
 
 const button = tv({
-  base: 'flex justify-center items-center gap-3 rounded hover:opacity-75 transition-all',
+  base: 'flex justify-center items-center gap-3 hover:opacity-75 rounded shadow-md shadow-dark transition-all',
   variants: {
     fill: {
       default: 'bg-primary-500',

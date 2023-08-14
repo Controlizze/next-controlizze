@@ -7,7 +7,7 @@ import { BiLogOut } from 'react-icons/bi'
 import { BsClipboardData, BsCashStack } from 'react-icons/bs'
 
 const linkClass =
-  'w-full px-7 py-4 flex justify-start items-center gap-4 bg-background-500 rounded-xl border-l-4 border-background-500 shadow-lg hover:opacity-75 transition-all text-lg font-semibold text-zinc-400 fill-zinc-400 data-[selected=true]:border-primary-500 data-[selected=true]:text-white data-[selected=true]:fill-white'
+  'w-full px-7 py-4 flex justify-start items-center gap-4 bg-transparent rounded border-l-4 border-background-500 shadow-lg shadow-dark hover:opacity-75 transition-all text-lg font-semibold text-zinc-400 fill-zinc-400 data-[selected=true]:bg-background-500 data-[selected=true]:border-primary-500 data-[selected=true]:text-white data-[selected=true]:fill-white'
 
 export function Sidebar() {
   const pathname = usePathname()

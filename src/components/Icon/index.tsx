@@ -7,12 +7,16 @@ const variantIcon = tv({
   variants: {
     size: {
       default: 'w-6 h-6',
-      sm: 'w4 h-4'
+      xl: 'w-11 h-11',
+      sm: 'w-4 h-4'
     },
     fill: {
       default: 'fill-black-500',
       primary: 'fill-primary-500',
-      white: 'fill-white'
+      white: 'fill-white',
+      red: 'fill-red-600',
+      green: 'fill-green-600',
+      orange: 'fill-orange-600'
     }
   },
   defaultVariants: {

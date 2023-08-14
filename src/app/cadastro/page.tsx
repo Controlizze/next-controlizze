@@ -43,7 +43,7 @@ export default function Cadastro() {
         />
 
         <span className="text-6xl font-bold text-center text-primary-500">
-          Bem-vindo companheiro!
+          Bem-vindo, companheiro!
         </span>
 
         <span className="max-w-[900px] text-3xl font-light text-center text-primary-500">

@@ -27,6 +27,9 @@ module.exports = {
       },
       padding: {
         'py-3': '12px'
+      },
+      boxShadowColor: {
+        dark: 'rgba(0, 0, 0, 0.5)'
       }
     }
   },
