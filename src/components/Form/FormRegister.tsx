@@ -1,8 +1,11 @@
 'use client'
 
+import { useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
+import { BsEyeFill, BsEyeSlashFill } from 'react-icons/bs'
 
 import { Button } from 'components/Button'
+import { Icon } from 'components/Icon'
 import { InputForm } from 'components/Input'
 
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -72,6 +75,8 @@ const createUserSchema = z.object({
 type CreateUserData = z.infer<typeof createUserSchema>
 
 export function FormRegister() {
+  const [ocultPassord, setOcultPassword] = useState(false)
+
   const createUserForm = useForm<CreateUserData>({
     resolver: zodResolver(createUserSchema)
   })
@@ -81,6 +86,10 @@ export function FormRegister() {
   }
 
   const { handleSubmit } = createUserForm
+
+  function handlePassword() {
+    setOcultPassword(!ocultPassord)
+  }
 
   return (
     <FormProvider {...createUserForm}>
@@ -117,11 +126,22 @@ export function FormRegister() {
             <InputForm.Label htmlFor="password">
               Digite sua senha
             </InputForm.Label>
-            <InputForm.Input
-              type="password"
-              name="password"
-              placeholder="Senha"
-            />
+            <div className="flex">
+              <InputForm.Input
+                type={ocultPassord ? 'text' : 'password'}
+                name="password"
+                placeholder="Senha"
+                rounded="start"
+              />
+
+              <InputForm.Action onClick={handlePassword}>
+                {!ocultPassord ? (
+                  <Icon icon={BsEyeFill} />
+                ) : (
+                  <Icon icon={BsEyeSlashFill} />
+                )}
+              </InputForm.Action>
+            </div>
             <InputForm.ErrorMessage field="password" />
           </InputForm.Field>
 

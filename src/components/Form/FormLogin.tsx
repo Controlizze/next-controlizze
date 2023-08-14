@@ -6,6 +6,7 @@ import { FormProvider, useForm } from 'react-hook-form'
 import { BsEyeFill, BsEyeSlashFill } from 'react-icons/bs'
 
 import { Button } from 'components/Button'
+import { Icon } from 'components/Icon'
 import { InputForm } from 'components/Input'
 
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -31,11 +32,11 @@ const createUserSchema = z.object({
 type CreateUserData = z.infer<typeof createUserSchema>
 
 export function FormLogin() {
+  const [ocultPassord, setOcultPassword] = useState(false)
+
   const createUserForm = useForm<CreateUserData>({
     resolver: zodResolver(createUserSchema)
   })
-
-  const [ocultPassord, setOcultPassword] = useState(false)
 
   function createUser(data: any) {
     console.log({ ...data })
@@ -75,16 +76,14 @@ export function FormLogin() {
                 placeholder="Senha"
                 rounded="start"
               />
-              <button
-                onClick={handlePassword}
-                className="w-14 h-12 bg-primary-500 rounded-e flex justify-center items-center"
-              >
+
+              <InputForm.Action onClick={handlePassword}>
                 {!ocultPassord ? (
-                  <BsEyeFill className="w-6 h-6 fill-black-500" />
+                  <Icon icon={BsEyeFill} />
                 ) : (
-                  <BsEyeSlashFill className="w-6 h-6 fill-black-500" />
+                  <Icon icon={BsEyeSlashFill} />
                 )}
-              </button>
+              </InputForm.Action>
             </div>
             <InputForm.ErrorMessage field="password" />
           </InputForm.Field>

@@ -13,7 +13,7 @@ export const metadata = {
 export default function LoginPage() {
   return (
     <Container className="flex">
-      <div className="w-1/3 h-full px-12 py-[72px] flex flex-col gap-14 bg-background-900">
+      <div className="w-1/3 h-full px-12 py-[72px] flex flex-col gap-12 bg-background-900">
         <a href="/" className="max-w-max">
           <BsChevronLeft className="w-7 h-7 fill-white" />
         </a>
