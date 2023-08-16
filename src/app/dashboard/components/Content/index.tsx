@@ -50,8 +50,8 @@ export function Content() {
 
       <FormProvider {...createUserForm}>
         <Card flex="row">
-          <div className="flex gap-4">
-            <InputForm.Field className="w-2/12">
+          <div className="w-full flex gap-4">
+            <InputForm.Field className="w-full">
               <InputForm.Label htmlFor="date">Informe a data</InputForm.Label>
               <InputForm.Input
                 type="date"
@@ -61,7 +61,7 @@ export function Content() {
               />
             </InputForm.Field>
 
-            <InputForm.Field>
+            <InputForm.Field className="w-full">
               <InputForm.Label htmlFor="description">
                 Informe a descrição
               </InputForm.Label>
@@ -73,7 +73,7 @@ export function Content() {
               />
             </InputForm.Field>
 
-            <InputForm.Field>
+            <InputForm.Field className="w-full">
               <InputForm.Label htmlFor="date">
                 Informe a categoria
               </InputForm.Label>
@@ -85,7 +85,7 @@ export function Content() {
               />
             </InputForm.Field>
 
-            <InputForm.Field>
+            <InputForm.Field className="w-full">
               <InputForm.Label htmlFor="date">Informe o valor</InputForm.Label>
               <InputForm.Input
                 type="text"
@@ -94,6 +94,16 @@ export function Content() {
                 scale="sm"
               />
             </InputForm.Field>
+          </div>
+
+          <div className="flex gap-2 text-white">
+            <input type="radio" name="type" id="" />
+            <label htmlFor="despesa">Despesa</label>
+          </div>
+
+          <div className="flex gap-2 text-white">
+            <input type="radio" name="type" id="" />
+            <label htmlFor="receita">Receita</label>
           </div>
 
           <Button.root>

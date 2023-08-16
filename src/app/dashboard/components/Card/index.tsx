@@ -7,7 +7,7 @@ const card = tv({
   variants: {
     flex: {
       default: 'flex flex-col gap-4',
-      row: 'flex items-center'
+      row: 'flex items-center gap-8'
     }
   },
   defaultVariants: {
