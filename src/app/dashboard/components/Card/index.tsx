@@ -7,7 +7,7 @@ const card = tv({
   variants: {
     flex: {
       default: 'flex flex-col gap-4',
-      row: 'flex items-center gap-8'
+      row: 'flex items-center gap-10'
     }
   },
   defaultVariants: {
@@ -17,6 +17,6 @@ const card = tv({
 
 export type CardProps = ComponentProps<'div'> & VariantProps<typeof card>
 
-export function Card({ flex, ...props }: CardProps) {
-  return <div className={card({ flex })}>{props.children}</div>
+export function Card({ flex, className, ...props }: CardProps) {
+  return <div className={card({ flex, className })}>{props.children}</div>
 }

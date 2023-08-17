@@ -12,8 +12,8 @@ export default function Dashboard() {
     <Container className="flex">
       <div className="w-full h-full p-14 flex flex-col gap-14">
         <div className="w-full flex items-center gap-2">
-          <BsChevronRight className="w-3 h-3 fill-zinc-500" />
-          <span className="text-lg font-medium text-zinc-500">Dashboard</span>
+          <BsChevronRight className="w-3 h-3 fill-zinc-500 hidden" />
+          <span className="text-4xl font-semibold text-white">Dashboard</span>
         </div>
 
         <Content />

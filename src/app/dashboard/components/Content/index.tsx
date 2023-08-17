@@ -19,7 +19,7 @@ export function Content() {
       <div className="w-full flex justify-between gap-10">
         <Card>
           <div className="w-full flex justify-between items-center">
-            <span className="text-4xl font-medium text-white">Despesas</span>
+            <span className="text-3xl font-medium text-white">Despesas</span>
             <Icon icon={BsArrowDownCircle} size="xl" fill="red" />
           </div>
           <div className="w-full flex justify-center items-center">
@@ -29,7 +29,7 @@ export function Content() {
 
         <Card>
           <div className="w-full flex justify-between items-center">
-            <span className="text-4xl font-medium text-white">Receitas</span>
+            <span className="text-3xl font-medium text-white">Receitas</span>
             <Icon icon={BsArrowUpCircle} size="xl" fill="green" />
           </div>
           <div className="w-full flex justify-center items-center">
@@ -39,7 +39,7 @@ export function Content() {
 
         <Card>
           <div className="w-full flex justify-between items-center">
-            <span className="text-4xl font-medium text-white">Saldo</span>
+            <span className="text-3xl font-medium text-white">Saldo</span>
             <Icon icon={BsWallet} size="xl" fill="orange" />
           </div>
           <div className="w-full flex justify-center items-center">
@@ -74,7 +74,7 @@ export function Content() {
             </InputForm.Field>
 
             <InputForm.Field className="w-full">
-              <InputForm.Label htmlFor="date">
+              <InputForm.Label htmlFor="category">
                 Informe a categoria
               </InputForm.Label>
               <InputForm.Input
@@ -86,7 +86,7 @@ export function Content() {
             </InputForm.Field>
 
             <InputForm.Field className="w-full">
-              <InputForm.Label htmlFor="date">Informe o valor</InputForm.Label>
+              <InputForm.Label htmlFor="value">Informe o valor</InputForm.Label>
               <InputForm.Input
                 type="text"
                 name="value"
@@ -96,13 +96,24 @@ export function Content() {
             </InputForm.Field>
           </div>
 
-          <div className="flex gap-2 text-white">
-            <input type="radio" name="type" id="" />
+          <div className="flex justify-center items-center gap-2 text-white">
+            <input
+              id="expense"
+              type="radio"
+              name="type"
+              className="w-5 h-5 accent-primary-500"
+              checked
+            />
             <label htmlFor="despesa">Despesa</label>
           </div>
 
-          <div className="flex gap-2 text-white">
-            <input type="radio" name="type" id="" />
+          <div className="flex justify-center items-center gap-2 text-white">
+            <input
+              id="revenue"
+              type="radio"
+              name="type"
+              className="w-5 h-5 accent-primary-500"
+            />
             <label htmlFor="receita">Receita</label>
           </div>
 
@@ -111,6 +122,8 @@ export function Content() {
           </Button.root>
         </Card>
       </FormProvider>
+
+      <Card className="h-[400px]" />
     </div>
   )
 }
