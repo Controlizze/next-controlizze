@@ -1,5 +1,3 @@
-import { BsChevronRight } from 'react-icons/bs'
-
 import { Content } from './components/Content'
 import Container from 'components/Container'
 
@@ -11,9 +9,9 @@ export default function Dashboard() {
   return (
     <Container className="flex">
       <div className="w-full h-full p-14 flex flex-col gap-14">
-        <div className="w-full flex items-center gap-2">
-          <BsChevronRight className="w-3 h-3 fill-zinc-500 hidden" />
+        <div className="w-fit flex flex-col gap-1">
           <span className="text-4xl font-semibold text-white">Dashboard</span>
+          <div className="w-3/5 h-1 bg-gradient-to-r from-primary-100 to-primary-900 rounded-full"></div>
         </div>
 
         <Content />

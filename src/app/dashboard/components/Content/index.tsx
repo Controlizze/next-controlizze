@@ -7,6 +7,7 @@ import { Button } from 'components/Button'
 import { Icon } from 'components/Icon'
 import { InputForm } from 'components/Input'
 
+import data from '../../../../../data.json'
 import { Card } from '../Card'
 
 type CreateRegisterData = { number: string }
@@ -104,7 +105,7 @@ export function Content() {
               className="w-5 h-5 accent-primary-500"
               checked
             />
-            <label htmlFor="despesa">Despesa</label>
+            <label htmlFor="expense">Despesa</label>
           </div>
 
           <div className="flex justify-center items-center gap-2 text-white">
@@ -114,7 +115,7 @@ export function Content() {
               name="type"
               className="w-5 h-5 accent-primary-500"
             />
-            <label htmlFor="receita">Receita</label>
+            <label htmlFor="revenue">Receita</label>
           </div>
 
           <Button.root>
@@ -123,7 +124,26 @@ export function Content() {
         </Card>
       </FormProvider>
 
-      <Card className="h-[400px]" />
+      <Card className="h-[400px]">
+        {data.map((d) => (
+          <div key={d.id}>
+            <p className="text-white">{d.data}</p>
+            <p className="text-white">{d.description}</p>
+            <p className="text-white">{d.category}</p>
+            <p
+              className={
+                d.value == 0
+                  ? 'text-white'
+                  : d.value > 0
+                  ? 'text-green-500'
+                  : 'text-red-500'
+              }
+            >
+              {d.value}
+            </p>
+          </div>
+        ))}
+      </Card>
     </div>
   )
 }

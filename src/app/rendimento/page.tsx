@@ -1,5 +1,3 @@
-import { BsChevronRight } from 'react-icons/bs'
-
 import Container from 'components/Container'
 
 export const metadata = {
@@ -10,9 +8,9 @@ export default function Rendimento() {
   return (
     <Container className="flex">
       <div className="w-full h-full p-14 flex flex-col gap-14">
-        <div className="w-full flex items-center gap-2">
-          <BsChevronRight className="w-3 h-3 fill-zinc-500" />
-          <span className="text-lg font-medium text-zinc-500">Rendimento</span>
+        <div className="w-fit flex flex-col gap-1">
+          <span className="text-4xl font-semibold text-white">Rendimento</span>
+          <div className="w-3/5 h-1 bg-gradient-to-r from-primary-100 to-primary-900 rounded-full"></div>
         </div>
 
         <div className="w-full h-full flex flex-col gap-8">
