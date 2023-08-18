@@ -124,7 +124,9 @@ export function Content() {
         </Card>
       </FormProvider>
 
-      <Card className="h-[400px]">
+      <Card className="flex-auto">
+        <span>Registros</span>
+
         {data.map((d) => (
           <div key={d.id}>
             <p className="text-white">{d.data}</p>
