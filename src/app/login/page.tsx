@@ -5,6 +5,7 @@ import { BsChevronLeft } from 'react-icons/bs'
 
 import Container from 'components/Container'
 import { Form } from 'components/Form'
+import { Text } from 'components/Text'
 
 export const metadata = {
   title: 'Login - Controlizze'
@@ -19,8 +20,10 @@ export default function LoginPage() {
         </a>
 
         <div className="flex flex-col gap-1">
-          <span className="text-3xl font-bold text-white">Acesse</span>
-          <span className="text-xl text-white">Com e-mail e senha</span>
+          <Text size="XL" weight="bold">
+            Acesse
+          </Text>
+          <Text size="xl">Com e-mail e senha</Text>
         </div>
 
         <Form.login />
@@ -42,14 +45,19 @@ export default function LoginPage() {
           className="absolute top-14 left-14"
         />
 
-        <span className="text-6xl font-bold text-center text-primary-500">
+        <Text size="XXL" weight="bold" color="primary" className="text-center">
           Bem-vindo de volta!
-        </span>
+        </Text>
 
-        <span className="max-w-[900px] text-3xl font-light text-center text-primary-500">
+        <Text
+          size="xxxl"
+          weight="default"
+          color="primary"
+          className="max-w-[900px] text-center"
+        >
           Como é bom vê-lo novamente, acesse sua conta agora mesmo para voltar a
           ter nosso serviço
-        </span>
+        </Text>
       </div>
     </Container>
   )
