@@ -64,16 +64,16 @@ export default function Home() {
           width={650}
           height={650}
           alt="graphic"
-          className="hidden"
+          className="hidden xl:block"
         />
       </main>
 
-      <footer className="w-full h-16 px-6 sm:h-20 sm:px-8 md:h-24 md:px-18 flex flex-col justify-center items-center gap-1 bg-background-700">
-        <span className="text-[8px] sm:text-xs text-center font-semibold text-primary-500">
+      <footer className="w-full h-16 px-6 py-3 sm:h-20 sm:px-8 md:h-24 md:px-18 lg:h-28 lg:px-24 flex flex-col justify-center items-center gap-1 bg-background-700">
+        <span className="text-[8px] sm:text-xs lg:text-base text-center font-semibold text-primary-500">
           Realizado pelos alunos Caroline Souza, Richard Rodrigues e Yuri Onorio
         </span>
 
-        <span className="text-[8px] sm:text-xs text-center text-primary-500">
+        <span className="text-[8px] sm:text-xs lg:text-base text-center text-primary-500">
           ETEC &quot;Cidade do Livro&quot; de Lençóis Paulista - SP
         </span>
       </footer>
