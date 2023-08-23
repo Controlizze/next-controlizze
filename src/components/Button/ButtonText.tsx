@@ -11,9 +11,8 @@ const text = tv({
       white: 'text-white'
     },
     size: {
-      default: 'text-base',
-      xl: 'text-xl',
-      xs: 'text-xs'
+      default: 'text-xs sm:text-base',
+      xl: 'text-xl'
     },
     transform: {
       default: 'uppercase',
@@ -22,6 +21,7 @@ const text = tv({
   },
   defaultVariants: {
     color: 'default',
+    size: 'default',
     transform: 'default'
   }
 })
