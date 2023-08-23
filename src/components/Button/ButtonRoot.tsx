@@ -11,9 +11,8 @@ const button = tv({
       empty: 'bg-transparent'
     },
     size: {
-      default: 'w-fit h-12 px-8',
-      xl: 'w-full h-14 px-8',
-      sm: 'w-fit h-10 px-4'
+      default: 'w-fit h-8 px-3 sm:h-10 sm:px-8',
+      xl: 'w-full h-14 px-8'
     }
   },
   defaultVariants: {
