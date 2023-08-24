@@ -12,7 +12,7 @@ const text = tv({
     },
     size: {
       default: 'text-xs sm:text-base',
-      xl: 'text-xl'
+      xl: 'text-sm md:text-xl'
     },
     transform: {
       default: 'uppercase',

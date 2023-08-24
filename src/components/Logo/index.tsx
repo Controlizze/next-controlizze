@@ -1,9 +1,9 @@
-import Image from 'next/image'
-
-export type LogoProps = {
-  size: number
-}
-
-export function Logo({ size }: LogoProps) {
-  return <Image src="/new_logo.png" width={size} height={size} alt="logo" />
+export function Logo() {
+  return (
+    <img
+      src="/new_logo.png"
+      className="w-[160px] h-[25px] sm:w-[230px] sm:h-[35px]"
+      alt="logo"
+    />
+  )
 }

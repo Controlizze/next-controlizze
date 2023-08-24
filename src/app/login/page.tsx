@@ -1,11 +1,11 @@
 'use client'
 
-import Image from 'next/image'
-import { BsChevronLeft } from 'react-icons/bs'
+import Link from 'next/link'
+import { BsArrowLeftShort } from 'react-icons/bs'
 
 import Container from 'components/Container'
 import { Form } from 'components/Form'
-import { Text } from 'components/Text'
+import { Icon } from 'components/Icon'
 
 export const metadata = {
   title: 'Login - Controlizze'
@@ -14,7 +14,21 @@ export const metadata = {
 export default function LoginPage() {
   return (
     <Container className="flex">
-      <div className="w-1/3 h-full px-12 py-[72px] flex flex-col gap-12 bg-background-900">
+      <div className="w-full h-screen px-8 py-10 flex flex-col gap-12 bg-background-900">
+        <Link href="/" className="flex items-center gap-1 text-xs text-white">
+          <Icon icon={BsArrowLeftShort} size="md" fill="primary" />
+          Voltar
+        </Link>
+
+        <div className="flex flex-col gap-1">
+          <span className=" text-2xl font-bold text-white">Acesse</span>
+          <span className=" text-md text-white">Com e-mail e senha</span>
+        </div>
+
+        <Form.login />
+      </div>
+
+      {/* <div className="w-1/3 h-full px-12 py-[72px] flex flex-col gap-12 bg-background-900">
         <a href="/" className="max-w-max">
           <BsChevronLeft className="w-7 h-7 fill-white" />
         </a>
@@ -58,7 +72,7 @@ export default function LoginPage() {
           Como é bom vê-lo novamente, acesse sua conta agora mesmo para voltar a
           ter nosso serviço
         </Text>
-      </div>
+      </div> */}
     </Container>
   )
 }

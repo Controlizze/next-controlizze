@@ -90,14 +90,16 @@ export function FormLogin() {
         </div>
 
         <Button.root type="submit" onClick={isSubmit} size="xl">
-          <Button.text>Acessar</Button.text>
+          <Button.text size="xl">Acessar</Button.text>
         </Button.root>
 
         <div className="w-full flex justify-center items-center gap-2">
-          <span className="text-sm text-zinc-400">Não tem uma conta?</span>
+          <span className="text-xs sm:text-sm text-zinc-400">
+            Não tem uma conta?
+          </span>
           <Link
             href="/cadastro"
-            className="text-sm text-primary-500 hover:opacity-75 transition-all"
+            className="text-xs sm:text-sm text-primary-500 hover:opacity-75 transition-all"
           >
             Cadastre-se!
           </Link>

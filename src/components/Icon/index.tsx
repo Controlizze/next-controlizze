@@ -1,4 +1,4 @@
-import { ElementType } from 'react'
+import { ComponentProps, ElementType } from 'react'
 
 import { VariantProps, tv } from 'tailwind-variants'
 
@@ -7,8 +7,9 @@ const variantIcon = tv({
   variants: {
     size: {
       default: 'w-6 h-6',
-      xl: 'w-11 h-11',
-      xs: 'w-4 h-4'
+      sm: 'w-4 h-4 sm:w-6 h-6',
+      md: 'w-8 h-8',
+      xl: 'w-11 h-11'
     },
     fill: {
       default: 'fill-black-500',
@@ -25,10 +26,11 @@ const variantIcon = tv({
   }
 })
 
-export type IconProps = VariantProps<typeof variantIcon> & {
-  icon: ElementType
-}
+export type IconProps = ComponentProps<'i'> &
+  VariantProps<typeof variantIcon> & {
+    icon: ElementType
+  }
 
-export function Icon({ icon: Icon, size, fill }: IconProps) {
-  return <Icon className={variantIcon({ size, fill })} />
+export function Icon({ icon: Icon, size, fill, className }: IconProps) {
+  return <Icon className={variantIcon({ size, fill, className })} />
 }
