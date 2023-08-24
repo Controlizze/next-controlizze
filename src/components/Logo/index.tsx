@@ -2,7 +2,7 @@ export function Logo() {
   return (
     <img
       src="/new_logo.png"
-      className="w-[160px] h-[25px] sm:w-[230px] sm:h-[35px]"
+      className="w-[140px] xl:w-[210px] sm:w-[180px]"
       alt="logo"
     />
   )

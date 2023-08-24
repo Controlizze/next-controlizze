@@ -4,18 +4,6 @@ import { VariantProps, tv } from 'tailwind-variants'
 
 const text = tv({
   variants: {
-    size: {
-      default: 'text-base',
-      xs: 'text-xs',
-      sm: 'text-sm',
-      lg: 'text-lg',
-      xl: 'text-xl',
-      xxl: 'text-2xl',
-      xxxl: 'text-3xl',
-      XL: 'text-4xl',
-      XXL: 'text-5xl',
-      XXXL: 'text-6xl'
-    },
     weight: {
       default: 'font-regular',
       medium: 'font-medium',
@@ -38,10 +26,8 @@ const text = tv({
 
 export type TextProps = ComponentProps<'text'> & VariantProps<typeof text>
 
-export function Text({ size, weight, color, className, ...props }: TextProps) {
+export function Text({ weight, color, className, ...props }: TextProps) {
   return (
-    <span className={text({ size, weight, color, className })}>
-      {props.children}
-    </span>
+    <span className={text({ weight, color, className })}>{props.children}</span>
   )
 }
