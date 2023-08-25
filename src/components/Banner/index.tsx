@@ -29,7 +29,7 @@ export function Banner({ login }: BannerProps) {
       <Text
         weight="bold"
         color="primary"
-        className="xl:text-4xl 2xl:text-6xl text-center"
+        className="text-4xl 2xl:text-6xl text-center"
       >
         {login ? 'Bem-vindo de volta!' : 'Bem-vindo, companehiro!'}
       </Text>
@@ -37,7 +37,7 @@ export function Banner({ login }: BannerProps) {
       <Text
         weight="default"
         color="primary"
-        className="max-w-[900px] text-center"
+        className="max-w-[900px] text-2xl 2xl:text-3xl text-center"
       >
         {login ? description : description2}
       </Text>

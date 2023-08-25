@@ -25,11 +25,6 @@ const createUserSchema = z.object({
         .join(' ')
     }),
 
-  date: z.coerce.date({
-    required_error: 'Data de nascimento obrigatória',
-    invalid_type_error: 'Data inválida'
-  }),
-
   email: z
     .string()
     .nonempty('E-mail obrigatório')
@@ -105,18 +100,6 @@ export function FormRegister() {
           </InputForm.Field>
 
           <InputForm.Field>
-            <InputForm.Label htmlFor="date">
-              Digite sua data de nascimento
-            </InputForm.Label>
-            <InputForm.Input
-              type="date"
-              name="date"
-              placeholder="Data de Nascimento"
-            />
-            <InputForm.ErrorMessage field="date" />
-          </InputForm.Field>
-
-          <InputForm.Field>
             <InputForm.Label htmlFor="email">Digite seu e-mail</InputForm.Label>
             <InputForm.Input type="email" name="email" placeholder="E-mail" />
             <InputForm.ErrorMessage field="email" />
@@ -163,7 +146,7 @@ export function FormRegister() {
         </div>
 
         <Button.root type="submit" size="xl">
-          <Button.text>Acessar</Button.text>
+          <Button.text size="xl">Cadastrar</Button.text>
         </Button.root>
       </form>
     </FormProvider>

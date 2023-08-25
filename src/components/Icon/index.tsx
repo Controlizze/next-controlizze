@@ -7,8 +7,8 @@ const variantIcon = tv({
   variants: {
     size: {
       default: 'w-6 h-6',
-      sm: 'w-4 h-4 sm:w-6 h-6',
-      md: 'w-8 h-8',
+      sm: 'w-4 h-4 sm:w-6 sm:h-6',
+      md: 'w-8 h-8 lg:w-10 lg:h-10',
       xl: 'w-11 h-11'
     },
     fill: {
