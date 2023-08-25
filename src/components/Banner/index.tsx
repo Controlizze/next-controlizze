@@ -31,7 +31,7 @@ export function Banner({ login }: BannerProps) {
         color="primary"
         className="text-4xl 2xl:text-6xl text-center"
       >
-        {login ? 'Bem-vindo de volta!' : 'Bem-vindo, companehiro!'}
+        {login ? 'Bem-vindo de volta!' : 'Bem-vindo, companheiro!'}
       </Text>
 
       <Text

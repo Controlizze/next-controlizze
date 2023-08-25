@@ -22,7 +22,7 @@ export function Sidebar() {
 
   return (
     (isLoginOrRegister() && (
-      <div className="w-1/5 h-screen flex flex-col bg-background-700">
+      <div className="w-1/5 h-screen flex-col bg-background-700 hidden">
         <div className="w-full h-full px-6 py-14 flex flex-col items-center gap-28">
           <Image src="/new_logo.png" width={250} height={250} alt="logo" />
 

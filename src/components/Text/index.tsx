@@ -18,7 +18,6 @@ const text = tv({
     }
   },
   defaultVariants: {
-    size: 'default',
     weight: 'default',
     color: 'default'
   }

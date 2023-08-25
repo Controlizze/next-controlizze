@@ -128,7 +128,30 @@ export function FormRegister() {
             <InputForm.ErrorMessage field="password" />
           </InputForm.Field>
 
-          <div className="w-full flex gap-4">
+          <InputForm.Field>
+            <InputForm.Label htmlFor="password">
+              Confirme sua senha
+            </InputForm.Label>
+            <div className="flex">
+              <InputForm.Input
+                type={ocultPassord ? 'text' : 'password'}
+                name="password"
+                placeholder="Confirmar senha"
+                rounded="start"
+              />
+
+              <InputForm.Action onClick={handlePassword}>
+                {!ocultPassord ? (
+                  <Icon icon={BsEyeFill} />
+                ) : (
+                  <Icon icon={BsEyeSlashFill} />
+                )}
+              </InputForm.Action>
+            </div>
+            <InputForm.ErrorMessage field="password" />
+          </InputForm.Field>
+
+          {/* <div className="w-full flex gap-4">
             <InputForm.Field className="w-full">
               <InputForm.Label htmlFor="city">
                 Digite sua cidade
@@ -142,7 +165,7 @@ export function FormRegister() {
               <InputForm.Input type="text" name="state" placeholder="Estado" />
               <InputForm.ErrorMessage field="state" />
             </InputForm.Field>
-          </div>
+          </div> */}
         </div>
 
         <Button.root type="submit" size="xl">

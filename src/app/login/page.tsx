@@ -1,6 +1,6 @@
 'use client'
 
-import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { BsArrowLeftShort } from 'react-icons/bs'
 
 import { Banner } from 'components/Banner'
@@ -13,16 +13,18 @@ export const metadata = {
 }
 
 export default function LoginPage() {
+  const router = useRouter()
+
   return (
     <Container className="flex">
       <div className="w-full xl:w-2/5 h-screen p-8 2xl:p-14 flex flex-col gap-12 bg-background-900">
-        <Link
-          href="/"
-          className="flex items-center gap-1 text-xs lg:text-base text-white"
+        <button
+          onClick={() => router.back()}
+          className="flex items-center gap-1 text-xs lg:text-base text-white hover:opacity-75 transition-all"
         >
           <Icon icon={BsArrowLeftShort} size="md" fill="primary" />
           Voltar
-        </Link>
+        </button>
 
         <div className="flex flex-col gap-1">
           <span className=" text-2xl md:text-3xl font-bold text-white">
