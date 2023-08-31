@@ -1,30 +1,57 @@
 'use client'
 
-import { useForm, FormProvider } from 'react-hook-form'
 import { BsArrowDownCircle, BsArrowUpCircle, BsWallet } from 'react-icons/bs'
 
-import { Button } from 'components/Button'
+import { Card } from 'components/Card'
 import { Icon } from 'components/Icon'
-import { InputForm } from 'components/Input'
 
-import data from '../../../../../data.json'
-import { Card } from '../Card'
-
-type CreateRegisterData = { number: string }
+// type CreateRegisterData = { number: string }
 
 export function Content() {
-  const createUserForm = useForm<CreateRegisterData>()
+  // const createUserForm = useForm<CreateRegisterData>()
 
   return (
     <div className="w-full h-full flex flex-col gap-6">
-      <div className="w-full flex justify-between gap-10">
+      <div className="w-full flex flex-wrap justify-between gap-8">
         <Card>
           <div className="w-full flex justify-between items-center">
-            <span className="text-3xl font-medium text-white">Despesas</span>
-            <Icon icon={BsArrowDownCircle} size="xl" fill="red" />
+            <span className="text-xl sm:text-3xl font-medium text-white">
+              Despesas
+            </span>
+            <Icon icon={BsArrowDownCircle} size="md" fill="red" />
           </div>
           <div className="w-full flex justify-center items-center">
-            <span className="text-5xl font-bold text-white">R$0.00</span>
+            <span className="text-3xl sm:text-5xl font-bold text-white">
+              R$0.00
+            </span>
+          </div>
+        </Card>
+
+        <Card>
+          <div className="w-full flex justify-between items-center">
+            <span className="text-xl sm:text-3xl font-medium text-white">
+              Despesas
+            </span>
+            <Icon icon={BsArrowDownCircle} size="md" fill="red" />
+          </div>
+          <div className="w-full flex justify-center items-center">
+            <span className="text-3xl sm:text-5xl font-bold text-white">
+              R$0.00
+            </span>
+          </div>
+        </Card>
+
+        <Card>
+          <div className="w-full flex justify-between items-center">
+            <span className="text-xl sm:text-3xl font-medium text-white">
+              Despesas
+            </span>
+            <Icon icon={BsArrowDownCircle} size="md" fill="red" />
+          </div>
+          <div className="w-full flex justify-center items-center">
+            <span className="text-3xl sm:text-5xl font-bold text-white">
+              R$0.00
+            </span>
           </div>
         </Card>
 
@@ -49,7 +76,7 @@ export function Content() {
         </Card>
       </div>
 
-      <FormProvider {...createUserForm}>
+      {/* <FormProvider {...createUserForm}>
         <Card flex="row">
           <div className="w-full flex gap-4">
             <InputForm.Field className="w-full">
@@ -145,7 +172,7 @@ export function Content() {
             </p>
           </div>
         ))}
-      </Card>
+      </Card> */}
     </div>
   )
 }

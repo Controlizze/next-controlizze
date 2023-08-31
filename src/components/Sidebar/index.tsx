@@ -3,60 +3,87 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { BiLogOut } from 'react-icons/bi'
-import { BsCashStack, BsClipboardData } from 'react-icons/bs'
+import { LuLogOut, LuXCircle } from 'react-icons/lu'
 
-const linkClass =
-  'w-full px-7 py-4 flex justify-start items-center gap-4 bg-transparent rounded border-l-4 border-background-500 shadow-lg shadow-dark hover:opacity-75 transition-all text-lg font-semibold text-zinc-400 fill-zinc-400 data-[selected=true]:bg-background-500 data-[selected=true]:border-primary-500 data-[selected=true]:text-white data-[selected=true]:fill-white'
+import { links } from 'data/mocks'
 
 export function Sidebar() {
   const pathname = usePathname()
 
-  function isLoginOrRegister() {
-    return (
-      !pathname.includes('login') &&
-      !pathname.includes('cadastro') &&
-      pathname !== '/'
-    )
-  }
+  // function isLoginOrRegister() {
+  //   return (
+  //     !pathname.includes('login') &&
+  //     !pathname.includes('cadastro') &&
+  //     pathname !== '/'
+  //   )
+  // }
+
+  const linkClass =
+    'px-4 py-3.5 flex items-center gap-2 bg-transparent data-[selected=true]:bg-background-500 border-l-4 border-background-500 data-[selected=true]:border-primary-500 rounded hover:opacity-75 transition-all shadow-md text-white'
 
   return (
-    (isLoginOrRegister() && (
-      <div className="w-1/5 h-screen flex-col bg-background-700 hidden">
-        <div className="w-full h-full px-6 py-14 flex flex-col items-center gap-28">
-          <Image src="/new_logo.png" width={250} height={250} alt="logo" />
-
-          <nav className="w-full flex flex-col gap-6">
-            <Link
-              href="/dashboard"
-              data-selected={pathname.includes('dashboard')}
-              className={linkClass}
+    <aside className="w-full h-screen flex flex-col bg-background-700">
+      <div className="flex-1 flex flex-col p-7 gap-16">
+        <div className="flex justify-between items-center">
+          <div className="flex justify-center items-center gap-2">
+            <Image src={'/icon.png'} width={28} height={28} alt="emblem" />
+            <span
+              style={{ fontFamily: 'Russo One' }}
+              className="text-3xl text-white"
             >
-              <BsClipboardData className="w-8 h-8" />
-              Dashboard
-            </Link>
-
-            <Link
-              href="/rendimento"
-              data-selected={pathname.includes('rendimento')}
-              className={linkClass}
-            >
-              <BsCashStack className="w-8 h-8" />
-              Rendimento
-            </Link>
-          </nav>
-        </div>
-
-        <div className="w-full px-8 py-6 flex justify-between items-center bg-background-500">
-          <div className="flex items-center gap-2">
-            <div className="w-11 h-11 bg-zinc-700 border-2 border-primary-100 rounded-full"></div>
-
-            <span className="text-lg font-semibold text-white">Nome</span>
+              Controlizze
+            </span>
           </div>
 
-          <BiLogOut className="w-7 h-7 fill-zinc-500" />
+          <LuXCircle className="w-6 h-6 text-white" />
+        </div>
+
+        <div className="flex flex-col gap-8">
+          {links.map((item) => (
+            <div key={item.title} className="flex flex-col gap-5">
+              <span className="text-base font-semibold text-zinc-500 uppercase">
+                {item.title}
+              </span>
+              <div className="flex flex-col gap-5">
+                {item.links.map((link) => (
+                  <Link
+                    key={link.name}
+                    href={`/${link.path}`}
+                    data-selected={pathname.includes(link.path)}
+                    className={linkClass}
+                  >
+                    {link.icon}
+                    {link.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
-    )) || <></>
+
+      <div className="h-20 px-7 flex justify-between items-center bg-background-500">
+        <div className="flex justify-center items-center gap-2">
+          <Image
+            src="/user_photo.jfif"
+            width={36}
+            height={36}
+            alt="user_image"
+            className="rounded-full"
+          />
+          <span className="text-sm text-white">
+            Olá, <span className="font-semibold">Richard</span>
+          </span>
+        </div>
+
+        <button className="w-7 h-7 flex justify-center items-center border border-primary-500 rounded-full">
+          <LuLogOut className="w-4 h-4 text-primary-500" />
+        </button>
+      </div>
+    </aside>
+
+    // (isLoginOrRegister() && (
+
+    // )) || <></>
   )
 }
