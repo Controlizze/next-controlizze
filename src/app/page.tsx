@@ -1,5 +1,5 @@
-import { Sidebar } from 'components/Sidebar'
+import LoginPage from './login/page'
 
 export default function Home() {
-  return <Sidebar />
+  return <LoginPage />
 }

@@ -26,6 +26,7 @@ module.exports = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))'
       },
       padding: {
+        'py-2.5': '10px',
         'py-3': '12px'
       },
       boxShadowColor: {
