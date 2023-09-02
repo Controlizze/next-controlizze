@@ -1,5 +1,5 @@
 import LoginPage from './login/page'
 
-export default function Home() {
+export default function HomePage() {
   return <LoginPage />
 }

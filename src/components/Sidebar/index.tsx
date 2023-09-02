@@ -23,7 +23,7 @@ export function Sidebar() {
 
   return (
     (isLoginOrRegister() && (
-      <aside className="w-full h-screen flex flex-col bg-background-700">
+      <aside className="w-full h-screen flex-col bg-background-700">
         <div className="flex-1 flex flex-col p-7 gap-16">
           <div className="flex justify-between items-center">
             <div className="flex justify-center items-center gap-2">
@@ -36,7 +36,9 @@ export function Sidebar() {
               </span>
             </div>
 
-            <LuXCircle className="w-6 h-6 text-white" />
+            <button>
+              <LuXCircle className="w-6 h-6 text-white" />
+            </button>
           </div>
 
           <div className="flex flex-col gap-8">

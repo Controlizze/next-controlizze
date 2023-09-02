@@ -4,7 +4,7 @@ export const metadata = {
   title: 'Rendimento - Controlizze'
 }
 
-export default function Rendimento() {
+export default function InvestmentPage() {
   return (
     <Container className="flex">
       <div className="w-full h-full p-14 flex flex-col gap-14">

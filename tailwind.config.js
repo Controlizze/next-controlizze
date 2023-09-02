@@ -18,7 +18,8 @@ module.exports = {
         'background-900': '#0B0B0E',
         'black-100': '#B7B7B7',
         'black-300': '#707070',
-        'black-500': '#111111'
+        'black-500': '#111111',
+        'button-sw': 'rgba(0, 0, 0, 0.25)'
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
@@ -28,9 +29,6 @@ module.exports = {
       padding: {
         'py-2.5': '10px',
         'py-3': '12px'
-      },
-      boxShadowColor: {
-        dark: 'rgba(0, 0, 0, 0.5)'
       }
     }
   },
