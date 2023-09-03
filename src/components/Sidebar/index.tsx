@@ -18,13 +18,19 @@ export function Sidebar() {
     )
   }
 
+  const ocultMenu = true
+
   const linkClass =
     'px-4 py-3.5 flex items-center gap-2 bg-transparent data-[selected=true]:bg-background-500 border-l-4 border-background-500 data-[selected=true]:border-primary-500 rounded hover:opacity-75 transition-all shadow-md text-white'
 
   return (
     (isLoginOrRegister() && (
-      <aside className="w-full h-screen flex-col bg-background-700">
-        <div className="flex-1 flex flex-col p-7 gap-16">
+      <aside
+        className={`abosolute top-0 left-0 w-full h-screen ${
+          ocultMenu ? 'flex' : 'hidden'
+        } flex-col bg-background-700 z-20`}
+      >
+        <div className="flex flex-auto flex-col p-7 gap-16">
           <div className="flex justify-between items-center">
             <div className="flex justify-center items-center gap-2">
               <Image src={'/icon.png'} width={28} height={28} alt="emblem" />
@@ -43,14 +49,14 @@ export function Sidebar() {
 
           <div className="flex flex-col gap-8">
             {links.map((item) => (
-              <div key={item.title} className="flex flex-col gap-5">
+              <div key={item.id} className="flex flex-col gap-5">
                 <span className="text-base font-semibold text-zinc-500 uppercase">
                   {item.title}
                 </span>
                 <div className="flex flex-col gap-5">
                   {item.links.map((link) => (
                     <Link
-                      key={link.name}
+                      key={link.id}
                       href={`/${link.path}`}
                       data-selected={pathname.includes(link.path)}
                       className={linkClass}

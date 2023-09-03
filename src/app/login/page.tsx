@@ -36,9 +36,6 @@ export default function LoginPage() {
               className="w-full h-full px-3 py-2 rounded outline-none"
               placeholder="E-mail"
             />
-            <button onClick={handlePassword} className="hidden">
-              <LuEye className="absolute top-1/2 translate-y-[-50%] right-3 w-5 h-5 text-zinc-400" />
-            </button>
           </div>
         </fieldset>
 
@@ -90,7 +87,7 @@ export default function LoginPage() {
         </div>
       </div>
 
-      <button className="h-12 px-3 flex justify-center items-center bg-primary-500 hover:opacity-75 rounded shadow-lg shadow-button-sw transition-all text-sm font-semibold uppercase">
+      <button className="h-12 px-3 flex justify-center items-center bg-primary-500 hover:opacity-75 rounded shadow-lg shadow-default transition-all text-sm font-semibold uppercase">
         Acessar
       </button>
 

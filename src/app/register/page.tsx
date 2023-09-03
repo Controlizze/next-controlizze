@@ -47,9 +47,6 @@ export default function RegisterPage() {
               className="w-full h-full px-3 py-2 rounded outline-none"
               placeholder="Nome"
             />
-            <button onClick={handlePassword} className="hidden">
-              <LuEye className="absolute top-1/2 translate-y-[-50%] right-3 w-5 h-5 text-zinc-400" />
-            </button>
           </div>
         </fieldset>
 
@@ -64,9 +61,6 @@ export default function RegisterPage() {
               className="w-full h-full px-3 py-2 rounded outline-none"
               placeholder="E-mail"
             />
-            <button onClick={handlePassword} className="hidden">
-              <LuEye className="absolute top-1/2 translate-y-[-50%] right-3 w-5 h-5 text-zinc-400" />
-            </button>
           </div>
         </fieldset>
 

@@ -19,7 +19,7 @@ module.exports = {
         'black-100': '#B7B7B7',
         'black-300': '#707070',
         'black-500': '#111111',
-        'button-sw': 'rgba(0, 0, 0, 0.25)'
+        default: 'rgba(0, 0, 0, 0.25)'
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

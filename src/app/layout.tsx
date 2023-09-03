@@ -3,7 +3,6 @@
 import { ReactNode } from 'react'
 
 import { Sidebar } from 'components/Sidebar'
-
 import './globals.scss'
 
 export const metadata = {
