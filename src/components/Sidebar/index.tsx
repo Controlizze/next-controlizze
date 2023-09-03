@@ -18,7 +18,7 @@ export function Sidebar() {
     )
   }
 
-  const ocultMenu = true
+  const ocultMenu = false
 
   const linkClass =
     'px-4 py-3.5 flex items-center gap-2 bg-transparent data-[selected=true]:bg-background-500 border-l-4 border-background-500 data-[selected=true]:border-primary-500 rounded hover:opacity-75 transition-all shadow-md text-white'

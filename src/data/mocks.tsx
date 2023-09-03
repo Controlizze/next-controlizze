@@ -47,3 +47,41 @@ export const cards = [
     value: 0
   }
 ]
+
+export const columns = [
+  {
+    id: 'date',
+    name: 'Data'
+  },
+  {
+    id: 'description',
+    name: 'Descrição'
+  },
+  {
+    id: 'category',
+    name: 'Categoria'
+  },
+  {
+    id: 'value',
+    name: 'Valor'
+  },
+  {
+    id: 'type',
+    name: 'Tipo'
+  },
+  {
+    id: 'actions',
+    name: 'Ações'
+  }
+]
+
+export const records = [
+  {
+    id: 'date',
+    date: '03/09/2023',
+    description: 'Presente de aniversário',
+    category: 'Presente',
+    value: 200,
+    type: 'Receita'
+  }
+]

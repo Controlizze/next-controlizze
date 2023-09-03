@@ -5,6 +5,8 @@ import {
   LuWallet
 } from 'react-icons/lu'
 
+import { Table } from './components/Table'
+
 export const metadata = {
   title: 'Dashboard - Controlizze'
 }
@@ -12,7 +14,7 @@ export const metadata = {
 export default function MovimentsPage() {
   return (
     <div className="w-full h-full bg-background-900">
-      <header className="fixed w-full h-20 px-5 flex items-center gap-2 bg-background-700 shadow-xl shadow-default">
+      <header className="fixed w-full h-20 px-5 flex items-center gap-2 bg-background-700 shadow-xl shadow-default z-20">
         <button className="w-11 h-11 flex justify-center items-center bg-background-500 rounded-full">
           <LuMenu className="text-white text-2xl" />
         </button>
@@ -153,7 +155,7 @@ export default function MovimentsPage() {
             </fieldset>
           </div>
 
-          <div className="flex justify-between items-center">
+          <div className="flex px-4 justify-between items-center">
             <fieldset className="flex items-center gap-1">
               <input
                 id="type-expense"
@@ -192,6 +194,8 @@ export default function MovimentsPage() {
               className={`h-1 flex flex-auto bg-gradient-to-r from-primary-500 to-background-700 rounded-full`}
             ></div>
           </div>
+
+          <Table />
         </div>
       </main>
     </div>
