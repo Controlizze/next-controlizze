@@ -1,13 +1,13 @@
 import { Action } from './Action'
-import { ErrorMessage } from './ErrorMessage'
+import { Camp } from './Camp'
+import { Container } from './Container'
 import { Field } from './Field'
-import { Input } from './Input'
 import { Label } from './Label'
 
-export const InputForm = {
-  Field,
-  Label,
-  Input,
-  ErrorMessage,
-  Action
+export const Input = {
+  field: Field,
+  label: Label,
+  container: Container,
+  camp: Camp,
+  action: Action
 }

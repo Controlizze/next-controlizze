@@ -1,15 +1,18 @@
 import { ComponentProps } from 'react'
+import { LuEye, LuEyeOff } from 'react-icons/lu'
 
-export type ActionProps = ComponentProps<'button'>
+type Props = ComponentProps<'button'> & {
+  ocultPassword: boolean
+}
 
-export function Action({ ...props }: ActionProps) {
+export function Action({ ocultPassword, ...props }: Props) {
   return (
-    <button
-      type="button"
-      className="w-14 h-12 flex justify-center items-center bg-primary-500 hover:opacity-75 rounded-e transition-all"
-      {...props}
-    >
-      {props.children}
+    <button type="button" {...props}>
+      {!ocultPassword ? (
+        <LuEye className="absolute top-1/2 translate-y-[-50%] right-3 w-5 h-5 text-zinc-400" />
+      ) : (
+        <LuEyeOff className="absolute top-1/2 translate-y-[-50%] right-3 w-5 h-5 text-zinc-400" />
+      )}
     </button>
   )
 }

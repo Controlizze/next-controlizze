@@ -1,13 +1,11 @@
-import { ComponentProps } from 'react'
+import { ReactNode } from 'react'
 
-import { twMerge } from 'tailwind-merge'
+type Props = {
+  children: ReactNode
+}
 
-export type FieldProps = ComponentProps<'div'>
-
-export function Field({ ...props }: FieldProps) {
+export function Field({ children }: Props) {
   return (
-    <div className={twMerge('flex flex-col gap-1', props.className)}>
-      {props.children}
-    </div>
+    <fieldset className="w-full flex flex-col gap-0.5">{children}</fieldset>
   )
 }

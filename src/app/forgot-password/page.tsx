@@ -5,11 +5,7 @@ import { LuArrowLeft } from 'react-icons/lu'
 
 import { Form } from './components/Form'
 
-export const metadata = {
-  title: 'Login - Controlizze'
-}
-
-export default function RegisterPage() {
+export default function ForgotPassord() {
   const router = useRouter()
 
   return (
@@ -23,11 +19,9 @@ export default function RegisterPage() {
       </button>
 
       <div className="w-fit flex flex-col gap-2">
-        <h1 className="text-4xl font-bold text-white capitalize">
-          Cadastre-se
-        </h1>
+        <h1 className="text-4xl font-bold text-white capitalize">Esqueceu?</h1>
         <span className="text-base text-zinc-400 uppercase">
-          Informe seus dados
+          Recupere a senha
         </span>
       </div>
 

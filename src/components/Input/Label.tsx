@@ -1,13 +1,14 @@
-import { ComponentProps } from 'react'
+import { ReactNode } from 'react'
 
-export type LabelProps = ComponentProps<'label'> & {
+type Props = {
+  children: ReactNode
   htmlFor: string
 }
 
-export function Label({ htmlFor, ...props }: LabelProps) {
+export function Label({ children, htmlFor }: Props) {
   return (
-    <label htmlFor={htmlFor} className="text-xs text-zinc-400" {...props}>
-      {props.children}
+    <label htmlFor={htmlFor} className="text-xs font-medium text-zinc-400">
+      {children}
     </label>
   )
 }

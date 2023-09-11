@@ -1,100 +1,41 @@
-import Container from 'components/Container'
+'use client'
+
+import { useCallback, useState } from 'react'
+import { LuMenu } from 'react-icons/lu'
+
+import { Sidebar } from 'components/Sidebar'
 
 export const metadata = {
-  title: 'Rendimento - Controlizze'
+  title: 'Dashboard - Controlizze'
 }
 
 export default function InvestmentPage() {
+  const [openSidebar, setOpenSidebar] = useState(false)
+
+  const closeSidebar = useCallback(
+    () => setOpenSidebar(!openSidebar),
+    [openSidebar]
+  )
+
   return (
-    <Container className="flex">
-      <div className="w-full h-full p-14 flex flex-col gap-14">
-        <div className="w-fit flex flex-col gap-1">
-          <span className="text-4xl font-semibold text-white">Rendimento</span>
-          <div className="w-3/5 h-1 bg-gradient-to-r from-primary-100 to-primary-900 rounded-full"></div>
-        </div>
+    <div className="w-full h-full bg-background-900 overflow-y-hidden">
+      {(openSidebar && <Sidebar close={closeSidebar} />) || (
+        <header className="fixed top-0 left-0 w-full h-20 px-5 flex items-center gap-2 bg-background-700 shadow-xl shadow-default z-20 md:hidden">
+          <button
+            className="w-11 h-11 flex justify-center items-center bg-background-500 rounded-full"
+            onClick={() => {
+              setOpenSidebar(!openSidebar)
+            }}
+          >
+            <LuMenu className="text-white text-2xl" />
+          </button>
 
-        <div className="w-full h-full flex flex-col gap-8">
-          <div className="w-full h-full p-8 flex flex-col gap-8 bg-background-700 rounded-2xl shadow-xl">
-            <div className="w-full flex items-center">
-              <span className="text-2xl font-semibold text-white">
-                Registros
-              </span>
-            </div>
-
-            <div className="w-[1408px] h-full flex gap-4">
-              {/* Card */}
-              <div className="w-56 h-full flex justify-center items-center bg-background-500 rounded-xl shadow-lg">
-                <span className="text-2xl text-white">Corretora</span>
-              </div>
-
-              {/* Card */}
-              <div className="w-56 h-full flex justify-center items-center bg-background-500 rounded-xl shadow-lg">
-                <span className="text-2xl text-white">Corretora</span>
-              </div>
-
-              {/* Card */}
-              <div className="w-56 h-full flex justify-center items-center bg-background-500 rounded-xl shadow-lg">
-                <span className="text-2xl text-white">Corretora</span>
-              </div>
-
-              {/* Card */}
-              <div className="w-56 h-full flex justify-center items-center bg-background-500 rounded-xl shadow-lg">
-                <span className="text-2xl text-white">Corretora</span>
-              </div>
-
-              {/* Card */}
-              <div className="w-56 h-full flex justify-center items-center bg-background-500 rounded-xl shadow-lg">
-                <span className="text-2xl text-white">Corretora</span>
-              </div>
-
-              {/* Card */}
-              <div className="w-56 h-full flex justify-center items-center bg-background-500 rounded-xl shadow-lg">
-                <span className="text-2xl text-white">Corretora</span>
-              </div>
-            </div>
+          <div className="w-fit flex flex-col justify-center gap-0">
+            <h3 className="text-xs text-zinc-400 uppercase">Outros</h3>
+            <h1 className="text-xl font-bold text-white">Investimento</h1>
           </div>
-
-          <div className="w-full h-full p-8 flex flex-col gap-8 bg-background-700 rounded-2xl shadow-xl">
-            <div className="w-full flex items-center">
-              <span className="text-2xl font-semibold text-white">
-                Registros
-              </span>
-            </div>
-
-            <div className="w-[1408px] h-full flex gap-4">
-              {/* Card */}
-              <div className="w-56 h-full flex justify-center items-center bg-background-500 rounded-xl shadow-lg">
-                <span className="text-2xl text-white">Corretora</span>
-              </div>
-
-              {/* Card */}
-              <div className="w-56 h-full flex justify-center items-center bg-background-500 rounded-xl shadow-lg">
-                <span className="text-2xl text-white">Corretora</span>
-              </div>
-
-              {/* Card */}
-              <div className="w-56 h-full flex justify-center items-center bg-background-500 rounded-xl shadow-lg">
-                <span className="text-2xl text-white">Corretora</span>
-              </div>
-
-              {/* Card */}
-              <div className="w-56 h-full flex justify-center items-center bg-background-500 rounded-xl shadow-lg">
-                <span className="text-2xl text-white">Corretora</span>
-              </div>
-
-              {/* Card */}
-              <div className="w-56 h-full flex justify-center items-center bg-background-500 rounded-xl shadow-lg">
-                <span className="text-2xl text-white">Corretora</span>
-              </div>
-
-              {/* Card */}
-              <div className="w-56 h-full flex justify-center items-center bg-background-500 rounded-xl shadow-lg">
-                <span className="text-2xl text-white">Corretora</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </Container>
+        </header>
+      )}
+    </div>
   )
 }
