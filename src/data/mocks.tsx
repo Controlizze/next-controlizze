@@ -27,7 +27,7 @@ export const links = [
         id: 2,
         icon: <LuUser />,
         name: 'Perfil do usuário',
-        path: 'uder-profile'
+        path: 'user-profile'
       }
     ]
   }

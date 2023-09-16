@@ -7,11 +7,14 @@ type Props = ComponentProps<'button'> & {
 
 export function Action({ ocultPassword, ...props }: Props) {
   return (
-    <button type="button" {...props}>
+    <button
+      className="absolute top-1/2 translate-y-[-50%] right-3 flex justify-between items-center"
+      {...props}
+    >
       {!ocultPassword ? (
-        <LuEye className="absolute top-1/2 translate-y-[-50%] right-3 w-5 h-5 text-zinc-400" />
+        <LuEye className="w-5 h-5 text-zinc-400" />
       ) : (
-        <LuEyeOff className="absolute top-1/2 translate-y-[-50%] right-3 w-5 h-5 text-zinc-400" />
+        <LuEyeOff className="w-5 h-5 text-zinc-400" />
       )}
     </button>
   )

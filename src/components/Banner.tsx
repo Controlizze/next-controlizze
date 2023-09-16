@@ -1,4 +1,4 @@
-import { Text } from 'components/Text'
+import Image from 'next/image'
 
 const description =
   'Como é bom vê-lo novamente, acesse sua conta agora mesmo para voltar a ter nosso serviço'
@@ -13,34 +13,33 @@ export type BannerProps = {
 export function Banner({ login }: BannerProps) {
   return (
     <div
-      className="relative w-full h-full p-10 2xl:p-14 hidden xl:flex flex-col justify-center items-center gap-6"
+      className="relative w-full h-1/2 lg:h-screen p-9 hidden md:flex flex-col justify-center items-center gap-5"
       style={{
         backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.80) 0%, rgba(0, 0, 0, 0.80) 100%), url('/background_office.png')`,
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover'
       }}
     >
-      <img
-        src="/new_logo.png"
-        alt="logo"
-        className="absolute top-10 left-10 2xl:top-14 2xl:left-14 w-[180px]"
-      />
+      <div className="absolute top-10 left-10 flex justify-center items-center gap-2">
+        <Image src={'/icon.png'} width={28} height={28} alt="emblem" />
+        <span
+          style={{ fontFamily: 'Russo One' }}
+          className="text-3xl text-white"
+        >
+          Controlizze
+        </span>
+      </div>
 
-      <Text
-        weight="bold"
-        color="primary"
-        className="text-4xl 2xl:text-6xl text-center"
-      >
-        {login ? 'Bem-vindo de volta!' : 'Bem-vindo, companheiro!'}
-      </Text>
+      <div className="flex flex-col items-center gap-1">
+        <h1 className="text-4xl lg:text-5xl 2xl:text-6xl font-bold text-white">
+          {login ? 'Bem-vindo de volta!' : 'Bem-vindo, companheiro!'}
+        </h1>
+        <div className="w-full h-2 bg-gradient-to-r from-primary-500 to-background-700 rounded-full"></div>
+      </div>
 
-      <Text
-        weight="default"
-        color="primary"
-        className="max-w-[900px] text-2xl 2xl:text-3xl text-center"
-      >
+      <h2 className="max-w-[700px] 2xl:max-w-[900px] text-lg xl:text-xl 2xl:text-2xl font-medium text-white text-center">
         {login ? description : description2}
-      </Text>
+      </h2>
     </div>
   )
 }

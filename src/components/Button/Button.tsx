@@ -1,9 +1,9 @@
-import { ComponentProps, ReactNode } from 'react'
+import { ButtonHTMLAttributes, ReactNode } from 'react'
 
 import { VariantProps, tv } from 'tailwind-variants'
 
 const button = tv({
-  base: 'h-12 px-3 flex justify-center items-center rounded shadow-lg shadow-default transition-all font-semibold uppercase',
+  base: 'h-12 px-3 flex justify-center items-center rounded shadow-lg shadow-default transition-all text-sm lg:text-base font-semibold uppercase',
   variants: {
     fill: {
       default: 'bg-primary-500 hover:opacity-75 text-black-500',
@@ -16,12 +16,17 @@ const button = tv({
   }
 })
 
-type ButtonProps = ComponentProps<'button'> &
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
   VariantProps<typeof button> & {
     children: ReactNode
   }
 
-export function Button({ children, fill, className, ...props }: ButtonProps) {
+export const Button = ({
+  children,
+  fill,
+  className,
+  ...props
+}: ButtonProps) => {
   return (
     <button className={button({ fill, className })} {...props}>
       {children}

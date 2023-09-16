@@ -19,8 +19,8 @@ export function Sidebar({ close }: SidebarProps) {
     'px-4 py-3.5 flex items-center gap-2 bg-transparent data-[selected=true]:bg-background-500 border-l-4 border-background-500 data-[selected=true]:border-primary-500 rounded hover:opacity-75 transition-all shadow-md text-white'
 
   return (
-    <aside className="abosolute top-0 left-0 w-full h-screen flex flex-col bg-background-700 z-20 overflow-hidden">
-      <div className="flex flex-auto flex-col p-7 gap-16">
+    <aside className="abosolute top-0 left-0 w-full lg:w-[25%] 2xl:w-[20%] h-screen flex flex-col bg-background-700 z-20">
+      <div className="flex flex-auto flex-col p-7 lg:px-7 lg:py-9 gap-16">
         <div className="flex justify-between items-center">
           <div className="flex justify-center items-center gap-2">
             <Image src={'/icon.png'} width={28} height={28} alt="emblem" />
@@ -32,7 +32,7 @@ export function Sidebar({ close }: SidebarProps) {
             </span>
           </div>
 
-          <button onClick={close}>
+          <button onClick={close} className="lg:hidden">
             <LuXCircle className="w-6 h-6 text-white" />
           </button>
         </div>

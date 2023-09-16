@@ -35,13 +35,13 @@ export function Table() {
   // }, [])
 
   return (
-    <table className="h-[206px] flex flex-col bg-background-900 overflow-x-scroll rounded">
-      <thead className="w-fit h-10">
-        <tr className="w-fit h-full flex gap-0.5">
+    <table className="h-[206px] flex flex-col gap-0.5 bg-background-900 border-2 border-background-500 overflow-x-scroll rounded">
+      <thead className="w-fit">
+        <tr className="w-fit flex gap-0.5">
           {columns.map((column) => (
             <th
               key={column.id}
-              className="w-[200px] h-full px-4 flex items-center bg-background-500 text-lg font-semibold text-primary-500"
+              className="min-w-[200px] h-10 px-4 flex items-center bg-background-500 text-lg font-semibold text-primary-500"
             >
               {column.name}
             </th>
@@ -49,10 +49,24 @@ export function Table() {
         </tr>
       </thead>
 
-      <tbody className="w-fit h-10">
+      <tbody className="w-fit flex flex-col gap-0.5">
         {records.map((record) => (
-          <tr key={record.id} className="h-full flex gap-0.5 bg-red-300">
-            asd
+          <tr key={record.id} className="flex gap-0.5">
+            <td className="min-w-[200px] max-w-[500px] h-10 px-4 flex items-center bg-background-700 text-base text-white">
+              {record.date}
+            </td>
+            <td className="min-w-[200px] max-w-[500px] h-10 px-4 flex items-center bg-background-700 text-base text-white whitespace-nowrap">
+              {record.description}
+            </td>
+            <td className="min-w-[200px] max-w-[500px] h-10 px-4 flex items-center bg-background-700 text-base text-white">
+              {record.category}
+            </td>
+            <td className="min-w-[200px] max-w-[500px] h-10 px-4 flex items-center bg-background-700 text-base text-white">
+              {record.value}
+            </td>
+            <td className="min-w-[200px] max-w-[500px] h-10 px-4 flex items-center bg-background-700 text-base text-white">
+              {record.type}
+            </td>
           </tr>
         ))}
       </tbody>
