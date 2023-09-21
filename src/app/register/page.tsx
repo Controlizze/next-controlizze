@@ -49,8 +49,8 @@ export default function RegisterPage() {
   const router = useRouter()
 
   return (
-    <div className="h-screen lg:flex">
-      <div className="w-full h-full md:h-1/2 lg:w-[40%] lg:h-full 2xl:w-[30%] p-7 xl:py-8 flex flex-col gap-8 lg:gap-16 bg-background-700">
+    <div className="h-screen flex flex-col lg:flex-row">
+      <div className="w-full lg:w-[40%] lg:h-full 2xl:w-[30%] p-7 xl:py-8 flex flex-1 lg:flex-none flex-col gap-8 lg:gap-16 bg-background-700">
         <button
           className="w-fit flex items-center gap-2"
           onClick={() => router.back()}
@@ -82,9 +82,9 @@ export default function RegisterPage() {
             {...register('email')}
             name="email"
             type="email"
-            placeholder="Digite seu e-mail"
+            placeholder="Digite seu email"
             helperText={errors.email?.message}
-            label="E-mail"
+            label="Email"
           />
 
           <Input

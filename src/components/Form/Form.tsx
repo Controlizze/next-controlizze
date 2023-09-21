@@ -7,7 +7,7 @@ type FormProps = FormHTMLAttributes<HTMLFormElement> & {
 
 export const Form = ({ children, col, ...props }: FormProps) => {
   return (
-    <form {...props} className={`flex flex-col ${col ? 'gap-3' : 'gap-2'}`}>
+    <form {...props} className={`flex flex-col ${col ? 'gap-4' : 'gap-2'}`}>
       {children}
     </form>
   )

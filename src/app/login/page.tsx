@@ -67,9 +67,9 @@ export default function LoginPage() {
             {...register('email')}
             name="email"
             type="email"
-            placeholder="Digite seu e-mail"
+            placeholder="Digite seu email"
             helperText={errors.email?.message}
-            label="E-mail"
+            label="Email"
           />
 
           <Input

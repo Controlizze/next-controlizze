@@ -13,7 +13,7 @@ export type BannerProps = {
 export function Banner({ login }: BannerProps) {
   return (
     <div
-      className="relative w-full h-1/2 lg:h-screen p-9 hidden md:flex flex-col justify-center items-center gap-5"
+      className="relative w-full h-[45%] lg:h-screen p-9 hidden md:flex flex-col justify-center items-center gap-5"
       style={{
         backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.80) 0%, rgba(0, 0, 0, 0.80) 100%), url('/background_office.png')`,
         backgroundRepeat: 'no-repeat',

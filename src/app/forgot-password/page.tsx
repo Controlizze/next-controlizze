@@ -14,6 +14,12 @@ import { z } from 'zod'
 
 const schema = z
   .object({
+    email: z
+      .string()
+      .email('Digite um e-mail válido')
+      .transform((value) => {
+        return value.toLowerCase()
+      }),
     password: z.string().min(8, 'A senha deve ter no mínimo 8 caracteres'),
     confirmPassword: z
       .string()
@@ -37,6 +43,8 @@ export default function ForgotPassord() {
   })
   const router = useRouter()
 
+  const isExistEmail = false
+
   return (
     <div className="h-screen lg:flex">
       <div className="w-full h-full md:h-1/2 lg:w-[40%] lg:h-full 2xl:w-[30%] p-7 xl:py-8 flex flex-col gap-8 lg:gap-16 bg-background-700">
@@ -57,29 +65,46 @@ export default function ForgotPassord() {
           </span>
         </div>
 
-        <Form onSubmit={handleSubmit((data) => console.log(data))} col>
-          <Input
-            {...register('password')}
-            name="password"
-            placeholder="Digite sua senha"
-            helperText={errors.password?.message}
-            label="Senha"
-            action
-          />
+        {isExistEmail ? (
+          <Form onSubmit={handleSubmit((data) => console.log(data))} col>
+            <Input
+              {...register('password')}
+              name="password"
+              placeholder="Digite sua senha"
+              helperText={errors.password?.message}
+              label="Senha"
+              action
+            />
 
-          <Input
-            {...register('confirmPassword')}
-            name="confirmPassword"
-            placeholder="Digite novamente sua senha"
-            helperText={errors.confirmPassword?.message}
-            label="Confirmar senha"
-            action
-          />
+            <Input
+              {...register('confirmPassword')}
+              name="confirmPassword"
+              placeholder="Digite novamente sua senha"
+              helperText={errors.confirmPassword?.message}
+              label="Confirmar senha"
+              action
+            />
 
-          <Button type="submit" className="mt-5 lg:mt-10">
-            Redefinir
-          </Button>
-        </Form>
+            <Button type="submit" className="mt-5 lg:mt-10">
+              Avançar
+            </Button>
+          </Form>
+        ) : (
+          <Form onSubmit={handleSubmit((data) => console.log(data))} col>
+            <Input
+              {...register('email')}
+              name="email"
+              placeholder="Digite seu email"
+              helperText={errors.email?.message}
+              label="Email"
+              action
+            />
+
+            <Button type="submit" className="mt-5 lg:mt-10">
+              Redefinir
+            </Button>
+          </Form>
+        )}
       </div>
 
       <Banner login />
