@@ -9,17 +9,17 @@ import { LuLogOut, LuXCircle } from 'react-icons/lu'
 import { links } from 'data/mocks'
 
 type SidebarProps = ComponentProps<'button'> & {
-  close: MouseEventHandler<HTMLButtonElement>
+  close?: MouseEventHandler<HTMLButtonElement>
 }
 
-export function Sidebar({ close }: SidebarProps) {
+export default function Sidebar({ close }: SidebarProps) {
   const pathname = usePathname()
 
   const linkClass =
     'px-4 py-3.5 flex items-center gap-2 bg-transparent data-[selected=true]:bg-background-500 border-l-4 border-background-500 data-[selected=true]:border-primary-500 rounded hover:opacity-75 transition-all shadow-md text-white'
 
   return (
-    <aside className="abosolute top-0 left-0 w-full lg:w-[25%] 2xl:w-[20%] h-screen flex flex-col bg-background-700 z-20">
+    <aside className="absolute lg:relative top-0 left-0 w-full lg:w-[25%] 2xl:w-[20%] h-screen hidden lg:flex flex-col bg-background-700 z-60">
       <div className="flex flex-auto flex-col p-7 lg:px-7 lg:py-9 gap-16">
         <div className="flex justify-between items-center">
           <div className="flex justify-center items-center gap-2">
@@ -80,5 +80,6 @@ export function Sidebar({ close }: SidebarProps) {
         </button>
       </div>
     </aside>
+    // <div className="absolute lg:relative top-0 left-0 w-full h-screen bg-zinc-800/20 backdrop-blur-sm z-40"></div>
   )
 }

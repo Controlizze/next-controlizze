@@ -3,11 +3,12 @@ import { ButtonHTMLAttributes, ReactNode } from 'react'
 import { VariantProps, tv } from 'tailwind-variants'
 
 const button = tv({
-  base: 'h-12 px-3 flex justify-center items-center rounded shadow-lg shadow-default transition-all text-sm lg:text-base font-semibold uppercase',
+  base: 'h-12 px-3 flex justify-center items-center rounded shadow-lg shadow-black/20 transition-all text-sm lg:text-base font-semibold uppercase',
   variants: {
     fill: {
       default: 'bg-primary-500 hover:opacity-75 text-black-500',
       outline: 'border border-primary-500 hover:opacity-75 text-primary-500',
+      empty: 'bg-transparent text-white hover:opacity-75',
       disabled: 'bg-zinc-700 text-zinc-500'
     }
   },

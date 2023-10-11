@@ -6,23 +6,28 @@ import { Action } from './Action'
 import { VariantProps } from 'tailwind-variants'
 
 const input = tv({
-  base: `w-full pl-3 pr-11 bg-white border-2 border-zinc-400 focus:border-primary-500 rounded outline-none caret-primary-500`,
+  base: `w-full bg-white border-2 border-zinc-400 focus:border-primary-500 rounded outline-none caret-primary-500`,
   variants: {
     scale: {
       default: 'py-2',
-      lg: 'py-3'
+      sm: 'py-1 text-sm'
+    },
+    action: {
+      false: 'px-3',
+      true: 'pl-3 pr-11'
     }
   },
   defaultVariants: {
-    scale: 'default'
+    scale: 'default',
+    action: false
   }
 })
 
 type InputProps = InputHTMLAttributes<HTMLInputElement> &
   VariantProps<typeof input> & {
+    width?: string
     label?: string
     helperText?: string
-    action?: boolean
   }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
@@ -32,21 +37,22 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       type = '',
       helperText = '',
       label = '',
+      width = 'w-full',
       scale,
       action,
       ...props
     },
     ref
   ) => {
-    const [ocultPassword, setOcultPassword] = useState(false)
     const inputId = useId()
+    const [ocultPassword, setOcultPassword] = useState(false)
 
     function seePassword() {
       setOcultPassword(!ocultPassword)
     }
 
     return (
-      <fieldset className="flex flex-col gap-0.5">
+      <fieldset className={`${width} flex flex-col gap-0.5`} {...props}>
         <label htmlFor={inputId} className="text-sm text-zinc-200">
           {label}
           {helperText && <span className="ml-1 text-red-500">*</span>}
@@ -58,7 +64,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             type={action ? (!ocultPassword ? 'password' : 'text') : type}
             ref={ref}
             {...props}
-            className={input({ scale })}
+            className={input({ scale, action })}
           />
           {action && (
             <Action

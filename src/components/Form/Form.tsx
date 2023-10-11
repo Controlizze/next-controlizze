@@ -1,13 +1,33 @@
 import { FormHTMLAttributes, ReactNode } from 'react'
 
-type FormProps = FormHTMLAttributes<HTMLFormElement> & {
-  children: ReactNode
-  col: boolean
-}
+import { VariantProps, tv } from 'tailwind-variants'
 
-export const Form = ({ children, col, ...props }: FormProps) => {
+const form = tv({
+  base: 'flex',
+  variants: {
+    direction: {
+      default: 'flex-col gap-4',
+      row: 'flex-col 2xl:flex-row gap-10'
+    }
+  },
+  defaultVariants: {
+    direction: 'default'
+  }
+})
+
+type FormProps = FormHTMLAttributes<HTMLFormElement> &
+  VariantProps<typeof form> & {
+    children: ReactNode
+  }
+
+export const Form = ({
+  children,
+  direction,
+  className,
+  ...props
+}: FormProps) => {
   return (
-    <form {...props} className={`flex flex-col ${col ? 'gap-4' : 'gap-2'}`}>
+    <form {...props} className={form({ direction, className })}>
       {children}
     </form>
   )

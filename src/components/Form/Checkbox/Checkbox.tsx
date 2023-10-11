@@ -5,7 +5,7 @@ type CheckboxProps = InputHTMLAttributes<HTMLInputElement> & {
 }
 
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
-  ({ name = '', type = '', label = '', ...props }, ref) => {
+  ({ name = '', type = 'checkbox', label = '', ...props }, ref) => {
     const inputId = useId()
 
     return (
@@ -18,7 +18,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
           className="w-4 h-4 rounded accent-primary-500"
           {...props}
         />
-        <label htmlFor={inputId} className="text-xs text-zinc-200">
+        <label htmlFor={inputId} className="text-xs 2xl:text-sm text-zinc-200">
           {label}
         </label>
       </div>

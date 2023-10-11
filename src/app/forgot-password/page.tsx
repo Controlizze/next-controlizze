@@ -1,10 +1,11 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { LuArrowLeft } from 'react-icons/lu'
 
-import { Banner } from 'components/Banner'
+import { Banner } from 'components/Banner/Banner'
 import { Button } from 'components/Button'
 import { Form } from 'components/Form/Form'
 import { Input } from 'components/Form/Input'
@@ -41,9 +42,10 @@ export default function ForgotPassord() {
     mode: 'onBlur',
     resolver: zodResolver(schema)
   })
-  const router = useRouter()
 
-  const isExistEmail = false
+  const [isExistEmail, setIsExistEmail] = useState(false)
+
+  const router = useRouter()
 
   return (
     <div className="h-screen lg:flex">
@@ -72,7 +74,7 @@ export default function ForgotPassord() {
               name="password"
               placeholder="Digite sua senha"
               helperText={errors.password?.message}
-              label="Senha"
+              label="Nova senha"
               action
             />
 
@@ -86,7 +88,7 @@ export default function ForgotPassord() {
             />
 
             <Button type="submit" className="mt-5 lg:mt-10">
-              Avançar
+              Redefinir
             </Button>
           </Form>
         ) : (
@@ -94,14 +96,18 @@ export default function ForgotPassord() {
             <Input
               {...register('email')}
               name="email"
+              type="email"
               placeholder="Digite seu email"
               helperText={errors.email?.message}
               label="Email"
-              action
             />
 
-            <Button type="submit" className="mt-5 lg:mt-10">
-              Redefinir
+            <Button
+              type="submit"
+              onClick={() => setIsExistEmail(!isExistEmail)}
+              className="mt-5 lg:mt-10"
+            >
+              Avançar
             </Button>
           </Form>
         )}

@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 
-import { Banner } from 'components/Banner'
+import { Banner } from 'components/Banner/Banner'
 import { Button } from 'components/Button'
 import { Checkbox } from 'components/Form/Checkbox'
 import { Form } from 'components/Form/Form'
@@ -11,10 +11,6 @@ import { Input } from 'components/Form/Input'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-
-export const metadata = {
-  title: 'Login - Controlizze'
-}
 
 const schema = z.object({
   email: z
@@ -51,8 +47,8 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="h-screen lg:flex">
-      <div className="ww-full h-full md:h-1/2 lg:w-[40%] lg:h-full 2xl:w-[30%] p-7 xl:py-8 flex flex-col gap-8 lg:gap-16 bg-background-700">
+    <div className="min-h-screen flex flex-col lg:flex-row bg-background-700">
+      <div className="w-full h-full lg:w-[40%] 2xl:w-[30%] p-7 xl:py-8 flex flex-col gap-8 lg:gap-16 bg-background-700">
         <div className="w-fit mt-[52px] lg:mt-[84px] flex flex-col gap-2">
           <h1 className="text-4xl font-bold text-white capitalize">
             Faça login
@@ -62,7 +58,7 @@ export default function LoginPage() {
           </span>
         </div>
 
-        <Form onSubmit={handleSubmit(onSubmit)} col>
+        <Form onSubmit={handleSubmit(onSubmit)}>
           <Input
             {...register('email')}
             name="email"
@@ -90,7 +86,7 @@ export default function LoginPage() {
 
             <Link
               href="/forgot-password"
-              className="text-xs text-primary-500 hover:opacity-75 transition-all"
+              className="text-xs 2xl:text-sm text-primary-500 hover:opacity-75 transition-all"
             >
               Esqueci minha senha
             </Link>
@@ -102,10 +98,13 @@ export default function LoginPage() {
         </Form>
 
         <div className="flex justify-center items-center gap-2">
-          <span className="text-xs text-zinc-400">
+          <span className="text-xs 2xl:text-sm text-zinc-400">
             Ainda não tem sua conta?
           </span>
-          <Link href="/register" className="text-xs text-primary-500">
+          <Link
+            href="/register"
+            className="text-xs 2xl:text-sm text-primary-500"
+          >
             Cadastre-se
           </Link>
         </div>

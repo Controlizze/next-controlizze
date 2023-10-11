@@ -20,8 +20,7 @@ export const theme = {
       'background-900': '#0B0B0E',
       'black-100': '#B7B7B7',
       'black-300': '#707070',
-      'black-500': '#111111',
-      default: 'rgba(0, 0, 0, 0.25)'
+      'black-500': '#111111'
     },
     backgroundImage: {
       'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

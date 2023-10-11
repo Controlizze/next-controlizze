@@ -1,4 +1,11 @@
-import { LuDollarSign, LuLayoutDashboard, LuUser } from 'react-icons/lu'
+import {
+  LuArrowDownCircle,
+  LuArrowUpCircle,
+  LuDollarSign,
+  LuLayoutDashboard,
+  LuUser,
+  LuWallet
+} from 'react-icons/lu'
 
 export const links = [
   {
@@ -37,22 +44,25 @@ export const cards = [
   {
     id: 1,
     title: 'Despesas',
-    gradientColor: 'red',
-    icon: 'red',
+    gradient: 'red',
+    icon: LuArrowDownCircle,
+    iconColor: 'red',
     value: '0.00'
   },
   {
     id: 2,
     title: 'Receitas',
-    gradientColor: 'green',
-    icon: 'green',
+    gradient: 'green',
+    icon: LuArrowUpCircle,
+    iconColor: 'green',
     value: '0.00'
   },
   {
     id: 3,
     title: 'Saldo',
-    gradientColor: 'orange',
-    icon: 'orange',
+    gradient: 'orange',
+    icon: LuWallet,
+    iconColor: 'orange',
     value: '0.00'
   }
 ]

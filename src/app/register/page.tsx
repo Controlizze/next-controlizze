@@ -1,20 +1,17 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { LuArrowLeft } from 'react-icons/lu'
 
-import { Banner } from 'components/Banner'
+import { Banner } from 'components/Banner/Banner'
 import { Button } from 'components/Button'
 import { Form } from 'components/Form/Form'
 import { Input } from 'components/Form/Input'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-
-export const metadata = {
-  title: 'Cadastro - Controlizze'
-}
 
 const schema = z
   .object({
@@ -48,9 +45,13 @@ export default function RegisterPage() {
   })
   const router = useRouter()
 
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
   return (
-    <div className="h-screen flex flex-col lg:flex-row">
-      <div className="w-full lg:w-[40%] lg:h-full 2xl:w-[30%] p-7 xl:py-8 flex flex-1 lg:flex-none flex-col gap-8 lg:gap-16 bg-background-700">
+    <div className="min-h-screen flex flex-col lg:flex-row bg-background-700">
+      <div className="w-full h-full lg:w-[40%] 2xl:w-[30%] p-7 xl:py-8 flex flex-col gap-8 lg:gap-16 bg-background-700">
         <button
           className="w-fit flex items-center gap-2"
           onClick={() => router.back()}
@@ -75,6 +76,7 @@ export default function RegisterPage() {
             type="text"
             placeholder="Digite seu nome"
             helperText={errors.name?.message}
+            onChange={(e) => setName(e.target.value)}
             label="Nome"
           />
 
@@ -84,6 +86,7 @@ export default function RegisterPage() {
             type="email"
             placeholder="Digite seu email"
             helperText={errors.email?.message}
+            onChange={(e) => setEmail(e.target.value)}
             label="Email"
           />
 
@@ -92,6 +95,7 @@ export default function RegisterPage() {
             name="password"
             placeholder="Digite sua senha"
             helperText={errors.password?.message}
+            onChange={(e) => setPassword(e.target.value)}
             label="Senha"
             action
           />

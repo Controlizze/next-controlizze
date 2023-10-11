@@ -2,7 +2,7 @@ import { ComponentProps } from 'react'
 import { LuEye, LuEyeOff } from 'react-icons/lu'
 
 type Props = ComponentProps<'button'> & {
-  ocultPassword: boolean
+  ocultPassword?: boolean
 }
 
 export function Action({ ocultPassword, ...props }: Props) {
