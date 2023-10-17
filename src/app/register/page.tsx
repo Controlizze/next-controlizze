@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import { LuArrowLeft } from 'react-icons/lu'
 
@@ -11,6 +11,8 @@ import { Form } from 'components/Form/Form'
 import { Input } from 'components/Form/Input'
 
 import { zodResolver } from '@hookform/resolvers/zod'
+import { AuthContext } from 'contexts/AuthContext'
+import { RegisterType } from 'types/User'
 import { z } from 'zod'
 
 const schema = z
@@ -44,10 +46,11 @@ export default function RegisterPage() {
     resolver: zodResolver(schema)
   })
   const router = useRouter()
+  const { registerUser } = useContext(AuthContext)
 
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  async function handleRegister(data: RegisterType) {
+    await registerUser(data)
+  }
 
   return (
     <div className="min-h-screen flex flex-col lg:flex-row bg-background-700">
@@ -69,14 +72,13 @@ export default function RegisterPage() {
           </span>
         </div>
 
-        <Form onSubmit={handleSubmit((data) => console.log(data))} col>
+        <Form onSubmit={handleSubmit(handleRegister)}>
           <Input
             {...register('name')}
             name="name"
             type="text"
             placeholder="Digite seu nome"
             helperText={errors.name?.message}
-            onChange={(e) => setName(e.target.value)}
             label="Nome"
           />
 
@@ -86,7 +88,6 @@ export default function RegisterPage() {
             type="email"
             placeholder="Digite seu email"
             helperText={errors.email?.message}
-            onChange={(e) => setEmail(e.target.value)}
             label="Email"
           />
 
@@ -95,7 +96,6 @@ export default function RegisterPage() {
             name="password"
             placeholder="Digite sua senha"
             helperText={errors.password?.message}
-            onChange={(e) => setPassword(e.target.value)}
             label="Senha"
             action
           />

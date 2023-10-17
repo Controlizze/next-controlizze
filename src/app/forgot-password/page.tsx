@@ -68,7 +68,7 @@ export default function ForgotPassord() {
         </div>
 
         {isExistEmail ? (
-          <Form onSubmit={handleSubmit((data) => console.log(data))} col>
+          <Form onSubmit={handleSubmit((data) => console.log(data))}>
             <Input
               {...register('password')}
               name="password"

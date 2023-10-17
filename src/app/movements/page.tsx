@@ -16,6 +16,7 @@ import { Input } from 'components/Form/Input'
 import Sidebar from 'components/Sidebar/Sidebar'
 import TableMovements from 'components/Table/Table'
 
+
 export default function MovementsPage() {
   const [openSidebar, setOpenSidebar] = useState(false)
 
@@ -27,7 +28,8 @@ export default function MovementsPage() {
   return (
     <div className="min-h-screen flex flex-col lg:flex-row bg-background-900 overflow-x-hidden">
       {openSidebar && <Sidebar close={closeSidebar} />}
-      <main className="lg:py-8 flex flex-1 flex-col lg:gap-4 2xl:gap-16 bg-background-900">
+      {/* <Sidebar /> */}
+      <main className="lg:py-8 flex flex-1 flex-col lg:gap-6 2xl:gap-16 bg-background-900">
         <header className="fixed z-50 lg:relative top-0 left-0 w-full px-7 py-5 lg:px-8 lg:py-0 flex items-center gap-2 bg-background-700 lg:bg-transparent shadow-xl lg:shadow-none shadow-black/15">
           <button
             className="w-11 h-11 flex lg:hidden justify-center items-center bg-background-500 rounded-full"
@@ -131,7 +133,7 @@ export default function MovementsPage() {
             </Form>
           </div>
 
-          <div className="w-full px-8 py-5 flex flex-col gap-6 bg-background-700 rounded shadow-xl shadow-black/25">
+          <div className="px-8 py-5 flex flex-col gap-6 bg-background-700 rounded shadow-xl shadow-black/25">
             <div className="flex items-center gap-4 lg:gap-7">
               <h3 className="text-xl 2xl:text-2xl font-semibold text-white">
                 Registros
@@ -146,3 +148,23 @@ export default function MovementsPage() {
     </div>
   )
 }
+
+// export const getServerSideProps: GetServerSideProps = async (ctx) => {
+//   const apiClient = getAPIClient(ctx)
+//   const { ['nextauth.token']: token } = parseCookies(ctx)
+
+//   if (!token) {
+//     return {
+//       redirect: {
+//         destination: '/',
+//         permanent: false
+//       }
+//     }
+//   }
+
+//   await apiClient.get('/users')
+
+//   return {
+//     props: {}
+//   }
+// }

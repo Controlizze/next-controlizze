@@ -1,10 +1,23 @@
-export type RegisterUser = {
-  id: string
+export type RegisterType = {
   name: string
   email: string
   password: string
 }
 
-export type RegisterUserResponse = {
-  data: RegisterUser[]
+export type LoginType = {
+  email: string
+  password: string
+}
+
+export type RegisterUserType = {
+  name: string
+  email: string
+}
+
+export type User = {
+  name?: string
+  email: string
+  city?: string
+  state?: string
+  photo?: string
 }

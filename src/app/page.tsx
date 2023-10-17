@@ -38,7 +38,9 @@ export default function HomePage() {
             finanças e conquistar seus sonhos!
           </p>
 
-          <Button className="md:w-fit">Tenha acesso já!</Button>
+          <Link href="/login" className="w-full md:w-fit">
+            <Button className="md:w-fit">Tenha acesso já!</Button>
+          </Link>
         </div>
 
         <img

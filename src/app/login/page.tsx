@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { useContext } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { Banner } from 'components/Banner/Banner'
@@ -10,6 +11,8 @@ import { Form } from 'components/Form/Form'
 import { Input } from 'components/Form/Input'
 
 import { zodResolver } from '@hookform/resolvers/zod'
+import { AuthContext } from 'contexts/AuthContext'
+import { LoginType } from 'types/User'
 import { z } from 'zod'
 
 const schema = z.object({
@@ -25,8 +28,6 @@ const schema = z.object({
 
 type DataProps = z.infer<typeof schema>
 
-const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
-
 export default function LoginPage() {
   const {
     register,
@@ -36,14 +37,10 @@ export default function LoginPage() {
     mode: 'onBlur',
     resolver: zodResolver(schema)
   })
+  const { loginUser } = useContext(AuthContext)
 
-  const onSubmit = async (data: DataProps) => {
-    try {
-      await sleep(2000)
-      console.log(JSON.stringify(data))
-    } catch (error) {
-      console.log('Error')
-    }
+  async function handleLogin(data: LoginType) {
+    await loginUser(data)
   }
 
   return (
@@ -58,7 +55,7 @@ export default function LoginPage() {
           </span>
         </div>
 
-        <Form onSubmit={handleSubmit(onSubmit)}>
+        <Form onSubmit={handleSubmit(handleLogin)}>
           <Input
             {...register('email')}
             name="email"
