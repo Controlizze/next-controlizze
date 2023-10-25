@@ -1,18 +1,15 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import { LuArrowLeft } from 'react-icons/lu'
 
-import { Banner } from 'components/Banner/Banner'
+import { Banner } from 'components/Banner'
 import { Button } from 'components/Button'
 import { Form } from 'components/Form/Form'
 import { Input } from 'components/Form/Input'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { AuthContext } from 'contexts/AuthContext'
-import { RegisterType } from 'types/User'
 import { z } from 'zod'
 
 const schema = z
@@ -46,15 +43,15 @@ export default function RegisterPage() {
     resolver: zodResolver(schema)
   })
   const router = useRouter()
-  const { registerUser } = useContext(AuthContext)
+  // const { registerUser } = useContext(AuthContext)
 
-  async function handleRegister(data: RegisterType) {
-    await registerUser(data)
-  }
+  // async function handleRegister(data: RegisterType) {
+  //   await registerUser(data)
+  // }
 
   return (
-    <div className="min-h-screen flex flex-col lg:flex-row bg-background-700">
-      <div className="w-full h-full lg:w-[40%] 2xl:w-[30%] p-7 xl:py-8 flex flex-col gap-8 lg:gap-16 bg-background-700">
+    <>
+      <div className="w-full h-screen lg:w-[40%] 2xl:w-[30%] p-7 xl:py-8 flex flex-col gap-8 lg:gap-16 bg-800">
         <button
           className="w-fit flex items-center gap-2"
           onClick={() => router.back()}
@@ -72,7 +69,7 @@ export default function RegisterPage() {
           </span>
         </div>
 
-        <Form onSubmit={handleSubmit(handleRegister)}>
+        <Form onSubmit={handleSubmit((data) => console.log(data))}>
           <Input
             {...register('name')}
             name="name"
@@ -116,6 +113,6 @@ export default function RegisterPage() {
       </div>
 
       <Banner />
-    </div>
+    </>
   )
 }

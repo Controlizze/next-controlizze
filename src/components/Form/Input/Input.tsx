@@ -52,7 +52,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     }
 
     return (
-      <fieldset className={`${width} flex flex-col gap-0.5`} {...props}>
+      <div className={`${width} flex flex-col gap-0.5`} {...props}>
         <label htmlFor={inputId} className="text-sm text-zinc-200">
           {label}
           {helperText && <span className="ml-1 text-red-500">*</span>}
@@ -77,7 +77,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         {helperText && (
           <span className="text-xs text-red-500">{helperText}</span>
         )}
-      </fieldset>
+      </div>
     )
   }
 )

@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation'
 import { ReactNode } from 'react'
 import { QueryClient, QueryClientProvider } from 'react-query'
 
-import Sidebar from 'components/Sidebar/Sidebar'
+import Sidebar from 'components/Sidebar'
 
 import { AuthProvider } from 'contexts/AuthContext'
 
@@ -18,9 +18,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
   const isPermittedPathname = () => {
     return (
-      pathname.includes('login') ||
-      pathname.includes('register') ||
-      pathname.includes('forgot-password')
+      pathname.includes('movements') ||
+      pathname.includes('investment') ||
+      pathname.includes('user-profile')
     )
   }
 
@@ -30,14 +30,16 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <NextUIProvider>
           <QueryClientProvider client={queryClient}>
             <AuthProvider>
-              <div className="min-h-screen lg:flex bg-background-900">
+              <div className="min-h-screen flex flex-col lg:flex-row">
                 <Sidebar />
                 <div
-                  className={
-                    !isPermittedPathname()
-                      ? 'lg:ml-[25%] 2xl:ml-[20%]'
-                      : 'w-full ml-0'
-                  }
+                  className={`${
+                    isPermittedPathname()
+                      ? 'w-full lg:w-[75%] 2xl:w-[80%] ml-0 lg:ml-[25%] 2xl:ml-[20%]'
+                      : 'w-full'
+                  } min-h-screen flex ${
+                    !isPermittedPathname() ? '' : 'flex-col'
+                  }`}
                 >
                   {children}
                 </div>

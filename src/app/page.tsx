@@ -1,12 +1,12 @@
 import Link from 'next/link'
 
 import { Button } from 'components/Button'
-import Logo from 'components/Logo/Logo'
+import Logo from 'components/Logo'
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen flex flex-col bg-background-900">
-      <header className="w-full p-7 md:p-9 xl:p-12 flex justify-between items-center">
+    <div className="realtive w-full min-h-screen flex flex-col bg-900">
+      <header className="absolute top-0 left-0 w-full p-7 md:p-9 xl:p-12 flex justify-between items-center">
         <Logo />
 
         <div className="hidden md:flex items-center gap-8">
@@ -19,45 +19,33 @@ export default function HomePage() {
         </div>
       </header>
 
-      <main className="w-full p-7 md:p-9 xl:p-12 flex md:flex-col xl:flex-row flex-1 justify-between items-center gap-9">
-        <div className="max-w-full xl:max-w-2xl flex flex-col gap-8">
-          <h1 className="text-4xl md:text-5xl 2xl:text-7xl font-bold text-white">
-            <span className="font-normal">Trabalho de</span>
-            <br />
-            Conclusão de Curso
-          </h1>
+      <main
+        className="w-full h-screen p-7 md:p-9 xl:p-12 flex flex-col justify-center gap-6 md:gap-8"
+        style={{
+          backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.80) 0%, rgba(0, 0, 0, 0.80) 100%), url('/bg.jpg')`,
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center',
+          backgroundSize: 'cover'
+        }}
+      >
+        <h1 className="text-4xl md:text-5xl md:max-w-4xl 2xl:text-7xl font-semibold text-white">
+          O futuro das suas finanças está no seu{' '}
+          <span className="bg-gradient-to-b from-primary-500 to-primary-900 bg-clip-text text-transparent">
+            controle.
+          </span>
+        </h1>
 
-          <p className="text-sm md:text-base 2xl:text-lg text-zinc-400">
-            Nossa missão é ajudar os jovens da sociedade à administrarem seu
-            dinheiro desde o início da carreira profissional. A plataforma
-            servirá como um auxílio simples e prático, para que seja possível
-            acompanhar o crescimento financeiro tanto a médio quanto a longo
-            prazo. Além disso, apresentamos várias opções de corretoras e bancos
-            a fim de incentivar o usuário a investir de maneira correta e que
-            melhor se encaixa em seu perfil. É hora de dar um upgrade nas
-            finanças e conquistar seus sonhos!
-          </p>
+        <p className="md:max-w-3xl text-sm md:text-base 2xl:text-lg text-zinc-200">
+          Auxiliamos jovens profissionais na gestão financeira desde o início da
+          carreira, oferecendo uma plataforma prática para acompanhamento a
+          longo prazo. Fornecemos opções de investimento personalizadas. Vamos
+          ajudá-los a alcançar seus objetivos financeiros.
+        </p>
 
-          <Link href="/login" className="w-full md:w-fit">
-            <Button className="md:w-fit">Tenha acesso já!</Button>
-          </Link>
-        </div>
-
-        <img
-          src="/graphic1.png"
-          className="hidden md:block w-2/4 xl:w-[30%]"
-          alt="illustration"
-        />
+        <Link href="/login" className="w-full md:w-fit">
+          <Button className="w-full md:w-fit">Acesse já sua conta</Button>
+        </Link>
       </main>
-
-      <footer className="w-full px-7 py-3 md:py-6 xl:px-12 2xl:py-7 flex flex-col justify-center items-center gap-1 bg-background-700">
-        <span className="text-[8px] md:text-xs 2xl:text-sm font-medium text-primary-500 text-center">
-          Realizado pelos alunos Caroline Souza, Richard Rodrigues e Yuri Onorio
-        </span>
-        <span className="text-[8px] md:text-xs 2xl:text-sm text-primary-500 text-center">
-          ETEC &quot;Cidade do Livro&quot; de Lençóis Paulista - SP
-        </span>
-      </footer>
     </div>
   )
 }

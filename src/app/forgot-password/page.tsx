@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { LuArrowLeft } from 'react-icons/lu'
 
-import { Banner } from 'components/Banner/Banner'
+import { Banner } from 'components/Banner'
 import { Button } from 'components/Button'
 import { Form } from 'components/Form/Form'
 import { Input } from 'components/Form/Input'
@@ -48,8 +48,8 @@ export default function ForgotPassord() {
   const router = useRouter()
 
   return (
-    <div className="h-screen lg:flex">
-      <div className="w-full h-full md:h-1/2 lg:w-[40%] lg:h-full 2xl:w-[30%] p-7 xl:py-8 flex flex-col gap-8 lg:gap-16 bg-background-700">
+    <>
+      <div className="w-full h-screen md:h-1/2 lg:w-[40%] lg:h-full 2xl:w-[30%] p-7 xl:py-8 flex flex-col gap-8 lg:gap-16 bg-800">
         <button
           className="w-fit flex items-center gap-2"
           onClick={() => router.back()}
@@ -59,11 +59,9 @@ export default function ForgotPassord() {
         </button>
 
         <div className="w-fit flex flex-col gap-2">
-          <h1 className="text-4xl font-bold text-white capitalize">
-            Esqueceu?
-          </h1>
+          <h1 className="text-4xl font-bold text-white">Recupere a senha</h1>
           <span className="text-base text-zinc-400 uppercase">
-            Recupere a senha
+            Insira seu email para resetar sua senha
           </span>
         </div>
 
@@ -92,7 +90,7 @@ export default function ForgotPassord() {
             </Button>
           </Form>
         ) : (
-          <Form onSubmit={handleSubmit((data) => console.log(data))} col>
+          <Form onSubmit={handleSubmit((data) => console.log(data))}>
             <Input
               {...register('email')}
               name="email"
@@ -114,6 +112,6 @@ export default function ForgotPassord() {
       </div>
 
       <Banner login />
-    </div>
+    </>
   )
 }
