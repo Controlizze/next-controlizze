@@ -22,7 +22,7 @@ export default function HomePage() {
       <main
         className="w-full h-screen p-7 md:p-9 xl:p-12 flex flex-col justify-center gap-6 md:gap-8"
         style={{
-          backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.80) 0%, rgba(0, 0, 0, 0.80) 100%), url('/bg.jpg')`,
+          backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.85) 100%), url('/bg.jpg')`,
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center',
           backgroundSize: 'cover'
@@ -46,6 +46,12 @@ export default function HomePage() {
           <Button className="w-full md:w-fit">Acesse já sua conta</Button>
         </Link>
       </main>
+
+      <footer className="absolute bottom-0 left-0 w-full p-7 md:p-9 xl:p-12 flex justify-center lg:justify-end items-center">
+        <p className="text-xs lg:text-base font-light text-zinc-400 text-center lg:text-end">
+          Desenvolvido por Caroline Souza, Richard Rodrigues e Yuri Onorio
+        </p>
+      </footer>
     </div>
   )
 }
