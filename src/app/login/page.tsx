@@ -1,7 +1,9 @@
 'use client'
 
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
+import { LuArrowLeft } from 'react-icons/lu'
 
 import { Banner } from 'components/Banner'
 import { Button } from 'components/Button'
@@ -32,6 +34,7 @@ export default function LoginPage() {
     mode: 'onBlur',
     resolver: zodResolver(schema)
   })
+  const router = useRouter()
   // const { loginUser } = useContext(AuthContext)
 
   // async function handleLogin(data: LoginType) {
@@ -41,10 +44,16 @@ export default function LoginPage() {
   return (
     <>
       <div className="w-full h-screen lg:w-[40%] 2xl:w-[30%] p-7 xl:py-8 flex flex-col gap-8 lg:gap-16 bg-800">
-        <div className="w-fit mt-[52px] lg:mt-[84px] flex flex-col gap-2">
-          <h2 className="text-4xl font-bold text-white capitalize">
-            Faça login
-          </h2>
+        <button
+          className="w-fit flex items-center gap-2"
+          onClick={() => router.back()}
+        >
+          <LuArrowLeft className="text-lg text-primary-500" />
+          <span className="text-sm text-white">Voltar</span>
+        </button>
+
+        <div className="w-fit flex flex-col gap-2">
+          <h2 className="text-4xl font-bold text-white">Faça login</h2>
           <span className="text-base text-zinc-400 uppercase">
             Com e-mail e senha
           </span>

@@ -11,7 +11,9 @@ const button = tv({
       outline:
         'border border-primary-600 bg-transparent hover:bg-primary-100/10 active:bg-primary-200/20 text-primary-600',
       empty:
-        'bg-transparent text-white hover:text-zinc-500 active:text-zinc-600'
+        'bg-transparent text-white hover:text-zinc-500 active:text-zinc-600',
+      error:
+        'border border-red-600 bg-transparent hover:bg-red-100/10 active:bg-red-200/20 text-red-600'
     }
   },
   defaultVariants: {

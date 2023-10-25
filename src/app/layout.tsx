@@ -39,7 +39,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                       : 'w-full'
                   } min-h-screen flex ${
                     !isPermittedPathname() ? '' : 'flex-col'
-                  }`}
+                  } bg-900`}
                 >
                   {children}
                 </div>
