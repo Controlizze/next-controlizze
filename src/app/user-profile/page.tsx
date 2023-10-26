@@ -3,11 +3,10 @@
 import { useForm } from 'react-hook-form'
 import { LuImagePlus } from 'react-icons/lu'
 
-import { Button } from 'components/Button'
-import { Form } from 'components/Form/Form'
-import { Input } from 'components/Form/Input/Input'
-import { Select } from 'components/Form/Input/Select'
+import Button from 'components/Button'
+import Form from 'components/Form'
 import Header from 'components/Header'
+import { Input } from 'components/Inputs/Input'
 
 // import { Checkbox } from 'components/Form/Checkbox'
 
@@ -103,13 +102,13 @@ export default function UserProfilePage() {
                 className="xl:col-span-2"
               />
 
-              <Select
+              {/* <Select
                 {...register('state')}
                 name="state"
                 label="Estado"
                 scale="sm"
                 className="xl:col-span-1"
-              />
+              /> */}
             </div>
 
             <Button className="w-full">Salvar</Button>

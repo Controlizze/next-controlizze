@@ -10,7 +10,7 @@ export type BannerProps = {
   login?: boolean
 }
 
-export function Banner({ login }: BannerProps) {
+export default function Banner({ login }: BannerProps) {
   return (
     <div
       className="relative w-[70%] lg:h-screen p-9 hidden md:flex flex-col flex-1 justify-center items-center gap-5"

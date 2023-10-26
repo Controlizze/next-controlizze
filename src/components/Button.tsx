@@ -26,12 +26,12 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
     children: ReactNode
   }
 
-export const Button = ({
+export default function Button({
   children,
   fill,
   className,
   ...props
-}: ButtonProps) => {
+}: ButtonProps) {
   return (
     <button className={button({ fill, className })} {...props}>
       {children}

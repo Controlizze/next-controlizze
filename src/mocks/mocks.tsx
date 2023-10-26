@@ -94,25 +94,6 @@ export const columns = [
   }
 ]
 
-export const records = [
-  {
-    id: 1,
-    date: '03/09/2023',
-    description: 'Presente de aniversário',
-    category: 'Presente',
-    value: 200,
-    type: 'Receita'
-  },
-  {
-    id: 2,
-    date: '04/09/2023',
-    description: 'Perfume',
-    category: 'Pessoal',
-    value: 110,
-    type: 'Despesa'
-  }
-]
-
 export const banks = [
   {
     url: 'https://www.bb.com.br',

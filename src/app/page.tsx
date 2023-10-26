@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import { Button } from 'components/Button'
+import Button from 'components/Button'
 import Logo from 'components/Logo'
 
 export default function HomePage() {
@@ -50,6 +50,10 @@ export default function HomePage() {
       <footer className="absolute bottom-0 left-0 w-full p-7 md:p-9 xl:p-12 flex justify-center lg:justify-end items-center">
         <p className="text-xs lg:text-base font-light text-zinc-400 text-center lg:text-end">
           Desenvolvido por Caroline Souza, Richard Rodrigues e Yuri Onorio
+          {/* <br />
+          <span className="font-light">
+            ETEC Cidade do Livro de Lençóis Paulista
+          </span> */}
         </p>
       </footer>
     </div>

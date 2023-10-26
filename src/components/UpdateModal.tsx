@@ -2,8 +2,8 @@ import { Dispatch, SetStateAction } from 'react'
 import { LuX } from 'react-icons/lu'
 
 import { Button } from './Button'
-import { Form } from './Form/Form'
-import { Input } from './Form/Input'
+import { Form } from './Form'
+import { Input } from './Inputs'
 
 type ModalProps = {
   openModal: boolean

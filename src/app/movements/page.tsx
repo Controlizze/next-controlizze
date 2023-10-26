@@ -3,14 +3,14 @@
 import { useCallback, useState } from 'react'
 import { LuArrowDownCircle, LuArrowUpCircle, LuWallet } from 'react-icons/lu'
 
-import { Button } from 'components/Button'
+import Button from 'components/Button'
 import CardValue from 'components/CardValue'
 // import { Checkbox } from 'components/Form/Checkbox'
-import { Form } from 'components/Form/Form'
-import { Input } from 'components/Form/Input'
+import Form from 'components/Form'
 import Header from 'components/Header'
+import { Input } from 'components/Inputs/Input'
 import Sidebar from 'components/Sidebar'
-import TableMovements from 'components/Table/Table'
+import Table from 'components/Table'
 
 export default function MovementsPage() {
   const [openSidebar, setOpenSidebar] = useState(false)
@@ -117,7 +117,7 @@ export default function MovementsPage() {
             <div className="h-1 flex-1 bg-gradient-to-r from-primary-500 to-800 rounded-full" />
           </div>
 
-          <TableMovements />
+          <Table />
         </div>
       </main>
     </>

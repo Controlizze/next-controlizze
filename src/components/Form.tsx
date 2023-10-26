@@ -20,12 +20,12 @@ type FormProps = FormHTMLAttributes<HTMLFormElement> &
     children: ReactNode
   }
 
-export const Form = ({
+export default function Form({
   children,
   direction,
   className,
   ...props
-}: FormProps) => {
+}: FormProps) {
   return (
     <form {...props} className={form({ direction, className })}>
       {children}
