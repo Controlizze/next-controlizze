@@ -87,10 +87,6 @@ export const columns = [
   {
     id: 'type',
     name: 'Tipo'
-  },
-  {
-    id: 'actions',
-    name: 'Ações'
   }
 ]
 

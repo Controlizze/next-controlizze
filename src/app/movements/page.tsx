@@ -3,6 +3,7 @@
 import { useCallback, useState } from 'react'
 import { LuArrowDownCircle, LuArrowUpCircle, LuWallet } from 'react-icons/lu'
 
+import AlertModal from 'components/AlertModal'
 import Button from 'components/Button'
 import CardValue from 'components/CardValue'
 // import { Checkbox } from 'components/Form/Checkbox'
@@ -11,9 +12,22 @@ import Header from 'components/Header'
 import { Input } from 'components/Inputs/Input'
 import Sidebar from 'components/Sidebar'
 import Table from 'components/Table'
+import UpdateModal from 'components/UpdateModal'
+
+import { columns } from 'mocks/mocks'
 
 export default function MovementsPage() {
   const [openSidebar, setOpenSidebar] = useState(false)
+  const [showAlertModal, setShowAlertModal] = useState(false)
+  const [showUpdateModal, setShowUpdateModal] = useState(false)
+
+  function handleOpenUpdateModal() {
+    setShowUpdateModal(!showUpdateModal)
+  }
+
+  function handleShowAlertModal() {
+    setShowAlertModal(!showAlertModal)
+  }
 
   const closeSidebar = useCallback(
     () => setOpenSidebar(!openSidebar),
@@ -117,9 +131,29 @@ export default function MovementsPage() {
             <div className="h-1 flex-1 bg-gradient-to-r from-primary-500 to-800 rounded-full" />
           </div>
 
-          <Table />
+          <Table
+            columns={columns}
+            isEdit={handleOpenUpdateModal}
+            isDelete={handleShowAlertModal}
+            showActions
+          />
         </div>
       </main>
+
+      {showUpdateModal && (
+        <UpdateModal
+          openModal={showUpdateModal}
+          setOpenModal={setShowUpdateModal}
+        />
+      )}
+
+      {showAlertModal && (
+        <AlertModal
+          openModal={showAlertModal}
+          setOpenModal={setShowAlertModal}
+          text="Deseja continuar com a exclusão do seu registro?"
+        />
+      )}
     </>
   )
 }

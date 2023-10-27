@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from 'react'
 import { LuX } from 'react-icons/lu'
 
-import { Button } from './Button'
+import Button from './Button'
 
 type ModalProps = {
   openModal: boolean

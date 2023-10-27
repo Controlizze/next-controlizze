@@ -1,8 +1,9 @@
 export type Movement = {
-  _id: number
+  id: number
   date: string
   description: string
-  category: number
+  category: string
   value: number
-  type: number
+  type: string
+  [key: string]: any
 }
