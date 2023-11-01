@@ -114,10 +114,12 @@ export default function Sidebar({ close }: SidebarProps) {
           </button>
         </div>
       </aside>
+
       {showAlertModal && (
         <AlertModal
           openModal={showAlertModal}
           setOpenModal={setShowAlertModal}
+          text="Você tem certeza que deseja sair?"
         />
       )}
     </>

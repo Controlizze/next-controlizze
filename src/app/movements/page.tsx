@@ -11,10 +11,7 @@ import Form from 'components/Form'
 import Header from 'components/Header'
 import { Input } from 'components/Inputs/Input'
 import Sidebar from 'components/Sidebar'
-import Table from 'components/Table'
 import UpdateModal from 'components/UpdateModal'
-
-import { columns } from 'mocks/mocks'
 
 export default function MovementsPage() {
   const [openSidebar, setOpenSidebar] = useState(false)
@@ -38,7 +35,12 @@ export default function MovementsPage() {
     <>
       {openSidebar && <Sidebar close={closeSidebar} />}
       {/* <Sidebar /> */}
-      <Header category="Dashboard" page="Movimentações" />
+      <Header
+        category="Dashboard"
+        page="Movimentações"
+        openSidebar={openSidebar}
+        setOpenSidebar={setOpenSidebar}
+      />
 
       <main className="mt-[84px] lg:mt-0 px-7 py-5 lg:p-8 flex flex-1 flex-col justify-between gap-4 bg-900">
         <div className="flex flex-col sm:flex-row gap-4 2xl:gap-8">
@@ -131,12 +133,13 @@ export default function MovementsPage() {
             <div className="h-1 flex-1 bg-gradient-to-r from-primary-500 to-800 rounded-full" />
           </div>
 
-          <Table
+          {/* <Table
             columns={columns}
+            data={data}
             isEdit={handleOpenUpdateModal}
             isDelete={handleShowAlertModal}
             showActions
-          />
+          /> */}
         </div>
       </main>
 
