@@ -1,6 +1,7 @@
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
+import { setCookie } from 'nookies'
 import { api } from 'services/api'
 import { LoginType, RegisterType, User } from 'types/User'
 
@@ -11,7 +12,7 @@ export function useAuth() {
 
   const isAuthenticated = !!user
 
-  async function register({ name, email, password }: RegisterType) {
+  async function registerUser({ name, email, password }: RegisterType) {
     try {
       await api.post('/auth/register', {
         name,
@@ -21,29 +22,39 @@ export function useAuth() {
 
       router.push('/login')
     } catch (e) {
-      console.log('Deu ruim!')
+      console.error('Falha ao cadastrar usuário!', e)
     }
   }
 
-  async function login({ email, password }: LoginType) {
+  async function loginUser({ email, password }: LoginType) {
     try {
       const response = await api.post('/auth/login', {
         email,
         password
       })
 
-      setUser(response.data)
+      const token = response.data.token
+      const user = response.data.user
+
+      if (user) {
+        setUser(user)
+      }
+
+      setCookie(undefined, 'nextfinance.token', token, {
+        maxAge: 60 * 60 * 2, // 2 hours
+        path: '/'
+      })
 
       router.push('/movements')
     } catch (e) {
-      console.log('Deu ruim!')
+      console.error('Falha ao logar usuário!', e)
     }
   }
 
   return {
     user,
     isAuthenticated,
-    register,
-    login
+    registerUser,
+    loginUser
   }
 }

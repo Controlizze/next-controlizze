@@ -4,22 +4,22 @@ import { LuMenu } from 'react-icons/lu'
 type HeaderProps = {
   page: string
   category: string
-  openSidebar: boolean
-  setOpenSidebar: Dispatch<SetStateAction<boolean>>
+  isSidebarOpen: boolean
+  setIsSidebarOpen: Dispatch<SetStateAction<boolean>>
 }
 
 export default function Header({
   category,
   page,
-  openSidebar,
-  setOpenSidebar
+  isSidebarOpen,
+  setIsSidebarOpen
 }: HeaderProps) {
   return (
-    <header className="fixed z-50 lg:relative top-0 left-0 w-full px-7 py-5 lg:px-8 lg:py-8 flex items-center gap-2 bg-800 lg:bg-900 shadow-xl lg:shadow-none shadow-black/25">
+    <header className="fixed z-10 lg:relative top-0 left-0 w-full px-7 py-5 lg:p-0 lg:pb-8 flex items-center gap-2 bg-800 lg:bg-900 shadow-xl lg:shadow-none shadow-black/25">
       <button
         className="w-11 h-11 flex lg:hidden justify-center items-center bg-600 rounded-full"
         onClick={() => {
-          setOpenSidebar(!openSidebar)
+          setIsSidebarOpen(!isSidebarOpen)
         }}
       >
         <LuMenu className="text-white text-2xl" />

@@ -7,19 +7,21 @@ import { LuArrowLeft } from 'react-icons/lu'
 
 import Banner from 'components/Banner'
 import Button from 'components/Button'
+import Container from 'components/Container'
 import Form from 'components/Form'
 import { Input } from 'components/Inputs/Input'
 
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useAuth } from 'hooks/useAuth'
+import { LoginType } from 'types/User'
 import { z } from 'zod'
 
 const schema = z.object({
   email: z
     .string()
+    .nonempty('O e-mail é obrigatório')
     .email('Digite um e-mail válido')
-    .transform((value) => {
-      return value.toLowerCase()
-    }),
+    .toLowerCase(),
   password: z.string().min(8, 'A senha deve ter no mínimo 8 caracteres')
 })
 
@@ -34,15 +36,16 @@ export default function LoginPage() {
     mode: 'onBlur',
     resolver: zodResolver(schema)
   })
-  const router = useRouter()
-  // const { loginUser } = useContext(AuthContext)
+  const { loginUser } = useAuth()
 
-  // async function handleLogin(data: LoginType) {
-  //   await loginUser(data)
-  // }
+  const router = useRouter()
+
+  async function handleLogin(data: LoginType) {
+    await loginUser(data)
+  }
 
   return (
-    <>
+    <Container isSidebarOpen={false} setIsSidebarOpen={() => null}>
       <div className="w-full h-screen lg:w-[40%] 2xl:w-[30%] p-7 xl:py-8 flex flex-col gap-8 lg:gap-16 bg-800">
         <button
           className="w-fit flex items-center gap-2"
@@ -59,7 +62,7 @@ export default function LoginPage() {
           </span>
         </div>
 
-        <Form onSubmit={handleSubmit((data) => console.log(data))}>
+        <Form onSubmit={handleSubmit(handleLogin)}>
           <Input
             {...register('email')}
             name="email"
@@ -106,6 +109,6 @@ export default function LoginPage() {
       </div>
 
       <Banner login />
-    </>
+    </Container>
   )
 }

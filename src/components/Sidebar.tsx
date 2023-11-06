@@ -1,60 +1,46 @@
 'use client'
 
-import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { ComponentProps, MouseEventHandler, useState } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 import { LuLogOut, LuUser, LuXCircle } from 'react-icons/lu'
 
 import AlertModal from './AlertModal'
+import Logo from './Logo'
 
 import { links } from 'mocks/mocks'
 
-type SidebarProps = ComponentProps<'button'> & {
-  close?: MouseEventHandler<HTMLButtonElement>
+type SidebarProps = {
+  isSidebarOpen: boolean
+  setIsSidebarOpen: Dispatch<SetStateAction<boolean>>
 }
 
-export default function Sidebar({ close }: SidebarProps) {
-  const [sidebar, setSidebar] = useState(false)
+export default function Sidebar({
+  isSidebarOpen,
+  setIsSidebarOpen
+}: SidebarProps) {
   const [showAlertModal, setShowAlertModal] = useState(false)
-  // const { user } = useContext(AuthContext)
+
   const pathname = usePathname()
 
   const linkClass =
     'px-4 py-3.5 flex items-center gap-2 bg-transparent data-[selected=true]:bg-600 border-l-4 border-500 data-[selected=true]:border-primary-500 rounded hover:bg-700 transition-all shadow-md text-white'
 
-  const isPermittedPathname = () => {
-    return (
-      pathname.includes('movements') ||
-      pathname.includes('investment') ||
-      pathname.includes('user-profile')
-    )
-  }
-
-  function handleShowAlertModal() {
-    setShowAlertModal(!showAlertModal)
-  }
-
   return (
     <>
-      <aside
-        className={`absolute lg:fixed top-0 left-0 w-full lg:w-[25%] 2xl:w-[20%] h-screen ${
-          !isPermittedPathname() ? 'hidden' : 'hidden lg:flex'
-        } ${sidebar ? 'flex' : 'hidden'} flex-col justify-between bg-800 z-80`}
+      <nav
+        className={`fixed inset-y-0 lg:inset-0 left-0 w-full lg:w-[25%] 2xl:w-[20%] h-screen flex flex-col justify-between bg-800 transition-transform transform 2xl:transform-none z-20 ${
+          isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
+        }`}
       >
         <div className="flex flex-col p-7 lg:px-7 lg:py-9 gap-16">
           <div className="flex justify-between items-center">
-            <div className="flex justify-center items-center gap-2">
-              <Image src={'/icon.png'} width={28} height={28} alt="emblem" />
-              <span
-                style={{ fontFamily: 'Russo One' }}
-                className="text-3xl text-white"
-              >
-                Controlizze
-              </span>
-            </div>
+            <Logo />
 
-            <button onClick={close} className="lg:hidden">
+            <button
+              onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+              className="lg:hidden"
+            >
               <LuXCircle className="w-6 h-6 text-white" />
             </button>
           </div>
@@ -101,24 +87,24 @@ export default function Sidebar({ close }: SidebarProps) {
           )} */}
             <span className="text-sm text-white">
               Olá,
-              <span className="font-semibold">Usuário</span>
+              <span className="font-semibold"> Usuário</span>
             </span>
           </div>
 
           <button
-            onClick={handleShowAlertModal}
+            onClick={() => setShowAlertModal(!showAlertModal)}
             className="px-3 py-1 flex justify-center items-center gap-1 border border-primary-500 rounded-full text-sm text-primary-500"
           >
             <LuLogOut className="w-4 h-4" />
             Sair
           </button>
         </div>
-      </aside>
+      </nav>
 
       {showAlertModal && (
         <AlertModal
-          openModal={showAlertModal}
-          setOpenModal={setShowAlertModal}
+          showAlertModal={showAlertModal}
+          setShowAlertModal={setShowAlertModal}
           text="Você tem certeza que deseja sair?"
         />
       )}

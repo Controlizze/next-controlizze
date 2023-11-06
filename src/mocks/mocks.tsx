@@ -130,37 +130,37 @@ export const banks = [
 
 export const brokers = [
   {
-    url: 'https://www.bb.com.br',
-    bg: 'bg-blue-950',
+    url: 'https://www.rico.com.vc',
+    bg: 'bg-indigo-950',
     img: '/brokers/broker1.png'
   },
   {
-    url: 'https://www.santander.com.br',
+    url: 'https://www.btgpactual.com',
     bg: 'bg-white',
     img: '/brokers/broker2.png'
   },
   {
-    url: 'https://www.c6bank.com.br',
+    url: 'https://www.cmcapital.com.br',
     bg: 'bg-blue-600',
     img: '/brokers/broker3.png'
   },
   {
-    url: 'https://www.inter.co',
+    url: 'https://www.toroinvestimentos.com.br',
     bg: 'bg-white',
     img: '/brokers/broker4.png'
   },
   {
-    url: 'https://www.nubank.com.br',
-    bg: 'bg-zinc-950',
+    url: 'https://www.xpi.com.br',
+    bg: 'bg-black',
     img: '/brokers/broker5.png'
   },
   {
-    url: 'https://www.sicoob.com.br',
+    url: 'https://corretora.clear.com.br',
     bg: 'bg-blue-800',
     img: '/brokers/broker6.png'
   },
   {
-    url: 'https://www.next.me',
+    url: 'https://www.avenue.us',
     bg: 'bg-white',
     img: '/brokers/broker7.png'
   }

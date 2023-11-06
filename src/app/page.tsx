@@ -5,7 +5,7 @@ import Logo from 'components/Logo'
 
 export default function HomePage() {
   return (
-    <div className="realtive w-full min-h-screen flex flex-col bg-900">
+    <div className="relative w-full min-h-screen flex flex-col bg-900">
       <header className="absolute top-0 left-0 w-full p-7 md:p-9 xl:p-12 flex justify-between items-center">
         <Logo />
 
@@ -20,7 +20,7 @@ export default function HomePage() {
       </header>
 
       <main
-        className="w-full h-screen p-7 md:p-9 xl:p-12 flex flex-col justify-center gap-6 md:gap-8"
+        className="w-full h-screen p-7 md:p-9 xl:p-12 flex flex-col justify-center gap-6 md:gap-10"
         style={{
           backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.85) 100%), url('/bg.jpg')`,
           backgroundRepeat: 'no-repeat',
@@ -56,6 +56,17 @@ export default function HomePage() {
           </span> */}
         </p>
       </footer>
+
+      {/* Color Renderization - Ignore */}
+      <div className="hidden bg-yellow-400"></div>
+      <div className="hidden bg-red-600"></div>
+      <div className="hidden bg-black"></div>
+      <div className="hidden bg-orange-500"></div>
+      <div className="hidden bg-purple-600"></div>
+      <div className="hidden bg-teal-950"></div>
+      <div className="hidden bg-indigo-950"></div>
+      <div className="hidden bg-blue-600"></div>
+      <div className="hidden bg-blue-800"></div>
     </div>
   )
 }

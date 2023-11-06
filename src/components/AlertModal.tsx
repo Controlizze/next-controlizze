@@ -4,20 +4,20 @@ import { LuX } from 'react-icons/lu'
 import Button from './Button'
 
 type ModalProps = {
-  openModal: boolean
-  setOpenModal: Dispatch<SetStateAction<boolean>>
+  showAlertModal: boolean
+  setShowAlertModal: Dispatch<SetStateAction<boolean>>
   text?: string
 }
 
 export default function AlertModal({
-  openModal,
-  setOpenModal,
+  showAlertModal,
+  setShowAlertModal,
   text
 }: ModalProps) {
   return (
     <div
       className={`fixed top-0 left-0 w-full min-h-screen ${
-        openModal ? 'flex' : 'hidden'
+        showAlertModal ? 'flex' : 'hidden'
       } justify-center items-center bg-900/60 z-[120]`}
     >
       <div className="min-w-[80%] lg:min-w-[30%] p-8 flex flex-col gap-10 bg-800 rounded shadow-xl shadow-black/25">
@@ -27,7 +27,7 @@ export default function AlertModal({
           </h3>
           <div className="h-1 flex-1 bg-gradient-to-r from-primary-500 to-800 rounded-full" />
           <LuX
-            onClick={() => setOpenModal(!openModal)}
+            onClick={() => setShowAlertModal(!showAlertModal)}
             className="text-xl lg:text-2xl text-white cursor-pointer"
           />
         </div>
@@ -36,7 +36,7 @@ export default function AlertModal({
 
         <div className="flex gap-4">
           <Button
-            onClick={() => setOpenModal(!openModal)}
+            onClick={() => setShowAlertModal(!showAlertModal)}
             fill="error"
             className="w-full"
           >

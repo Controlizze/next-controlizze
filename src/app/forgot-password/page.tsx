@@ -7,6 +7,7 @@ import { LuArrowLeft } from 'react-icons/lu'
 
 import Banner from 'components/Banner'
 import Button from 'components/Button'
+import Container from 'components/Container'
 import Form from 'components/Form'
 import { Input } from 'components/Inputs/Input'
 
@@ -48,8 +49,8 @@ export default function ForgotPassord() {
   const router = useRouter()
 
   return (
-    <>
-      <div className="w-full h-screen md:h-1/2 lg:w-[40%] lg:h-full 2xl:w-[30%] p-7 xl:py-8 flex flex-col gap-8 lg:gap-16 bg-800">
+    <Container isSidebarOpen={false} setIsSidebarOpen={() => null}>
+      <div className="w-full h-screen md:h-1/2 lg:w-[40%] lg:h-screen 2xl:w-[30%] p-7 xl:py-8 flex flex-col gap-8 lg:gap-16 bg-800">
         <button
           className="w-fit flex items-center gap-2"
           onClick={() => router.back()}
@@ -112,6 +113,6 @@ export default function ForgotPassord() {
       </div>
 
       <Banner login />
-    </>
+    </Container>
   )
 }
