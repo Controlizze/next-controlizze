@@ -1,9 +1,25 @@
+'use client'
+
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 import Button from 'components/Button'
 import Logo from 'components/Logo'
 
+import { setCookie } from 'nookies'
+
 export default function HomePage() {
+  const router = useRouter()
+
+  const test = () => {
+    setCookie(undefined, 'nextfinance.token', 'asdfasdfasdfasdfasdfasdf', {
+      maxAge: 60 * 60 * 2,
+      path: '/'
+    })
+
+    router.push('/movements')
+  }
+
   return (
     <div className="relative w-full min-h-screen flex flex-col bg-900">
       <header className="absolute top-0 left-0 w-full p-7 md:p-9 xl:p-12 flex justify-between items-center">
@@ -45,6 +61,9 @@ export default function HomePage() {
         <Link href="/login" className="w-full md:w-fit">
           <Button className="w-full md:w-fit">Acesse já sua conta</Button>
         </Link>
+        <Button onClick={test} className="w-full md:w-fit">
+          Acesse já sua conta
+        </Button>
       </main>
 
       <footer className="absolute bottom-0 left-0 w-full p-7 md:p-9 xl:p-12 flex justify-center lg:justify-end items-center">
