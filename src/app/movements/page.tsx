@@ -1,7 +1,12 @@
 'use client'
 
 import { useState } from 'react'
-import { LuArrowDownCircle, LuArrowUpCircle, LuWallet } from 'react-icons/lu'
+import {
+  LuArrowDownCircle,
+  LuArrowUpCircle,
+  LuFilter,
+  LuWallet
+} from 'react-icons/lu'
 
 import AlertModal from 'components/AlertModal'
 import Button from 'components/Button'
@@ -10,12 +15,74 @@ import Container from 'components/Container'
 import Form from 'components/Form'
 import Header from 'components/Header'
 import { Input } from 'components/Inputs/Input'
+import Table from 'components/Table'
 import UpdateModal from 'components/UpdateModal'
+
+import { columns } from 'mocks/mocks'
 
 export default function MovementsPage() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [showUpdateModal, setShowUpdateModal] = useState(false)
   const [showAlertModal, setShowAlertModal] = useState(false)
+
+  const data = [
+    {
+      id: 1,
+      date: '2023-11-08',
+      description: 'Presente',
+      category: 'Lazer',
+      value: 100,
+      type: 'Receita'
+    },
+    {
+      id: 2,
+      date: '2023-11-08',
+      description: 'Presente',
+      category: 'Lazer',
+      value: 100,
+      type: 'Receita'
+    },
+    {
+      id: 3,
+      date: '2023-11-08',
+      description: 'Presente',
+      category: 'Lazer',
+      value: 100,
+      type: 'Receita'
+    },
+    {
+      id: 4,
+      date: '2023-11-08',
+      description: 'Presente',
+      category: 'Lazer',
+      value: 100,
+      type: 'Receita'
+    },
+    {
+      id: 5,
+      date: '2023-11-08',
+      description: 'Presente',
+      category: 'Lazer',
+      value: 100,
+      type: 'Receita'
+    },
+    {
+      id: 6,
+      date: '2023-11-08',
+      description: 'Presente',
+      category: 'Lazer',
+      value: 100,
+      type: 'Receita'
+    }
+  ]
+
+  const handleShowUpdateModal = () => {
+    setShowUpdateModal(!showUpdateModal)
+  }
+
+  const handleShowAlertModal = () => {
+    setShowAlertModal(!showAlertModal)
+  }
 
   return (
     <Container
@@ -118,15 +185,19 @@ export default function MovementsPage() {
             Registros
           </h3>
           <div className="h-1 flex-1 bg-gradient-to-r from-primary-500 to-800 rounded-full" />
+          <Button className="h-8 gap-2">
+            <LuFilter className="text-xl" />
+            <span className="hidden lg:block">Filtrar</span>
+          </Button>
         </div>
 
-        {/* <Table
-            columns={columns}
-            data={data}
-            isEdit={handleOpenUpdateModal}
-            isDelete={handleShowAlertModal}
-            showActions
-          /> */}
+        <Table
+          columns={columns}
+          data={data}
+          isEdit={handleShowUpdateModal}
+          isDelete={handleShowAlertModal}
+          showActions
+        />
       </div>
 
       {showUpdateModal && (

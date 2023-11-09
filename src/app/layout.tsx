@@ -1,8 +1,9 @@
+import { Metadata } from 'next'
 import { ReactNode } from 'react'
 
 import './globals.scss'
 
-export const metadata = {
+export const metadata: Metadata = {
   title: {
     default: 'Controlizze',
     template: '%s | Controlizze'

@@ -23,9 +23,9 @@ export default function Table({
   isDelete
 }: TableProps) {
   return (
-    <div className="min-h-[270px]">
-      <table className="w-full min-h-[207px] p-0.5 flex flex-col gap-0.5 bg-900 border-2 border-700 rounded shadow-lg shadow-black/25 overflow-auto">
-        <thead className="min-w-fit">
+    <div className="max-h-[270px] flex">
+      <table className="relative w-full p-0.5 flex flex-col flex-grow gap-0.5 bg-900 border-2 border-700 rounded shadow-lg shadow-black/25 overflow-auto">
+        <thead className="fixed min-w-full z-10">
           <tr className="w-full h-10 flex gap-0.5">
             {columns.map((col) => (
               <th
@@ -49,7 +49,7 @@ export default function Table({
           </tr>
         </thead>
 
-        <tbody className="relative min-w-fit flex flex-col gap-0.5">
+        <tbody className="min-w-fit mt-[42px] flex flex-col gap-0.5">
           {data.length > 0 ? (
             data.map((row, id) => (
               <tr key={id} className="h-10 flex gap-0.5">

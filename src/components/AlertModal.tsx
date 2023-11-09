@@ -4,15 +4,17 @@ import { LuX } from 'react-icons/lu'
 import Button from './Button'
 
 type ModalProps = {
+  text?: string
+  actionButton?: () => void
   showAlertModal: boolean
   setShowAlertModal: Dispatch<SetStateAction<boolean>>
-  text?: string
 }
 
 export default function AlertModal({
+  text,
+  actionButton,
   showAlertModal,
-  setShowAlertModal,
-  text
+  setShowAlertModal
 }: ModalProps) {
   return (
     <div
@@ -43,7 +45,9 @@ export default function AlertModal({
             Cancelar
           </Button>
 
-          <Button className="w-full">Confirmar</Button>
+          <Button onClick={actionButton} className="w-full">
+            Confirmar
+          </Button>
         </div>
       </div>
     </div>

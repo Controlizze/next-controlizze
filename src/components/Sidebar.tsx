@@ -1,13 +1,14 @@
 'use client'
 
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { Dispatch, SetStateAction, useState } from 'react'
-import { LuLogOut, LuUser, LuXCircle } from 'react-icons/lu'
+import { LuLogOut, LuUser, LuX } from 'react-icons/lu'
 
 import AlertModal from './AlertModal'
 import Logo from './Logo'
 
+import { useAuth } from 'hooks/useAuth'
 import { links } from 'mocks/mocks'
 
 type SidebarProps = {
@@ -20,16 +21,24 @@ export default function Sidebar({
   setIsSidebarOpen
 }: SidebarProps) {
   const [showAlertModal, setShowAlertModal] = useState(false)
-
+  const { logout } = useAuth()
   const pathname = usePathname()
+  const router = useRouter()
 
   const linkClass =
     'px-4 py-3.5 flex items-center gap-2 bg-transparent data-[selected=true]:bg-600 border-l-4 border-500 data-[selected=true]:border-primary-500 rounded hover:bg-700 transition-all shadow-md text-white'
 
+  const handleLogout = () => {
+    logout()
+    setShowAlertModal(false)
+
+    router.push('/')
+  }
+
   return (
     <>
       <nav
-        className={`fixed inset-y-0 lg:inset-0 left-0 w-full lg:w-[25%] 2xl:w-[20%] h-screen flex flex-col justify-between bg-800 transition-transform transform 2xl:transform-none z-20 ${
+        className={`fixed inset-y-0 lg:inset-0 left-0 w-full lg:w-[25%] 2xl:w-[20%] h-screen flex flex-col justify-between bg-800 transition-transform transform lg:transform-none z-20 ${
           isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
@@ -41,7 +50,7 @@ export default function Sidebar({
               onClick={() => setIsSidebarOpen(!isSidebarOpen)}
               className="lg:hidden"
             >
-              <LuXCircle className="w-6 h-6 text-white" />
+              <LuX className="w-6 h-6 text-white" />
             </button>
           </div>
 
@@ -103,9 +112,10 @@ export default function Sidebar({
 
       {showAlertModal && (
         <AlertModal
+          text="Você tem certeza que deseja sair?"
+          actionButton={handleLogout}
           showAlertModal={showAlertModal}
           setShowAlertModal={setShowAlertModal}
-          text="Você tem certeza que deseja sair?"
         />
       )}
     </>

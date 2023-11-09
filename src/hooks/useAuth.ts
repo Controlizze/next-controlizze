@@ -1,7 +1,7 @@
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
-import { setCookie } from 'nookies'
+import { destroyCookie, parseCookies, setCookie } from 'nookies'
 import { api } from 'services/api'
 import { LoginType, RegisterType, User } from 'types/User'
 
@@ -51,10 +51,23 @@ export function useAuth() {
     }
   }
 
+  function logout() {
+    const { ['nextfinance.token']: token } = parseCookies()
+    try {
+      if (token) {
+        destroyCookie(undefined, 'nextfinance.token')
+        setUser(null)
+      }
+    } catch (e) {
+      console.error('Falha ao deslogar usuário!', e)
+    }
+  }
+
   return {
     user,
     isAuthenticated,
     registerUser,
-    loginUser
+    loginUser,
+    logout
   }
 }
