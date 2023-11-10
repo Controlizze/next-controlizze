@@ -1,6 +1,8 @@
-import { LuAlertCircle, LuPencil, LuTrash2 } from 'react-icons/lu'
+'use client'
 
-import { Movement } from 'types/Movement'
+import { LuPencil, LuTrash2 } from 'react-icons/lu'
+
+import TableButton from './TableButton'
 
 type TableHeader = {
   id: string
@@ -9,87 +11,54 @@ type TableHeader = {
 
 type TableProps = {
   columns: TableHeader[]
-  data: Movement[]
   showActions?: boolean
-  isEdit: () => void
-  isDelete: () => void
 }
 
-export default function Table({
-  columns,
-  data,
-  showActions,
-  isEdit,
-  isDelete
-}: TableProps) {
+export default function Table({ columns, showActions }: TableProps) {
   return (
-    <div className="max-h-[270px] flex">
-      <table className="relative w-full p-0.5 flex flex-col flex-grow gap-0.5 bg-900 border-2 border-700 rounded shadow-lg shadow-black/25 overflow-auto">
-        <thead className="fixed min-w-full z-10">
-          <tr className="w-full h-10 flex gap-0.5">
-            {columns.map((col) => (
-              <th
-                key={col.id}
-                className={`min-w-[160px] w-full h-full px-4 flex justify-start items-center bg-700`}
-              >
-                <span className="font-semibold text-primary-500 uppercase">
-                  {col.name}
-                </span>
-              </th>
-            ))}
-            {showActions && (
-              <th
-                className={`min-w-[160px] w-full h-full px-4 flex justify-center items-center bg-700`}
-              >
-                <span className="font-semibold text-primary-500 uppercase">
-                  Ações
-                </span>
-              </th>
-            )}
-          </tr>
-        </thead>
-
-        <tbody className="min-w-fit mt-[42px] flex flex-col gap-0.5">
-          {data.length > 0 ? (
-            data.map((row, id) => (
-              <tr key={id} className="h-10 flex gap-0.5">
-                {columns.map((col) => (
-                  <td
-                    key={col.id}
-                    className={`min-w-[160px] w-full h-full px-4 flex justify-start items-center bg-800`}
-                  >
-                    <span className="text-white">{row[col.id]}</span>
-                  </td>
-                ))}
-                {showActions && (
-                  <td className="min-w-[160px] w-full h-full px-4 flex justify-center items-center gap-5 bg-800">
-                    <button
-                      onClick={isEdit}
-                      className="px-2 py-1 flex justify-center items-center gap-2 border border-orange-600 hover:bg-orange-600/10 rounded transition-all text-orange-600"
-                    >
-                      <LuPencil className="text-sm" />
-                      <span className="text-xs">Editar</span>
-                    </button>
-
-                    <button
-                      onClick={isDelete}
-                      className="px-2 py-1 flex justify-center items-center gap-2 border border-red-600 hover:bg-red-600/10 rounded transition-all text-red-600"
-                    >
-                      <LuTrash2 className="text-sm" />
-                      <span className="text-xs">Excluir</span>
-                    </button>
-                  </td>
-                )}
-              </tr>
-            ))
-          ) : (
-            <div className="h-[150px] flex justify-center items-center gap-2">
-              <LuAlertCircle className="text-2xl text-zinc-500" />
-              <p className="text-zinc-500">Sem registros a mostrar</p>
-            </div>
+    <table className="max-w-[279px] 2xl:max-w-full w-full h-[300px] block bg-900 border-2 border-600 border-separate border-spacing-0.5 overflow-auto">
+      <thead className="whitespace-nowrap">
+        <tr className="h-10">
+          {columns.map((col) => (
+            <th
+              key={col.id}
+              className={`${col.id === 'date' ? '2xl:w-[12%]' : ''} ${
+                col.id === 'description' ? '2xl:w-[40%]' : ''
+              } ${col.id === 'category' ? '2xl:w-[15%]' : ''} ${
+                col.id === 'value' ? '2xl:w-[10%]' : ''
+              } ${
+                col.id === 'type' ? '2xl:w-[10%]' : ''
+              } sticky top-0.5 px-4 bg-700 font-semibold text-start text-primary-500 uppercase`}
+            >
+              {col.name}
+            </th>
+          ))}
+          {showActions && (
+            <th className="sticky top-0.5 2xl:w-[15%] px-4 bg-700 font-semibold text-primary-500 uppercase">
+              Ações
+            </th>
           )}
-        </tbody>
-      </table>
-    </div>
+        </tr>
+      </thead>
+      <tbody className="whitespace-nowrap">
+        <tr className="h-10">
+          <td className="px-4 bg-800 text-white">09/11/2023</td>
+          <td className="px-4 bg-800 text-white">Bolsa da DELLsssssssssss</td>
+          <td className="px-4 bg-800 text-white">Bolsa da DELL</td>
+          <td className="px-4 bg-800 text-white">Bolsa da DELL</td>
+          <td className="px-4 bg-800 text-white">Bolsa da DELL</td>
+          {showActions && (
+            <td className="h-10 px-4 flex justify-center items-center gap-2 bg-800">
+              <TableButton icon={LuPencil} textColor="orange" btnColor="orange">
+                Editar
+              </TableButton>
+              <TableButton icon={LuTrash2} textColor="red" btnColor="red">
+                Excluir
+              </TableButton>
+            </td>
+          )}
+        </tr>
+      </tbody>
+    </table>
   )
 }

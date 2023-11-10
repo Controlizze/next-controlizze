@@ -123,7 +123,7 @@ export default function MovementsPage() {
         />
       </div>
 
-      <div className="px-8 py-5 flex flex-col gap-10 bg-800 rounded shadow-xl shadow-black/25">
+      <div className="px-8 py-5 flex flex-col gap-8 bg-800 rounded shadow-xl shadow-black/25">
         <div className="flex items-center gap-4 lg:gap-7">
           <h3 className="text-xl 2xl:text-2xl font-semibold text-white">
             Incluir registro
@@ -191,13 +191,7 @@ export default function MovementsPage() {
           </Button>
         </div>
 
-        <Table
-          columns={columns}
-          data={data}
-          isEdit={handleShowUpdateModal}
-          isDelete={handleShowAlertModal}
-          showActions
-        />
+        <Table columns={columns} showActions />
       </div>
 
       {showUpdateModal && (
