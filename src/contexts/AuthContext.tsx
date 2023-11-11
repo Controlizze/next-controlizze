@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation'
 import { ReactNode, createContext, useState } from 'react'
 
-import { destroyCookie } from 'nookies'
+import Cookies from 'js-cookie'
 import { api } from 'services/api'
 import { LoginType, RegisterType, User } from 'types/User'
 
@@ -21,62 +21,57 @@ export const AuthContext = createContext<AuthContextProps>(
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
-  console.log(user)
   const router = useRouter()
 
   const isAuthenticated = !!user
 
   const register = async ({ name, email, password }: RegisterType) => {
-    const response = await api.post('/auth/register', {
-      name,
-      email,
-      password
-    })
+    try {
+      const response = await api.post('/auth/register', {
+        name,
+        email,
+        password
+      })
 
-    if (response.status === 200) {
-      return router.push('/login')
-    } else {
-      return console.error('Falha ao cadastrar usuário!')
+      if (response.status === 200) {
+        router.push('/login')
+      }
+    } catch (e) {
+      console.log('Falha ao registrar usuário!', e)
     }
   }
 
   const login = async ({ email, password }: LoginType) => {
-    setUser({
-      id: 1,
-      name: 'Richard',
-      email,
-      password,
-      city: ''
-    })
-    // const response = await api.post('/auth/login', {
-    //   email,
-    //   password
-    // })
-    // if (response.status === 200) {
-    //   const token = response.data.token
-    //   const user = response.data.user
-    //   if (user && token) {
-    //     setUser(user)
-    //     setCookie(undefined, 'nextfinance.token', token, {
-    //       maxAge: 60 * 60 * 2, // 2 hour
-    //       path: '/'
-    //     })
-    //   }
-    //   return router.push('/movements')
-    // } else {
-    //   return console.error('Falha ao logar usuário!')
-    // }
+    try {
+      const response = await api.post('/auth/login', {
+        email,
+        password
+      })
+
+      if (response.status === 200) {
+        const token = response.data.token
+        const user = response.data.user
+        if (user && token) {
+          setUser(user)
+          Cookies.set('nextfinance.token', token, { expires: 1 })
+        }
+      }
+
+      router.push('/movements')
+    } catch (e) {
+      console.error('Falha ao logar usuário!', e)
+    }
   }
 
   const logout = () => {
-    if (user) {
-      destroyCookie(undefined, 'nextfinance.token')
+    try {
+      Cookies.remove('nextfinance.token')
       setUser(null)
-    } else {
-      return console.error('Falha ao deslogar usuário!')
-    }
 
-    return router.push('/')
+      router.push('/')
+    } catch (e) {
+      console.error('Falha ao deslogar usuário!', e)
+    }
   }
 
   return (

@@ -9,7 +9,6 @@ import AlertModal from './AlertModal'
 import Logo from './Logo'
 
 import { AuthContext } from 'contexts/AuthContext'
-import { useAuth } from 'hooks/useAuth'
 import { links } from 'mocks/mocks'
 
 type SidebarProps = {
@@ -22,16 +21,15 @@ export default function Sidebar({
   setIsSidebarOpen
 }: SidebarProps) {
   const [showAlertModal, setShowAlertModal] = useState(false)
-  const { user, login } = useContext(AuthContext)
+  const { user, logout } = useContext(AuthContext)
   const pathname = usePathname()
-  const { logout } = useAuth()
   const router = useRouter()
 
   const linkClass =
     'px-4 py-3.5 flex items-center gap-2 bg-transparent data-[selected=true]:bg-600 border-l-4 border-500 data-[selected=true]:border-primary-500 rounded hover:bg-700 transition-all shadow-md text-white'
 
-  const handleLogout = () => {
-    logout()
+  const handleLogout = async () => {
+    await logout()
     setShowAlertModal(false)
 
     router.push('/')
@@ -97,15 +95,12 @@ export default function Sidebar({
             
           )} */}
             <span className="text-sm text-white">
-              Olá,
-              <span className="font-semibold">{user?.name}</span>
+              Olá, <span className="font-semibold">{user?.name}</span>
             </span>
           </div>
 
           <button
-            onClick={async () =>
-              await login({ email: 'rs@gmail.com', password: '123456789' })
-            }
+            onClick={() => setShowAlertModal(!showAlertModal)}
             className="px-3 py-1 flex justify-center items-center gap-1 border border-primary-500 rounded-full text-sm text-primary-500"
           >
             <LuLogOut className="w-4 h-4" />

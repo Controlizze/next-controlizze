@@ -12,9 +12,16 @@ type TableHeader = {
 type TableProps = {
   columns: TableHeader[]
   showActions?: boolean
+  isEdit: () => void
+  isDelete: () => void
 }
 
-export default function Table({ columns, showActions }: TableProps) {
+export default function Table({
+  columns,
+  showActions,
+  isEdit,
+  isDelete
+}: TableProps) {
   return (
     <table className="max-w-[279px] 2xl:max-w-full w-full h-[300px] block bg-900 border-2 border-600 border-separate border-spacing-0.5 overflow-auto">
       <thead className="whitespace-nowrap">
@@ -49,10 +56,20 @@ export default function Table({ columns, showActions }: TableProps) {
           <td className="px-4 bg-800 text-white">Bolsa da DELL</td>
           {showActions && (
             <td className="h-10 px-4 flex justify-center items-center gap-2 bg-800">
-              <TableButton icon={LuPencil} textColor="orange" btnColor="orange">
+              <TableButton
+                action={isEdit}
+                icon={LuPencil}
+                textColor="orange"
+                btnColor="orange"
+              >
                 Editar
               </TableButton>
-              <TableButton icon={LuTrash2} textColor="red" btnColor="red">
+              <TableButton
+                action={isDelete}
+                icon={LuTrash2}
+                textColor="red"
+                btnColor="red"
+              >
                 Excluir
               </TableButton>
             </td>

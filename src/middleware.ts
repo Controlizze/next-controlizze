@@ -1,24 +1,43 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-import { parseCookies } from 'nookies'
-
 export default function middleware(req: NextRequest) {
-  const { ['nextfinance.token']: token } = parseCookies()
+  const token = req.cookies.get('nextfinance.token')
 
-  const signUrl = new URL('/', req.url)
+  const homeUrl = new URL('/', req.url)
   const authUrl = new URL('/movements', req.url)
 
   if (!token) {
-    if (req.nextUrl.pathname === '/') {
+    if (
+      req.nextUrl.pathname === '/' ||
+      req.nextUrl.pathname === '/login' ||
+      req.nextUrl.pathname === '/register' ||
+      req.nextUrl.pathname === '/forgot-password'
+    ) {
       return NextResponse.next()
     }
 
-    return NextResponse.redirect(signUrl)
+    return NextResponse.redirect(homeUrl)
   } else {
+    if (
+      req.nextUrl.pathname === '/movements' ||
+      req.nextUrl.pathname === '/investment' ||
+      req.nextUrl.pathname === '/user-profile'
+    ) {
+      return NextResponse.next()
+    }
+
     return NextResponse.redirect(authUrl)
   }
 }
 
 export const config = {
-  matcher: []
+  matcher: [
+    '/',
+    '/login',
+    '/register',
+    '/forgot-password',
+    '/movements',
+    '/investment',
+    '/user-profile'
+  ]
 }

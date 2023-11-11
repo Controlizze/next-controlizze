@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   LuArrowDownCircle,
   LuArrowUpCircle,
@@ -18,63 +18,15 @@ import { Input } from 'components/Inputs/Input'
 import Table from 'components/Table'
 import UpdateModal from 'components/UpdateModal'
 
+import Cookies from 'js-cookie'
 import { columns } from 'mocks/mocks'
+import { api } from 'services/api'
 
 export default function MovementsPage() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [showUpdateModal, setShowUpdateModal] = useState(false)
   const [showAlertModal, setShowAlertModal] = useState(false)
-
-  const data = [
-    {
-      id: 1,
-      date: '2023-11-08',
-      description: 'Presente',
-      category: 'Lazer',
-      value: 100,
-      type: 'Receita'
-    },
-    {
-      id: 2,
-      date: '2023-11-08',
-      description: 'Presente',
-      category: 'Lazer',
-      value: 100,
-      type: 'Receita'
-    },
-    {
-      id: 3,
-      date: '2023-11-08',
-      description: 'Presente',
-      category: 'Lazer',
-      value: 100,
-      type: 'Receita'
-    },
-    {
-      id: 4,
-      date: '2023-11-08',
-      description: 'Presente',
-      category: 'Lazer',
-      value: 100,
-      type: 'Receita'
-    },
-    {
-      id: 5,
-      date: '2023-11-08',
-      description: 'Presente',
-      category: 'Lazer',
-      value: 100,
-      type: 'Receita'
-    },
-    {
-      id: 6,
-      date: '2023-11-08',
-      description: 'Presente',
-      category: 'Lazer',
-      value: 100,
-      type: 'Receita'
-    }
-  ]
+  const [data, setData] = useState([])
 
   const handleShowUpdateModal = () => {
     setShowUpdateModal(!showUpdateModal)
@@ -83,6 +35,19 @@ export default function MovementsPage() {
   const handleShowAlertModal = () => {
     setShowAlertModal(!showAlertModal)
   }
+
+  const fetchMovements = async () => {
+    const token = Cookies.get('nextfinance.token')
+    api.defaults.headers['Authorization'] = `Bearer ${token}`
+    const response = await api.get('/api/user/all')
+    setData(response.data)
+  }
+
+  console.log(data)
+
+  useEffect(() => {
+    fetchMovements()
+  }, [])
 
   return (
     <Container
@@ -191,7 +156,12 @@ export default function MovementsPage() {
           </Button>
         </div>
 
-        <Table columns={columns} showActions />
+        <Table
+          columns={columns}
+          showActions
+          isEdit={handleShowUpdateModal}
+          isDelete={handleShowAlertModal}
+        />
       </div>
 
       {showUpdateModal && (

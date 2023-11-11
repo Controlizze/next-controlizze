@@ -1,9 +1,6 @@
 import axios from 'axios'
-import { parseCookies } from 'nookies'
 
-export function getAPIClient(ctx?: any) {
-  const { 'nextfinance.token': token } = parseCookies(ctx)
-
+export function getAPIClient() {
   const api = axios.create({
     baseURL: 'http://localhost:8080',
     headers: {
@@ -12,15 +9,11 @@ export function getAPIClient(ctx?: any) {
     }
   })
 
-  api.interceptors.request.use((config) => {
-    console.log(config)
+  // api.interceptors.request.use((config) => {
+  //   console.log(config)
 
-    return config
-  })
-
-  if (token) {
-    api.defaults.headers['Authorization'] = `OAuth2 ${token}`
-  }
+  //   return config
+  // })
 
   return api
 }

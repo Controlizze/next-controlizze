@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import { useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import { LuArrowLeft } from 'react-icons/lu'
 
@@ -12,7 +13,7 @@ import Form from 'components/Form'
 import { Input } from 'components/Inputs/Input'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useAuth } from 'hooks/useAuth'
+import { AuthContext } from 'contexts/AuthContext'
 import { LoginType } from 'types/User'
 import { z } from 'zod'
 
@@ -36,12 +37,12 @@ export default function LoginPage() {
     mode: 'onBlur',
     resolver: zodResolver(schema)
   })
-  const { loginUser } = useAuth()
+  const { login } = useContext(AuthContext)
 
   const router = useRouter()
 
   async function handleLogin(data: LoginType) {
-    await loginUser(data)
+    await login(data)
   }
 
   return (
