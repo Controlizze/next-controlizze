@@ -1,8 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { LuImagePlus } from 'react-icons/lu'
+import { LuImagePlus, LuUser } from 'react-icons/lu'
 
 import Button from 'components/Button'
 import Container from 'components/Container'
@@ -10,9 +10,19 @@ import Form from 'components/Form'
 import Header from 'components/Header'
 import { Input } from 'components/Inputs/Input'
 
+import Cookies from 'js-cookie'
+
 export default function UserProfilePage() {
   const { register, handleSubmit } = useForm()
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  const [nameUser, setNameUser] = useState('')
+
+  useEffect(() => {
+    const userCookie = Cookies.get('nextfinance.user')
+    if (userCookie) {
+      setNameUser(userCookie)
+    }
+  }, [])
 
   return (
     <Container
@@ -31,13 +41,15 @@ export default function UserProfilePage() {
       <div className="px-8 py-5 flex flex-col gap-6 bg-800 rounded shadow-xl shadow-black/25">
         <div className="flex flex-col justify-center items-center gap-4">
           <div className="relative flex flex-col justify-center items-center">
-            <div className="w-[120px] h-[120px] lg:w-[200px] lg:h-[200px] bg-400 rounded-full"></div>
+            <div className="w-[120px] h-[120px] lg:w-[200px] lg:h-[200px] flex justify-center items-center bg-600 rounded-full">
+              <LuUser className="text-3xl xl:text-4xl text-zinc-400" />
+            </div>
             <button className="absolute bottom-1 right-1 p-2 lg:p-3 bg-primary-500 rounded-full">
               <LuImagePlus className="text-base lg:text-lg text-white" />
             </button>
           </div>
           <p className="text-base lg:text-lg font-medium text-white">
-            Nome do Usuário
+            {nameUser}
           </p>
         </div>
 

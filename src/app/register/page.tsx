@@ -1,6 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
+import { useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import { LuArrowLeft } from 'react-icons/lu'
 
@@ -11,7 +12,7 @@ import Form from 'components/Form'
 import { Input } from 'components/Inputs/Input'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useAuth } from 'hooks/useAuth'
+import { AuthContext } from 'contexts/AuthContext'
 import { RegisterType } from 'types/User'
 import { z } from 'zod'
 
@@ -56,7 +57,7 @@ export default function RegisterPage() {
     mode: 'onBlur',
     resolver: zodResolver(schema)
   })
-  const { registerUser } = useAuth()
+  const { registerUser } = useContext(AuthContext)
 
   const router = useRouter()
 

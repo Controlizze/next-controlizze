@@ -2,13 +2,20 @@
 
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
-import { Dispatch, SetStateAction, useContext, useState } from 'react'
+import {
+  Dispatch,
+  SetStateAction,
+  useContext,
+  useEffect,
+  useState
+} from 'react'
 import { LuLogOut, LuUser, LuX } from 'react-icons/lu'
 
 import AlertModal from './AlertModal'
 import Logo from './Logo'
 
 import { AuthContext } from 'contexts/AuthContext'
+import Cookies from 'js-cookie'
 import { links } from 'mocks/mocks'
 
 type SidebarProps = {
@@ -21,9 +28,17 @@ export default function Sidebar({
   setIsSidebarOpen
 }: SidebarProps) {
   const [showAlertModal, setShowAlertModal] = useState(false)
-  const { user, logout } = useContext(AuthContext)
+  const [nameUser, setNameUser] = useState('')
+  const { logout } = useContext(AuthContext)
   const pathname = usePathname()
   const router = useRouter()
+
+  useEffect(() => {
+    const userCookie = Cookies.get('nextfinance.user')
+    if (userCookie) {
+      setNameUser(userCookie)
+    }
+  }, [])
 
   const linkClass =
     'px-4 py-3.5 flex items-center gap-2 bg-transparent data-[selected=true]:bg-600 border-l-4 border-500 data-[selected=true]:border-primary-500 rounded hover:bg-700 transition-all shadow-md text-white'
@@ -80,8 +95,8 @@ export default function Sidebar({
 
         <div className="h-20 px-7 flex justify-between items-center bg-700">
           <div className="flex justify-center items-center gap-2">
-            <div className="w-9 h-9 flex justify-center items-center bg-800 border border-primary-500 rounded-full">
-              <LuUser className="text-sm text-zinc-500" />
+            <div className="w-9 h-9 flex justify-center items-center bg-600 border border-primary-500 rounded-full">
+              <LuUser className="text-sm text-zinc-400" />
             </div>
             {/* {user?.photo ? (
             <Image
@@ -95,7 +110,7 @@ export default function Sidebar({
             
           )} */}
             <span className="text-sm text-white">
-              Olá, <span className="font-semibold">{user?.name}</span>
+              Olá, <span className="font-semibold">{nameUser}</span>
             </span>
           </div>
 

@@ -14,5 +14,5 @@ export type User = {
   name: string
   email: string
   password: string
-  city: string | null
+  city?: string
 }

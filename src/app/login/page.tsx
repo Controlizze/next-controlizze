@@ -37,12 +37,12 @@ export default function LoginPage() {
     mode: 'onBlur',
     resolver: zodResolver(schema)
   })
-  const { login } = useContext(AuthContext)
+  const { loginUser } = useContext(AuthContext)
 
   const router = useRouter()
 
   async function handleLogin(data: LoginType) {
-    await login(data)
+    await loginUser(data)
   }
 
   return (

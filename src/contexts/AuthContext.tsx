@@ -1,17 +1,16 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { ReactNode, createContext, useState } from 'react'
+import { ReactNode, createContext } from 'react'
 
 import Cookies from 'js-cookie'
 import { api } from 'services/api'
-import { LoginType, RegisterType, User } from 'types/User'
+import { LoginType, RegisterType } from 'types/User'
 
 type AuthContextProps = {
-  user: User | null
   isAuthenticated: boolean
-  register: (data: RegisterType) => Promise<void>
-  login: (data: LoginType) => Promise<void>
+  registerUser: (data: RegisterType) => Promise<void>
+  loginUser: (data: LoginType) => Promise<void>
   logout: () => void
 }
 
@@ -20,28 +19,27 @@ export const AuthContext = createContext<AuthContextProps>(
 )
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<User | null>(null)
   const router = useRouter()
 
-  const isAuthenticated = !!user
+  const token = Cookies.get('nextfinance.token')
 
-  const register = async ({ name, email, password }: RegisterType) => {
+  const isAuthenticated = !!token
+
+  const registerUser = async ({ name, email, password }: RegisterType) => {
     try {
-      const response = await api.post('/auth/register', {
+      await api.post('/auth/register', {
         name,
         email,
         password
       })
 
-      if (response.status === 200) {
-        router.push('/login')
-      }
+      router.push('/login')
     } catch (e) {
       console.log('Falha ao registrar usuário!', e)
     }
   }
 
-  const login = async ({ email, password }: LoginType) => {
+  const loginUser = async ({ email, password }: LoginType) => {
     try {
       const response = await api.post('/auth/login', {
         email,
@@ -52,7 +50,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         const token = response.data.token
         const user = response.data.user
         if (user && token) {
-          setUser(user)
+          Cookies.set('nextfinance.user', user.name, { expires: 1 })
           Cookies.set('nextfinance.token', token, { expires: 1 })
         }
       }
@@ -66,7 +64,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const logout = () => {
     try {
       Cookies.remove('nextfinance.token')
-      setUser(null)
+      Cookies.remove('nextfinance.user')
 
       router.push('/')
     } catch (e) {
@@ -76,7 +74,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   return (
     <AuthContext.Provider
-      value={{ user, isAuthenticated, register, login, logout }}
+      value={{ isAuthenticated, registerUser, loginUser, logout }}
     >
       {children}
     </AuthContext.Provider>
