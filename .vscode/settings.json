@@ -4,5 +4,6 @@
     "source.fixAll.eslint": true,
     "source.organizeImports": true
   },
-  "workbench.tree.indent": 12
+  "workbench.tree.indent": 12,
+  "editor.indentSize": 2
 }

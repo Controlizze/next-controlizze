@@ -14,10 +14,10 @@ export default function HomePage() {
         <Logo />
 
         <div className="hidden md:flex items-center gap-8">
-          <Link href="/login">
+          <Link href="/auth/login">
             <Button fill="empty">Login</Button>
           </Link>
-          <Link href="/register">
+          <Link href="/auth/register">
             <Button fill="outline">Cadastre-se</Button>
           </Link>
         </div>
@@ -46,9 +46,17 @@ export default function HomePage() {
           ajudá-los a alcançar seus objetivos financeiros.
         </p>
 
-        <Link href="/login" className="w-full md:w-fit">
-          <Button className="w-full md:w-fit">Acesse já sua conta</Button>
-        </Link>
+        <div className="w-full flex gap-2">
+          <Link href="/auth/login" className="w-fit">
+            <Button className="w-fit">Acesse já sua conta</Button>
+          </Link>
+
+          <Link href="/auth/register" className="w-fit md:hidden">
+            <Button fill="outline" className="w-fit md:hidden">
+              Crie uma
+            </Button>
+          </Link>
+        </div>
       </main>
 
       <footer className="absolute bottom-0 left-0 w-full p-7 md:p-9 xl:p-12 flex justify-center lg:justify-end items-center">

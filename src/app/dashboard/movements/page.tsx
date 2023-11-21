@@ -1,6 +1,7 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
 import {
   LuArrowDownCircle,
   LuArrowUpCircle,
@@ -12,21 +13,43 @@ import AlertModal from 'components/AlertModal'
 import Button from 'components/Button'
 import CardValue from 'components/CardValue'
 import Container from 'components/Container'
+import FilterModal from 'components/FilterModal'
 import Form from 'components/Form'
 import Header from 'components/Header'
+import { InputRadio } from 'components/InputRadio'
 import { Input } from 'components/Inputs/Input'
+import { InputSelect } from 'components/InputSelect'
 import Table from 'components/Table'
 import UpdateModal from 'components/UpdateModal'
 
-import Cookies from 'js-cookie'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useCategory } from 'hooks/useCategory'
+import { useMovement } from 'hooks/useMovement'
 import { columns } from 'mocks/mocks'
-import { api } from 'services/api'
+import { z } from 'zod'
+
+const schema = z.object({
+  date: z.string(),
+  description: z.string(),
+  category: z.coerce.number(),
+  value: z.coerce.number(),
+  type: z.coerce.number()
+})
+
+type DataProps = z.infer<typeof schema>
 
 export default function MovementsPage() {
+  const { register, handleSubmit } = useForm<DataProps>({
+    mode: 'onBlur',
+    resolver: zodResolver(schema)
+  })
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [showUpdateModal, setShowUpdateModal] = useState(false)
+  const [showFilterModal, setShowFilterModal] = useState(false)
   const [showAlertModal, setShowAlertModal] = useState(false)
-  const [data, setData] = useState([])
+
+  const { categories } = useCategory()
+  const { mutation } = useMovement()
 
   const handleShowUpdateModal = () => {
     setShowUpdateModal(!showUpdateModal)
@@ -35,19 +58,6 @@ export default function MovementsPage() {
   const handleShowAlertModal = () => {
     setShowAlertModal(!showAlertModal)
   }
-
-  const fetchMovements = async () => {
-    const token = Cookies.get('nextfinance.token')
-    api.defaults.headers['Authorization'] = `Bearer ${token}`
-    const response = await api.get('/api/user/all')
-    setData(response.data)
-  }
-
-  console.log(data)
-
-  useEffect(() => {
-    fetchMovements()
-  }, [])
 
   return (
     <Container
@@ -96,19 +106,25 @@ export default function MovementsPage() {
           <div className="h-1 flex-1 bg-gradient-to-r from-primary-500 to-800 rounded-full" />
         </div>
 
-        <Form direction="row" className="items-center">
+        <Form
+          direction="row"
+          className="items-center"
+          onSubmit={handleSubmit(async (data) => await mutation.mutate(data))}
+        >
           <div className="w-full grid grid-rows-4 xl:grid-rows-none xl:grid-cols-12 grid-flow-col xl:grid-flow-row gap-4">
             <Input
-              name="data"
+              {...register('date')}
+              name="date"
               type="text"
-              placeholder="Digite a data"
+              placeholder="dd/mm/yyyy"
               label="Data"
               scale="sm"
               className="xl:col-span-2"
             />
 
             <Input
-              name="data"
+              {...register('description')}
+              name="description"
               type="text"
               placeholder="Digite a descrição"
               label="Descrição"
@@ -116,16 +132,16 @@ export default function MovementsPage() {
               className="xl:col-span-6"
             />
 
-            <Input
+            <InputSelect
+              {...register('category')}
               name="category"
-              type="text"
-              placeholder="Digite a categoria"
               label="Categoria"
-              scale="sm"
+              data={categories}
               className="xl:col-span-2"
             />
 
             <Input
+              {...register('value')}
               name="value"
               type="text"
               placeholder="Digite o valor"
@@ -136,11 +152,26 @@ export default function MovementsPage() {
           </div>
 
           <div className="w-full 2xl:w-fit flex justify-around xl:justify-center items-center xl:gap-16 2xl:gap-4">
-            {/* <Checkbox name="type" type="radio" label="Despesa" />
-                <Checkbox name="type" type="radio" label="Receita" /> */}
+            <InputRadio
+              {...register('type')}
+              name="type"
+              type="radio"
+              label="Despesa"
+              value={1}
+              defaultChecked
+            />
+            <InputRadio
+              {...register('type')}
+              name="type"
+              type="radio"
+              label="Receita"
+              value={2}
+            />
           </div>
 
-          <Button className="w-full 2xl:w-fit">Adicionar</Button>
+          <Button type="submit" className="w-full 2xl:w-fit">
+            Adicionar
+          </Button>
         </Form>
       </div>
 
@@ -150,7 +181,10 @@ export default function MovementsPage() {
             Registros
           </h3>
           <div className="h-1 flex-1 bg-gradient-to-r from-primary-500 to-800 rounded-full" />
-          <Button className="h-8 gap-2">
+          <Button
+            onClick={() => setShowFilterModal(!showFilterModal)}
+            className="h-8 gap-2"
+          >
             <LuFilter className="text-xl" />
             <span className="hidden lg:block">Filtrar</span>
           </Button>
@@ -163,6 +197,13 @@ export default function MovementsPage() {
           isDelete={handleShowAlertModal}
         />
       </div>
+
+      {showFilterModal && (
+        <FilterModal
+          showFilterModal={showFilterModal}
+          setShowFilterModal={setShowFilterModal}
+        />
+      )}
 
       {showUpdateModal && (
         <UpdateModal

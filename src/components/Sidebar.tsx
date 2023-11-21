@@ -34,7 +34,7 @@ export default function Sidebar({
   const router = useRouter()
 
   useEffect(() => {
-    const userCookie = Cookies.get('nextfinance.user')
+    const userCookie = Cookies.get('nextfinance.username')
     if (userCookie) {
       setNameUser(userCookie)
     }
@@ -79,7 +79,7 @@ export default function Sidebar({
                   {item.links.map((link) => (
                     <Link
                       key={link.id}
-                      href={`/${link.path}`}
+                      href={link.path}
                       data-selected={pathname.includes(link.path)}
                       className={linkClass}
                     >

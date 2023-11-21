@@ -4,14 +4,14 @@ export default function middleware(req: NextRequest) {
   const token = req.cookies.get('nextfinance.token')
 
   const homeUrl = new URL('/', req.url)
-  const authUrl = new URL('/movements', req.url)
+  const authUrl = new URL('/dashboard/movements', req.url)
 
   if (!token) {
     if (
       req.nextUrl.pathname === '/' ||
-      req.nextUrl.pathname === '/login' ||
-      req.nextUrl.pathname === '/register' ||
-      req.nextUrl.pathname === '/forgot-password'
+      req.nextUrl.pathname === '/auth/login' ||
+      req.nextUrl.pathname === '/auth/register' ||
+      req.nextUrl.pathname === '/auth/forgot-password'
     ) {
       return NextResponse.next()
     }
@@ -19,9 +19,9 @@ export default function middleware(req: NextRequest) {
     return NextResponse.redirect(homeUrl)
   } else {
     if (
-      req.nextUrl.pathname === '/movements' ||
-      req.nextUrl.pathname === '/investment' ||
-      req.nextUrl.pathname === '/user-profile'
+      req.nextUrl.pathname === '/dashboard/movements' ||
+      req.nextUrl.pathname === '/others/investment' ||
+      req.nextUrl.pathname === '/others/user-profile'
     ) {
       return NextResponse.next()
     }
@@ -33,11 +33,11 @@ export default function middleware(req: NextRequest) {
 export const config = {
   matcher: [
     '/',
-    '/login',
-    '/register',
-    '/forgot-password',
-    '/movements',
-    '/investment',
-    '/user-profile'
+    '/auth/login',
+    '/auth/register',
+    '/auth/forgot-password',
+    '/dashboard/movements',
+    '/others/investment',
+    '/others/user-profile'
   ]
 }

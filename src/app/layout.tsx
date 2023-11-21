@@ -1,10 +1,11 @@
-import { Metadata } from 'next'
 import { ReactNode } from 'react'
 
 import { AuthProvider } from 'contexts/AuthContext'
+import { QueryProvider } from 'contexts/QueryProvider'
+
 import './globals.scss'
 
-export const metadata: Metadata = {
+export const metadata = {
   title: {
     default: 'Controlizze',
     template: '%s | Controlizze'
@@ -20,9 +21,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body>
-        <AuthProvider>
-          <div className="min-h-screen bg-900">{children}</div>
-        </AuthProvider>
+        <QueryProvider>
+          <AuthProvider>
+            <div className="min-h-screen bg-900">{children}</div>
+          </AuthProvider>
+        </QueryProvider>
       </body>
     </html>
   )

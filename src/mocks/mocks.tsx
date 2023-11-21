@@ -16,7 +16,7 @@ export const links = [
         id: 1,
         icon: <LuLayoutDashboard />,
         name: 'Movimentações',
-        path: 'movements'
+        path: '/dashboard/movements'
       }
     ]
   },
@@ -28,13 +28,13 @@ export const links = [
         id: 1,
         icon: <LuDollarSign />,
         name: 'Investimento',
-        path: 'investment'
+        path: '/others/investment'
       },
       {
         id: 2,
         icon: <LuUser />,
         name: 'Perfil do usuário',
-        path: 'user-profile'
+        path: '/others/profile'
       }
     ]
   }

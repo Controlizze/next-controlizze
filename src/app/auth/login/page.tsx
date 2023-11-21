@@ -84,7 +84,7 @@ export default function LoginPage() {
 
           <div className="flex justify-end items-center">
             <Link
-              href="/forgot-password"
+              href="/auth/forgot-password"
               className="text-xs 2xl:text-sm text-primary-500 hover:opacity-75 transition-all"
             >
               Esqueci minha senha
@@ -101,7 +101,7 @@ export default function LoginPage() {
             Ainda não tem sua conta?
           </span>
           <Link
-            href="/register"
+            href="/auth/register"
             className="text-xs 2xl:text-sm text-primary-500"
           >
             Cadastre-se

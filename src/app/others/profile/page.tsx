@@ -18,7 +18,7 @@ export default function UserProfilePage() {
   const [nameUser, setNameUser] = useState('')
 
   useEffect(() => {
-    const userCookie = Cookies.get('nextfinance.user')
+    const userCookie = Cookies.get('nextfinance.username')
     if (userCookie) {
       setNameUser(userCookie)
     }

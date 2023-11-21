@@ -52,7 +52,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     }
 
     return (
-      <div className={`${width} flex flex-col gap-0.5`} {...props}>
+      <div className={`${width} flex flex-col justify-end gap-0.5`} {...props}>
         <label htmlFor={inputId} className="text-sm text-zinc-200">
           {label}
           {helperText && <span className="ml-1 text-red-500">*</span>}

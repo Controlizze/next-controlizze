@@ -7,3 +7,11 @@ export type Movement = {
   type: string
   [key: string]: any
 }
+
+export type MovementRequest = {
+  date: string
+  description: string
+  category: number
+  value: number
+  type: number
+}
