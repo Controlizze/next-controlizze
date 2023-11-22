@@ -1,16 +1,25 @@
-import { useMutation, useQuery } from 'react-query'
+import { useMutation, useQuery, useQueryClient } from 'react-query'
 
 import Cookies from 'js-cookie'
 import { api } from 'services/api'
 import { MovementRequest } from 'types/Movement'
 
 const user_email = Cookies.get('nextfinance.useremail')
+const user_name = Cookies.get('nextfinance.username')
 
 export function useMovement() {
-  const { data: movements, ...rest } = useQuery(
+  const queryClient = useQueryClient()
+
+  const {
+    data: movements,
+    refetch,
+    ...rest
+  } = useQuery(
     'movements',
     () => {
-      return api.get('/movement/all').then((response) => response.data)
+      return api
+        .get(`/movement?user=${user_name}`)
+        .then((response) => response.data.content)
     },
     {
       retry: false,
@@ -38,6 +47,10 @@ export function useMovement() {
         .then((response) => {
           return response.data
         })
+    },
+    onSuccess: () => {
+      refetch()
+      queryClient.invalidateQueries(['movements'])
     }
   })
 

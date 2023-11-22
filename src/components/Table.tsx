@@ -11,7 +11,7 @@ type TableHeader = {
 
 type TableProps = {
   columns: TableHeader[]
-  data?: any[]
+  data: any[]
   showActions?: boolean
   isEdit: () => void
   isDelete: () => void
@@ -25,7 +25,7 @@ export default function Table({
   isDelete
 }: TableProps) {
   return (
-    <table className="max-w-full w-full h-[300px] block bg-900 border-2 border-600 border-separate border-spacing-0.5 overflow-auto">
+    <table className="max-w-full w-full h-[300px] block bg-900 border-2 border-600 border-separate border-spacing-0.5 rounded overflow-auto">
       <thead className="whitespace-nowrap">
         <tr className="h-10">
           {columns.map((col) => (
@@ -50,7 +50,7 @@ export default function Table({
         </tr>
       </thead>
       <tbody className="whitespace-nowrap">
-        {data?.map((row, id) => (
+        {data.map((row, id) => (
           <tr key={id} className="h-10">
             {columns.map((col) => (
               <td key={col.id} className="px-4 bg-800 text-white">

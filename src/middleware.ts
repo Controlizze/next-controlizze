@@ -9,9 +9,9 @@ export default function middleware(req: NextRequest) {
   if (!token) {
     if (
       req.nextUrl.pathname === '/' ||
-      req.nextUrl.pathname === '/auth/login' ||
-      req.nextUrl.pathname === '/auth/register' ||
-      req.nextUrl.pathname === '/auth/forgot-password'
+      req.nextUrl.pathname.startsWith('/auth') ||
+      req.nextUrl.pathname.startsWith('/dashboard') ||
+      req.nextUrl.pathname.startsWith('/others')
     ) {
       return NextResponse.next()
     }
@@ -19,9 +19,8 @@ export default function middleware(req: NextRequest) {
     return NextResponse.redirect(homeUrl)
   } else {
     if (
-      req.nextUrl.pathname === '/dashboard/movements' ||
-      req.nextUrl.pathname === '/others/investment' ||
-      req.nextUrl.pathname === '/others/user-profile'
+      req.nextUrl.pathname.startsWith('/dashboard') ||
+      req.nextUrl.pathname.startsWith('/others')
     ) {
       return NextResponse.next()
     }
@@ -31,13 +30,5 @@ export default function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: [
-    '/',
-    '/auth/login',
-    '/auth/register',
-    '/auth/forgot-password',
-    '/dashboard/movements',
-    '/others/investment',
-    '/others/user-profile'
-  ]
+  matcher: ['/', '/auth/:path*', '/dashboard/:path*', '/others/:path*']
 }

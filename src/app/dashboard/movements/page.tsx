@@ -6,6 +6,7 @@ import {
   LuArrowDownCircle,
   LuArrowUpCircle,
   LuFilter,
+  LuLoader2,
   LuWallet
 } from 'react-icons/lu'
 
@@ -26,6 +27,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useCategory } from 'hooks/useCategory'
 import { useMovement } from 'hooks/useMovement'
 import { columns } from 'mocks/mocks'
+import { MovementRequest } from 'types/Movement'
 import { z } from 'zod'
 
 const schema = z.object({
@@ -39,17 +41,18 @@ const schema = z.object({
 type DataProps = z.infer<typeof schema>
 
 export default function MovementsPage() {
-  const { register, handleSubmit } = useForm<DataProps>({
+  const { register, handleSubmit, reset } = useForm<DataProps>({
     mode: 'onBlur',
     resolver: zodResolver(schema)
   })
+
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [showUpdateModal, setShowUpdateModal] = useState(false)
   const [showFilterModal, setShowFilterModal] = useState(false)
   const [showAlertModal, setShowAlertModal] = useState(false)
 
+  const { movements, mutation, isLoading } = useMovement()
   const { categories } = useCategory()
-  const { mutation } = useMovement()
 
   const handleShowUpdateModal = () => {
     setShowUpdateModal(!showUpdateModal)
@@ -57,6 +60,11 @@ export default function MovementsPage() {
 
   const handleShowAlertModal = () => {
     setShowAlertModal(!showAlertModal)
+  }
+
+  const handleSubmitMovement = async (data: MovementRequest) => {
+    await mutation.mutateAsync(data)
+    reset()
   }
 
   return (
@@ -109,7 +117,7 @@ export default function MovementsPage() {
         <Form
           direction="row"
           className="items-center"
-          onSubmit={handleSubmit(async (data) => await mutation.mutate(data))}
+          onSubmit={handleSubmit(handleSubmitMovement)}
         >
           <div className="w-full grid grid-rows-4 xl:grid-rows-none xl:grid-cols-12 grid-flow-col xl:grid-flow-row gap-4">
             <Input
@@ -190,12 +198,22 @@ export default function MovementsPage() {
           </Button>
         </div>
 
-        <Table
-          columns={columns}
-          showActions
-          isEdit={handleShowUpdateModal}
-          isDelete={handleShowAlertModal}
-        />
+        {!isLoading ? (
+          <Table
+            columns={columns}
+            data={movements}
+            isEdit={handleShowUpdateModal}
+            isDelete={handleShowAlertModal}
+            showActions
+          />
+        ) : (
+          <div className="max-w-full w-full h-[300px] px-10 flex flex-col lg:flex-row justify-center items-center gap-2 bg-900 border-2 border-600 rounded">
+            <LuLoader2 className="text-3xl lg:text-2xl text-primary-300 animate-spin" />
+            <span className="text-zinc-400 text-center">
+              Carregando registros...
+            </span>
+          </div>
+        )}
       </div>
 
       {showFilterModal && (

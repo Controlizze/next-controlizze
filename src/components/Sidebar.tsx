@@ -29,14 +29,15 @@ export default function Sidebar({
 }: SidebarProps) {
   const [showAlertModal, setShowAlertModal] = useState(false)
   const [nameUser, setNameUser] = useState('')
+
   const { logout } = useContext(AuthContext)
   const pathname = usePathname()
   const router = useRouter()
 
   useEffect(() => {
-    const userCookie = Cookies.get('nextfinance.username')
-    if (userCookie) {
-      setNameUser(userCookie)
+    const user_name = Cookies.get('nextfinance.username')
+    if (user_name) {
+      setNameUser(user_name)
     }
   }, [])
 
