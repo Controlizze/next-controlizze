@@ -10,7 +10,6 @@ import {
   LuWallet
 } from 'react-icons/lu'
 
-import AlertModal from 'components/AlertModal'
 import Button from 'components/Button'
 import CardValue from 'components/CardValue'
 import Container from 'components/Container'
@@ -21,11 +20,11 @@ import { InputRadio } from 'components/InputRadio'
 import { Input } from 'components/Inputs/Input'
 import { InputSelect } from 'components/InputSelect'
 import Table from 'components/Table'
-import UpdateModal from 'components/UpdateModal'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useCategory } from 'hooks/useCategory'
 import { useMovement } from 'hooks/useMovement'
+import { useRetrieveCardValue } from 'hooks/useRetrieveCardValue'
 import { columns } from 'mocks/mocks'
 import { MovementRequest } from 'types/Movement'
 import { z } from 'zod'
@@ -47,25 +46,18 @@ export default function MovementsPage() {
   })
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
-  const [showUpdateModal, setShowUpdateModal] = useState(false)
   const [showFilterModal, setShowFilterModal] = useState(false)
-  const [showAlertModal, setShowAlertModal] = useState(false)
 
-  const { movements, mutation, isLoading } = useMovement()
+  const { movements, add, isLoading } = useMovement()
   const { categories } = useCategory()
 
-  const handleShowUpdateModal = () => {
-    setShowUpdateModal(!showUpdateModal)
-  }
-
-  const handleShowAlertModal = () => {
-    setShowAlertModal(!showAlertModal)
-  }
-
   const handleSubmitMovement = async (data: MovementRequest) => {
-    await mutation.mutateAsync(data)
+    await add.mutateAsync(data)
     reset()
   }
+
+  const [totalReceita, totalDespesas, totalSaldo] =
+    useRetrieveCardValue(movements)
 
   return (
     <Container
@@ -86,7 +78,7 @@ export default function MovementsPage() {
           gradient="from-red-600"
           icon={LuArrowDownCircle}
           iconColor="text-red-600"
-          value={1000}
+          value={totalDespesas}
         />
 
         <CardValue
@@ -94,7 +86,7 @@ export default function MovementsPage() {
           gradient="from-green-600"
           icon={LuArrowUpCircle}
           iconColor="text-green-600"
-          value={1000}
+          value={totalReceita}
         />
 
         <CardValue
@@ -102,7 +94,16 @@ export default function MovementsPage() {
           gradient="from-orange-600"
           icon={LuWallet}
           iconColor="text-orange-600"
-          value={1000}
+          value={totalSaldo}
+          className={
+            totalSaldo > 0
+              ? 'text-green-600'
+              : totalSaldo < 0
+              ? 'text-red-600'
+              : totalSaldo == 0
+              ? 'text-white'
+              : ''
+          }
         />
       </div>
 
@@ -119,7 +120,7 @@ export default function MovementsPage() {
           className="items-center"
           onSubmit={handleSubmit(handleSubmitMovement)}
         >
-          <div className="w-full grid grid-rows-4 xl:grid-rows-none xl:grid-cols-12 grid-flow-col xl:grid-flow-row gap-4">
+          <div className="w-full grid grid-rows-4 xl:grid-rows-none xl:grid-cols-16 grid-flow-col xl:grid-flow-row gap-4">
             <Input
               {...register('date')}
               name="date"
@@ -137,7 +138,7 @@ export default function MovementsPage() {
               placeholder="Digite a descrição"
               label="Descrição"
               scale="sm"
-              className="xl:col-span-6"
+              className="xl:col-span-7"
             />
 
             <InputSelect
@@ -145,7 +146,7 @@ export default function MovementsPage() {
               name="category"
               label="Categoria"
               data={categories}
-              className="xl:col-span-2"
+              className="xl:col-span-4"
             />
 
             <Input
@@ -155,11 +156,11 @@ export default function MovementsPage() {
               placeholder="Digite o valor"
               label="Valor"
               scale="sm"
-              className="xl:col-span-2"
+              className="xl:col-span-3"
             />
           </div>
 
-          <div className="w-full 2xl:w-fit flex justify-around xl:justify-center items-center xl:gap-16 2xl:gap-4">
+          <div className="w-full 2xl:w-fit flex justify-around xl:justify-center items-center xl:gap-16 2xl:gap-8">
             <InputRadio
               {...register('type')}
               name="type"
@@ -199,13 +200,7 @@ export default function MovementsPage() {
         </div>
 
         {!isLoading ? (
-          <Table
-            columns={columns}
-            data={movements}
-            isEdit={handleShowUpdateModal}
-            isDelete={handleShowAlertModal}
-            showActions
-          />
+          <Table keyId="id" data={movements} columns={columns} showActions />
         ) : (
           <div className="max-w-full w-full h-[300px] px-10 flex flex-col lg:flex-row justify-center items-center gap-2 bg-900 border-2 border-600 rounded">
             <LuLoader2 className="text-3xl lg:text-2xl text-primary-300 animate-spin" />
@@ -220,21 +215,6 @@ export default function MovementsPage() {
         <FilterModal
           showFilterModal={showFilterModal}
           setShowFilterModal={setShowFilterModal}
-        />
-      )}
-
-      {showUpdateModal && (
-        <UpdateModal
-          showUpdateModal={showUpdateModal}
-          setShowUpdateModal={setShowUpdateModal}
-        />
-      )}
-
-      {showAlertModal && (
-        <AlertModal
-          showAlertModal={showAlertModal}
-          setShowAlertModal={setShowAlertModal}
-          text="Deseja continuar com a exclusão do seu registro?"
         />
       )}
     </Container>

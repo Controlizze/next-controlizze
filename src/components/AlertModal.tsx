@@ -5,6 +5,7 @@ import Button from './Button'
 
 type ModalProps = {
   text?: string
+  buttons?: boolean
   actionButton?: () => void
   showAlertModal: boolean
   setShowAlertModal: Dispatch<SetStateAction<boolean>>
@@ -12,6 +13,7 @@ type ModalProps = {
 
 export default function AlertModal({
   text,
+  buttons,
   actionButton,
   showAlertModal,
   setShowAlertModal
@@ -36,20 +38,22 @@ export default function AlertModal({
 
         <p className="text-white">{text}</p>
 
-        <div className="flex gap-4">
-          <Button
-            onClick={() => setShowAlertModal(!showAlertModal)}
-            fill="error"
-            size_="sm"
-            className="w-full"
-          >
-            Cancelar
-          </Button>
+        {buttons && (
+          <div className="flex gap-4">
+            <Button
+              onClick={() => setShowAlertModal(!showAlertModal)}
+              fill="error"
+              size_="sm"
+              className="w-full"
+            >
+              Cancelar
+            </Button>
 
-          <Button onClick={actionButton} size_="sm" className="w-full">
-            Confirmar
-          </Button>
-        </div>
+            <Button onClick={actionButton} size_="sm" className="w-full">
+              Confirmar
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   )

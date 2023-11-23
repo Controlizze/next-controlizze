@@ -9,9 +9,7 @@ export default function middleware(req: NextRequest) {
   if (!token) {
     if (
       req.nextUrl.pathname === '/' ||
-      req.nextUrl.pathname.startsWith('/auth') ||
-      req.nextUrl.pathname.startsWith('/dashboard') ||
-      req.nextUrl.pathname.startsWith('/others')
+      req.nextUrl.pathname.startsWith('/auth')
     ) {
       return NextResponse.next()
     }

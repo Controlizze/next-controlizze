@@ -1,8 +1,11 @@
+import { BaseHTMLAttributes } from 'react'
 import { IconType } from 'react-icons/lib'
 
 import Icon from 'components/Icon'
 
-type CardProps = {
+import { twMerge } from 'tailwind-merge'
+
+type CardProps = BaseHTMLAttributes<HTMLDivElement> & {
   title: string
   gradient: string
   icon?: IconType
@@ -15,8 +18,13 @@ export default function CardValue({
   icon,
   iconColor,
   gradient,
-  value
+  value,
+  ...props
 }: CardProps) {
+  const formatValue = (value: number | undefined) => {
+    return value?.toFixed(2).toString().replace('-', '')
+  }
+
   return (
     <div className="w-full px-8 py-5 flex flex-col items-center gap-3 bg-800 rounded shadow-xl shadow-black/25">
       <div className="w-full flex justify-between items-center">
@@ -30,8 +38,13 @@ export default function CardValue({
           <Icon icon={icon} className={`text-3xl lg:text-4xl ${iconColor}`} />
         )}
       </div>
-      <h3 className="text-3xl 2xl:text-4xl font-bold text-white text-center">
-        R$ {value}
+      <h3
+        className={twMerge(
+          'text-3xl 2xl:text-4xl font-bold text-white text-center',
+          props.className
+        )}
+      >
+        R$ {formatValue(value)}
       </h3>
     </div>
   )

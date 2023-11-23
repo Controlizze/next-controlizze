@@ -16,3 +16,12 @@ export type User = {
   password: string
   city?: string
 }
+
+export type UserRequest = {
+  name: string
+  email: string
+  date_birth?: string
+  cel?: number
+  city?: number
+  state?: number
+}

@@ -47,10 +47,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       })
 
       if (response.status === 200) {
-        const token = response.data.token
+        const user_id = response.data.id
         const user_name = response.data.name
         const user_email = response.data.email
-        if (user_name && user_email && token) {
+        const token = response.data.token
+        if (user_id && user_name && user_email && token) {
+          Cookies.set('nextfinance.userid', user_id, { expires: 1 })
           Cookies.set('nextfinance.username', user_name, { expires: 1 })
           Cookies.set('nextfinance.useremail', user_email, { expires: 1 })
           Cookies.set('nextfinance.token', token, { expires: 1 })
@@ -65,9 +67,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const logout = () => {
     try {
-      Cookies.remove('nextfinance.token')
-      Cookies.remove('nextfinance.useremail')
+      Cookies.remove('nextfinance.userid')
       Cookies.remove('nextfinance.username')
+      Cookies.remove('nextfinance.useremail')
+      Cookies.remove('nextfinance.token')
 
       router.push('/')
     } catch (e) {

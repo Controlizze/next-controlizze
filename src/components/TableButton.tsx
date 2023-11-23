@@ -26,7 +26,7 @@ const btns = tv({
 type TableButtonProps = VariantProps<typeof btns> & {
   icon: IconType
   children: ReactNode
-  action: () => void
+  action?: () => void
 }
 
 export default function TableButton({

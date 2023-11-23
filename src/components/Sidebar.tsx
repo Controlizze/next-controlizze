@@ -117,7 +117,7 @@ export default function Sidebar({
 
           <button
             onClick={() => setShowAlertModal(!showAlertModal)}
-            className="px-3 py-1 flex justify-center items-center gap-1 border border-primary-500 rounded-full text-sm text-primary-500"
+            className="px-3 py-1 flex justify-center items-center gap-1 border border-primary-600 bg-transparent hover:bg-primary-100/10 active:bg-primary-200/20 rounded-full text-sm text-primary-600 transition-all"
           >
             <LuLogOut className="w-4 h-4" />
             Sair
@@ -128,6 +128,7 @@ export default function Sidebar({
       {showAlertModal && (
         <AlertModal
           text="Você tem certeza que deseja sair?"
+          buttons
           actionButton={handleLogout}
           showAlertModal={showAlertModal}
           setShowAlertModal={setShowAlertModal}

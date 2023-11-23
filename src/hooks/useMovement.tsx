@@ -4,11 +4,12 @@ import Cookies from 'js-cookie'
 import { api } from 'services/api'
 import { MovementRequest } from 'types/Movement'
 
-const user_email = Cookies.get('nextfinance.useremail')
-const user_name = Cookies.get('nextfinance.username')
-
 export function useMovement() {
   const queryClient = useQueryClient()
+
+  const user = Number(Cookies.get('nextfinance.userid'))
+  const user_name = Cookies.get('nextfinance.username')
+  const token = Cookies.get('nextfinance.token')
 
   const {
     data: movements,
@@ -18,7 +19,9 @@ export function useMovement() {
     'movements',
     () => {
       return api
-        .get(`/movement?user=${user_name}`)
+        .get(`/movement?user=${user_name}`, {
+          headers: { Authorization: `Bearer ${token}` }
+        })
         .then((response) => response.data.content)
     },
     {
@@ -27,7 +30,7 @@ export function useMovement() {
     }
   )
 
-  const mutation = useMutation({
+  const add = useMutation({
     mutationFn: ({
       date,
       description,
@@ -36,14 +39,20 @@ export function useMovement() {
       type
     }: MovementRequest) => {
       return api
-        .post('/movement/add', {
-          date,
-          description,
-          category,
-          value,
-          type,
-          user_email
-        })
+        .post(
+          '/movement/add',
+          {
+            date,
+            description,
+            category,
+            value,
+            type,
+            user
+          },
+          {
+            headers: { Authorization: `Bearer ${token}` }
+          }
+        )
         .then((response) => {
           return response.data
         })
@@ -54,9 +63,57 @@ export function useMovement() {
     }
   })
 
+  const update = useMutation({
+    mutationFn: ({
+      id,
+      date,
+      description,
+      category,
+      value,
+      type
+    }: MovementRequest) => {
+      return api
+        .put(
+          `/movement/update/${id}`,
+          {
+            date,
+            description,
+            category,
+            value,
+            type,
+            user
+          },
+          {
+            headers: { Authorization: `Bearer ${token}` }
+          }
+        )
+        .then((response) => {
+          return response.data
+        })
+    },
+    onSuccess: () => {
+      refetch()
+      queryClient.invalidateQueries(['movements'])
+    }
+  })
+
+  const exclude = useMutation({
+    mutationFn: (id: number) => {
+      return api.delete(`/movement/delete/${id}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+    },
+    onSuccess: () => {
+      refetch()
+      queryClient.invalidateQueries(['movements'])
+    }
+  })
+
   return {
     movements,
-    mutation,
+    add,
+    update,
+    exclude,
     ...rest
   }
 }

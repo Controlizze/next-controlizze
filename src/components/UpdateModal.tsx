@@ -1,19 +1,51 @@
 import { Dispatch, SetStateAction } from 'react'
+import { useForm } from 'react-hook-form'
 import { LuX } from 'react-icons/lu'
 
 import Button from './Button'
 import Form from './Form'
+import { InputRadio } from './InputRadio'
 import { Input } from './Inputs/Input'
+import { InputSelect } from './InputSelect'
+
+import { useCategory } from 'hooks/useCategory'
+import { useMovement } from 'hooks/useMovement'
+import { MovementRequest } from 'types/Movement'
+import { z } from 'zod'
+
+const schema = z.object({
+  date: z.string(),
+  description: z.string(),
+  category: z.coerce.number(),
+  value: z.coerce.number(),
+  type: z.coerce.number()
+})
+
+type DataProps = z.infer<typeof schema>
 
 type ModalProps = {
+  selectedRow: any
   showUpdateModal: boolean
   setShowUpdateModal: Dispatch<SetStateAction<boolean>>
 }
 
 export default function UpdateModal({
+  selectedRow,
   showUpdateModal,
   setShowUpdateModal
 }: ModalProps) {
+  const { register, handleSubmit } = useForm<DataProps>()
+
+  const { update } = useMovement()
+  const { categories } = useCategory()
+
+  const id = selectedRow.id
+
+  const handleSubmitMovement = async (data: MovementRequest) => {
+    await update.mutateAsync({ ...data, id })
+    setShowUpdateModal(!showUpdateModal)
+  }
+
   return (
     <div
       className={`fixed top-0 left-0 w-full min-h-screen ${
@@ -32,44 +64,65 @@ export default function UpdateModal({
           />
         </div>
 
-        <Form className="items-center">
+        <Form
+          onSubmit={handleSubmit(handleSubmitMovement)}
+          className="items-center"
+        >
           <div className="w-full grid grid-rows-4 grid-flow-col gap-4">
             <Input
+              {...register('date')}
               name="data"
               type="text"
-              placeholder="Digite a data"
+              defaultValue={selectedRow.date}
+              placeholder="dd/mm/yyyy"
               label="Data"
               scale="sm"
             />
 
             <Input
-              name="data"
+              {...register('description')}
+              name="description"
               type="text"
+              defaultValue={selectedRow.description}
               placeholder="Digite a descrição"
               label="Descrição"
               scale="sm"
             />
 
-            <Input
+            <InputSelect
+              {...register('category')}
               name="category"
-              type="text"
-              placeholder="Digite a categoria"
               label="Categoria"
-              scale="sm"
+              data={categories}
             />
 
             <Input
+              {...register('value')}
               name="value"
               type="text"
+              defaultValue={selectedRow.value}
               placeholder="Digite o valor"
               label="Valor"
               scale="sm"
             />
           </div>
 
-          <div className="w-full 2xl:w-fit flex justify-around xl:justify-center items-center xl:gap-16 2xl:gap-4">
-            {/* <Checkbox name="type" type="radio" label="Despesa" />
-                <Checkbox name="type" type="radio" label="Receita" /> */}
+          <div className="w-full 2xl:w-fit my-3 flex justify-around xl:justify-center items-center xl:gap-16">
+            <InputRadio
+              {...register('type')}
+              name="type"
+              type="radio"
+              label="Despesa"
+              value={1}
+              defaultChecked
+            />
+            <InputRadio
+              {...register('type')}
+              name="type"
+              type="radio"
+              label="Receita"
+              value={2}
+            />
           </div>
 
           <Button className="w-full">Salvar</Button>

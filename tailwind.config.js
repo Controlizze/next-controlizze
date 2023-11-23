@@ -40,6 +40,9 @@ export const theme = {
     padding: {
       'py-2.5': '10px',
       'py-3': '12px'
+    },
+    gridTemplateColumns: {
+      16: 'repeat(16, minmax(0, 1fr))'
     }
   }
 }
